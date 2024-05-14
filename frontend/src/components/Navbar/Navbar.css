@@ -45,7 +45,7 @@
 .navbar button:hover {
   background-color: #fff4f2;
 }
-.navbar-menu li {
+.navbar-menu a {
   cursor: pointer;
 }
 
