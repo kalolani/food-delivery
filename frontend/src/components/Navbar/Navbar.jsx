@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import "./Navbar.css";
 import { assets } from "../../assets/assets";
 import { Link } from "react-scroll";
-function Navbar() {
+function Navbar({ setShowLogin }) {
   const [menu, setMenu] = useState("home");
   return (
     <div className="navbar">
@@ -60,7 +60,7 @@ function Navbar() {
           <img src={assets.basket_icon} alt="" className="" />
           <div className="dot"></div>
         </div>
-        <button>sign in</button>
+        <button onClick={() => setShowLogin(true)}>sign in</button>
       </div>
     </div>
   );

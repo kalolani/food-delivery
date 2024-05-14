@@ -6,12 +6,16 @@ import { StoreProvider } from "./contexts/storeContext";
 
 import { Routes, Route } from "react-router-dom";
 import Footer from "./components/Footer/Footer";
+import { useState } from "react";
+import LoginPopup from "./components/LoginPopup/LoginPopup";
 
 function App() {
+  const [showLogin, setShowLogin] = useState(false);
   return (
     <>
+      {showLogin ? <LoginPopup setShowLogin={setShowLogin} /> : <></>}
       <div className="app">
-        <Navbar />
+        <Navbar setShowLogin={setShowLogin} />
         <StoreProvider>
           <Routes>
             <Route path="/" element={<Home />} />
