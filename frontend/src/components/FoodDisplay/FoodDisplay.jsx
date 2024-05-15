@@ -9,9 +9,6 @@ function FoodDisplay({ catagory }) {
       <h2>Top dishes near you</h2>
       <div className="food-display-list">
         {food_list.map((item, index) => {
-          {
-            console.log(catagory, item);
-          }
           if (catagory === "All" || catagory === item.category) {
             return (
               <FoodItem

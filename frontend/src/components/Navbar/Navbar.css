@@ -18,10 +18,22 @@
 .navbar-right {
   display: flex;
   align-items: center;
+  position: relative;
   gap: 40px;
 }
 .navbar-search-icon {
   position: relative;
+}
+.navbar-search-icon .cart {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+.logo-container a.active {
+  border: none;
+}
+.navbar-search-icon a.active {
+  border: none;
 }
 .dot {
   position: absolute;

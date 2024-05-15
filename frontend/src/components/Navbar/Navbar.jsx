@@ -3,14 +3,23 @@ import React, { useState } from "react";
 import "./Navbar.css";
 import { assets } from "../../assets/assets";
 import { Link } from "react-scroll";
+import { NavLink } from "react-router-dom";
+import { useStores } from "../../contexts/storeContext";
 function Navbar({ setShowLogin }) {
   const [menu, setMenu] = useState("home");
+  const { cartItem } = useStores();
+  console.log(cartItem);
+
   return (
     <div className="navbar">
-      <img src={assets.logo} alt="" className="logo" />
+      <div className="logo-container">
+        <NavLink to="/">
+          <img src={assets.logo} alt="" className="logo" />
+        </NavLink>
+      </div>
       <ul className="navbar-menu">
         <Link
-          to="home"
+          to="/"
           spy={true}
           smooth={true}
           offset={50}
@@ -55,11 +64,16 @@ function Navbar({ setShowLogin }) {
         </Link>
       </ul>
       <div className="navbar-right">
-        <img src={assets.search_icon} alt="" className="" />
+        <img src={assets.search_icon} alt="" className="navbar-logo" />
+
         <div className="navbar-search-icon">
-          <img src={assets.basket_icon} alt="" className="" />
+          <NavLink to="/cart">
+            <img src={assets.basket_icon} alt="" />
+          </NavLink>
+
           <div className="dot"></div>
         </div>
+
         <button onClick={() => setShowLogin(true)}>sign in</button>
       </div>
     </div>
