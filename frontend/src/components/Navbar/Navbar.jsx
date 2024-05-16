@@ -5,9 +5,10 @@ import { assets } from "../../assets/assets";
 import { Link } from "react-scroll";
 import { NavLink } from "react-router-dom";
 import { useStores } from "../../contexts/storeContext";
+
 function Navbar({ setShowLogin }) {
   const [menu, setMenu] = useState("home");
-  const { cartItem } = useStores();
+  const { cartItem, getTotalCartAmount } = useStores();
   console.log(cartItem);
 
   return (
@@ -71,7 +72,7 @@ function Navbar({ setShowLogin }) {
             <img src={assets.basket_icon} alt="" />
           </NavLink>
 
-          <div className="dot"></div>
+          <div className={getTotalCartAmount() > 0 ? "dot" : ""}></div>
         </div>
 
         <button onClick={() => setShowLogin(true)}>sign in</button>

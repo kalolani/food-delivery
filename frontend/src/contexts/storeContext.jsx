@@ -20,12 +20,23 @@ function StoreProvider({ children }) {
   function removeItem(itemId) {
     setCartItem((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
   }
-  useEffect(() => {
-    console.log(cartItem);
-  }, [cartItem]);
+
+  function getTotalCartAmount() {
+    let totalAmount = 0;
+    for (const item in cartItem) {
+      if (cartItem[item] > 0) {
+        let itemInfo = food_list.find((product) => product._id === item);
+        totalAmount += itemInfo.price * cartItem[item];
+      }
+    }
+
+    return totalAmount;
+  }
 
   return (
-    <StoreContext.Provider value={{ cartItem, food_list, addItem, removeItem }}>
+    <StoreContext.Provider
+      value={{ cartItem, food_list, addItem, removeItem, getTotalCartAmount }}
+    >
       {children}
     </StoreContext.Provider>
   );

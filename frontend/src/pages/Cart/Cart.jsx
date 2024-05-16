@@ -1,7 +1,10 @@
 import "./Cart.css";
 import { useStores } from "../../contexts/storeContext";
+import { useNavigate } from "react-router-dom";
 function Cart() {
-  const { food_list, cartItem, removeItem } = useStores();
+  const { food_list, cartItem, removeItem, getTotalCartAmount } = useStores();
+
+  const navigate = useNavigate();
 
   return (
     <div className="cart">
@@ -23,9 +26,9 @@ function Cart() {
                 <div className="cart-items-title cart-items-item" key={index}>
                   <img src={item.image} alt="" />
                   <p>{item.name}</p>
-                  <p>ETB {item.price}</p>
-                  <p>{cartItem[item._id]}</p>
-                  <p>ETB {item.price * cartItem[item._id]}</p>
+                  <p>{item.price} ETB</p>
+                  <p>{cartItem[item._id]} ETB</p>
+                  <p>{item.price * cartItem[item._id]} ETB</p>
                   <p onClick={() => removeItem(item._id)} className="cross">
                     x
                   </p>
@@ -42,19 +45,23 @@ function Cart() {
           <div>
             <div className="cart-total-details">
               <p>Sub Total</p>
-              <p>{0}</p>
+              <p>{getTotalCartAmount()} ETB</p>
             </div>
             <hr />
             <div className="cart-total-details">
               <p>Delivery Fee</p>
-              <p>{2}</p>
+              <p>{getTotalCartAmount() === 0 ? 0 : 2} ETB</p>
             </div>
             <hr />
             <div className="cart-total-details">
               <p>Total</p>
-              <p>{0}</p>
+              <p>
+                {getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 2} ETB
+              </p>
             </div>
-            <button>PROCEED TO CHECKOUT</button>
+            <button onClick={() => navigate("/order")}>
+              PROCEED TO CHECKOUT
+            </button>
           </div>
         </div>
         <div className="cart-promocode">
