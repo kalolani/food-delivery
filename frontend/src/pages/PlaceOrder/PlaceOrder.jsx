@@ -44,7 +44,7 @@ function PlaceOrder() {
                 {getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 2} ETB
               </p>
             </div>
-            <button>PROCEED TO CHECKOUT</button>
+            <button>PROCEED TO PAYEMENT</button>
           </div>
         </div>
       </div>
