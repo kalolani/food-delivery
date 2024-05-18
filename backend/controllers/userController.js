@@ -3,12 +3,30 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import validator from "validator";
 
-const loginUser = async (req, res) => {};
-
+//creating the token
 const createToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET);
 };
 
+//logic for user login
+const loginUser = async (req, res) => {
+  const { email, password } = req.body;
+  const user = await userModel.findOne({ email });
+  if (!user) {
+    return res.json({ sucess: false, message: "User doesn't exist" });
+  }
+
+  const isMatch = await bcrypt.compare(password, user.password);
+
+  if (!isMatch) {
+    return res.json({ sucess: false, message: "Invalid credentials" });
+  }
+
+  const token = createToken(user._id);
+  res.json({ success: true, token });
+};
+
+//logic for user register
 const registerUser = async (req, res) => {
   const { name, email, password } = req.body;
   try {
