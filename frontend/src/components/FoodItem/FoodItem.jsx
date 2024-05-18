@@ -4,11 +4,15 @@ import { assets } from "../../assets/assets";
 import { useStores } from "../../contexts/storeContext";
 
 function FoodItem({ id, name, price, description, image }) {
-  const { cartItem, addItem, removeItem } = useStores();
+  const { cartItem, addItem, removeItem, url } = useStores();
   return (
     <div className="food-item">
       <div className="food-item-img-container">
-        <img src={image} alt="" className="food-item-image" />
+        <img
+          src={url + "/images/" + image}
+          alt=""
+          className="food-item-image"
+        />
         {!cartItem[id] ? (
           <img
             onClick={() => addItem(id)}

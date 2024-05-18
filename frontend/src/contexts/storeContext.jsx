@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { createContext, useContext, useEffect, useState } from "react";
-import { food_list } from "../assets/assets";
+import axios from "axios";
 
 const StoreContext = createContext();
 
@@ -10,6 +10,12 @@ function StoreProvider({ children }) {
   const [cartItem, setCartItem] = useState({});
   const [token, setToken] = useState("");
   const url = "http://localhost:4000";
+  const [food_list, setFoodList] = useState([]);
+
+  const fetchFoodList = async () => {
+    const response = await axios.get(url + "/api/food/list");
+    setFoodList(response.data.data);
+  };
 
   function addItem(itemId) {
     if (!cartItem[itemId]) {
@@ -36,9 +42,14 @@ function StoreProvider({ children }) {
   }
 
   useEffect(() => {
-    if (localStorage.getItem("token")) {
-      setToken(localStorage.getItem("token"));
+    async function loadData() {
+      await fetchFoodList();
+      if (localStorage.getItem("token")) {
+        setToken(localStorage.getItem("token"));
+      }
     }
+
+    loadData();
   }, []);
 
   return (
