@@ -13,9 +13,9 @@ function App() {
   const [showLogin, setShowLogin] = useState(false);
   return (
     <>
-      {showLogin ? <LoginPopup setShowLogin={setShowLogin} /> : <></>}
-      <div className="app">
-        <StoreProvider>
+      <StoreProvider>
+        {showLogin ? <LoginPopup setShowLogin={setShowLogin} /> : <></>}
+        <div className="app">
           <Navbar setShowLogin={setShowLogin} />
 
           <Routes>
@@ -23,8 +23,8 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/order" element={<PlaceOrder />} />
           </Routes>
-        </StoreProvider>
-      </div>
+        </div>
+      </StoreProvider>
       <Footer />
     </>
   );

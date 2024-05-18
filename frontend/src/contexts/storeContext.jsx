@@ -8,6 +8,8 @@ const StoreContext = createContext();
 
 function StoreProvider({ children }) {
   const [cartItem, setCartItem] = useState({});
+  const [token, setToken] = useState("");
+  const url = "http://localhost:4000";
 
   function addItem(itemId) {
     if (!cartItem[itemId]) {
@@ -33,9 +35,24 @@ function StoreProvider({ children }) {
     return totalAmount;
   }
 
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      setToken(localStorage.getItem("token"));
+    }
+  }, []);
+
   return (
     <StoreContext.Provider
-      value={{ cartItem, food_list, addItem, removeItem, getTotalCartAmount }}
+      value={{
+        cartItem,
+        food_list,
+        addItem,
+        removeItem,
+        getTotalCartAmount,
+        url,
+        token,
+        setToken,
+      }}
     >
       {children}
     </StoreContext.Provider>
