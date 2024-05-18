@@ -1,11 +1,11 @@
+/* eslint-disable react/prop-types */
 import "./Add.css";
 import { assets } from "../../assets/assets";
 import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-function Add() {
-  const url = "http://localhost:4000";
+function Add({ url }) {
   const [image, setImage] = useState(false);
   const [data, setData] = useState({
     name: "",
@@ -74,7 +74,7 @@ function Add() {
           />
         </div>
         <div className="add-product-description flex-col">
-          <p>product name</p>
+          <p>product description</p>
 
           <textarea
             onChange={onChangeHandler}
