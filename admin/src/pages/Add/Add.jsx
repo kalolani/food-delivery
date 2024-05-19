@@ -7,17 +7,22 @@ import { toast } from "react-toastify";
 
 function Add({ url }) {
   const [image, setImage] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState("");
   const [data, setData] = useState({
     name: "",
     description: "",
     price: "",
-    category: "salad",
+    category: "Salad",
   });
-
+  console.log(data.category);
   const onChangeHandler = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     setData({ ...data, [name]: value });
+  };
+
+  const handleChange = (event) => {
+    setSelectedCategory(event.target.value);
   };
 
   const handleSubmit = async (e) => {
@@ -26,7 +31,7 @@ function Add({ url }) {
     formData.append("name", data.name);
     formData.append("description", data.description);
     formData.append("price", Number(data.price));
-    formData.append("category", data.category);
+    formData.append("category", selectedCategory);
     formData.append("image", image);
     const response = await axios.post(`${url}/api/food/add`, formData);
 
@@ -35,8 +40,11 @@ function Add({ url }) {
         name: "",
         description: "",
         price: "",
-        category: "salad",
+        category: "Salad",
       });
+      console.log(data);
+      setSelectedCategory("Salad");
+
       setImage(false);
       toast.success(response.data.message);
     } else {
@@ -88,8 +96,14 @@ function Add({ url }) {
         <div className="add-category-price">
           <div className="add-category flex-col">
             <p>product category</p>
-            <select onChange={onChangeHandler} name="category">
-              <option value="Salad">Salad</option>
+            <select
+              value={selectedCategory}
+              onChange={handleChange}
+              name="category"
+            >
+              <option value="Salad" selected disabled>
+                Salad
+              </option>
               <option value="Rolls">Rolls</option>
               <option value="Desserts">Desserts</option>
               <option value="Sandwich">Sandwich</option>

@@ -4,6 +4,8 @@ import "./FoodDisplay.css";
 
 function FoodDisplay({ catagory }) {
   const { food_list } = useStores();
+  console.log(food_list);
+  console.log(catagory);
   return (
     <div className="food-display" id="food-display">
       <h2>Top dishes near you</h2>

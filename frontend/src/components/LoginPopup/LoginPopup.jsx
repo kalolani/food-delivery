@@ -8,6 +8,8 @@ import axios from "axios";
 function LoginPopup({ setShowLogin }) {
   const { url, setToken } = useStores();
   const [currState, setCurrState] = useState("Login");
+  const [regMessage, setRegMessage] = useState("");
+  const [errMessage, setErrMessage] = useState("");
   const [data, setData] = useState({
     name: "",
     email: "",
@@ -23,26 +25,47 @@ function LoginPopup({ setShowLogin }) {
   const onLogin = async (e) => {
     e.preventDefault();
     let newUrl = url;
+    let response;
     if (currState === "Login") {
       newUrl += "/api/user/login";
+      response = await axios.post(newUrl, data);
+      if (response.data.success) {
+        setToken(response.data.token);
+        localStorage.setItem("token", response.data.token);
+        setShowLogin(false);
+      } else {
+        alert(response.data.mesage);
+      }
     } else {
       newUrl += "/api/user/register";
-    }
-
-    const response = await axios.post(newUrl, data);
-
-    if (response.data.success) {
-      setToken(response.data.token);
-      localStorage.setItem("token", response.data.token);
-      setShowLogin(false);
-    } else {
-      alert(response.data.mesage);
+      response = await axios.post(newUrl, data);
+      if (response.data.success) {
+        setRegMessage("registered successfully");
+        setCurrState("Login");
+        setErrMessage("");
+      } else {
+        setErrMessage(response.data.message);
+      }
     }
   };
-
+  console.log(errMessage, regMessage);
   return (
     <div className="login-popup">
       <form onSubmit={onLogin} className="login-popup-container">
+        {errMessage ? (
+          <div className="reg-message-container">
+            <img src="error.webp" />
+            <p className="error-message">{errMessage}</p>
+          </div>
+        ) : (
+          regMessage && (
+            <div className="reg-message-container">
+              <img src="right-icon.png" />
+              <p className="reg-message">{regMessage} 🎉</p>
+            </div>
+          )
+        )}
+
         <div className="login-popup-title">
           <h2>{currState}</h2>
           <img

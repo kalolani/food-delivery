@@ -72,3 +72,19 @@
   font-weight: 500;
   cursor: pointer;
 }
+.register-message {
+  color: green;
+}
+.error-message {
+  color: red;
+}
+.reg-message-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+}
+.reg-message-container img {
+  width: 18px;
+  height: 18px;
+}
