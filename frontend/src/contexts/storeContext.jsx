@@ -17,17 +17,31 @@ function StoreProvider({ children }) {
     setFoodList(response.data.data);
   };
 
-  function addItem(itemId) {
+  const addItem = async (itemId) => {
     if (!cartItem[itemId]) {
       setCartItem((prev) => ({ ...prev, [itemId]: 1 }));
     } else {
       setCartItem((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
     }
-  }
+    if (token) {
+      await axios.post(
+        url + "/api/cart/add",
+        { itemId },
+        { headers: { token } }
+      );
+    }
+  };
 
-  function removeItem(itemId) {
+  const removeItem = async (itemId) => {
     setCartItem((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
-  }
+    if (token) {
+      await axios.post(
+        url + "/api/cart/remove",
+        { itemId },
+        { headers: { token } }
+      );
+    }
+  };
 
   function getTotalCartAmount() {
     let totalAmount = 0;
@@ -41,11 +55,21 @@ function StoreProvider({ children }) {
     return totalAmount;
   }
 
+  const loadCartData = async (token) => {
+    const response = await axios.post(
+      url + "/api/cart/get",
+      {},
+      { headers: { token } }
+    );
+    setCartItem(response.data.cartData);
+  };
+
   useEffect(() => {
     async function loadData() {
       await fetchFoodList();
       if (localStorage.getItem("token")) {
         setToken(localStorage.getItem("token"));
+        loadCartData(localStorage.getItem("token"));
       }
     }
 
