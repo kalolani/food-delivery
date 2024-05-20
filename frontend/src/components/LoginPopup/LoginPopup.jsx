@@ -10,17 +10,30 @@ function LoginPopup({ setShowLogin }) {
   const [currState, setCurrState] = useState("Login");
   const [regMessage, setRegMessage] = useState("");
   const [errMessage, setErrMessage] = useState("");
+  const [loginError, setLoginError] = useState("");
   const [data, setData] = useState({
     name: "",
     email: "",
     password: "",
   });
 
+  const createAccountHandler = () => {
+    setCurrState("Sign up");
+    setLoginError("");
+    setRegMessage("");
+    setErrMessage("");
+  };
+
   const onChangeHandler = (event) => {
     const name = event.target.name;
     const value = event.target.value;
     setData((data) => ({ ...data, [name]: value }));
   };
+
+  // const handleCreateAccount = (e) => {
+  //   e.preventDefault();
+  //   setLoginError("");
+  // };
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -34,7 +47,9 @@ function LoginPopup({ setShowLogin }) {
         localStorage.setItem("token", response.data.token);
         setShowLogin(false);
       } else {
-        alert(response.data.mesage);
+        setErrMessage("");
+        setRegMessage("");
+        setLoginError(response.data.message);
       }
     } else {
       newUrl += "/api/user/register";
@@ -52,6 +67,12 @@ function LoginPopup({ setShowLogin }) {
   return (
     <div className="login-popup">
       <form onSubmit={onLogin} className="login-popup-container">
+        {loginError && (
+          <div className="reg-message-container">
+            <img src="error.webp" />
+            <p className="error-message">{loginError}</p>
+          </div>
+        )}
         {errMessage ? (
           <div className="reg-message-container">
             <img src="error.webp" />
@@ -114,8 +135,9 @@ function LoginPopup({ setShowLogin }) {
         </div>
         {currState === "Login" ? (
           <p>
+            {/* () => setCurrState("Sign up") */}
             Create a new account?{" "}
-            <span onClick={() => setCurrState("Sign up")}>Click here</span>
+            <span onClick={createAccountHandler}>Click here</span>
           </p>
         ) : (
           <p>
