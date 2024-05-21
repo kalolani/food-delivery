@@ -13,3 +13,7 @@
   gap: 30px;
   row-gap: 50px;
 }
+.loadingComponent {
+  margin-top: 50px;
+  text-align: center;
+}

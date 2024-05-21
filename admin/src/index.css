@@ -23,6 +23,7 @@ hr {
 
 .app-content {
   display: flex;
+  position: relative;
 }
 .flex-col {
   display: flex;
@@ -30,5 +31,7 @@ hr {
   gap: 10px;
 }
 .cursor {
+  font-size: 20px;
+  margin-left: 15px;
   cursor: pointer;
 }
