@@ -1,9 +1,10 @@
 import orderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js";
 import Stripe from "stripe";
+import "dotenv/config";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-
+console.log(process.env.STRIPE_SECRET_KEY);
 //placing userOrder for frontend
 
 const placeOrder = async (req, res) => {
@@ -21,8 +22,8 @@ const placeOrder = async (req, res) => {
 
     const line_items = req.body.items.map((item) => ({
       price_data: {
-        currency: "USD",
-        prduct_data: {
+        currency: "usd",
+        product_data: {
           name: item.name,
         },
         unit_amount: item.price * 100,
@@ -32,7 +33,7 @@ const placeOrder = async (req, res) => {
 
     line_items.push({
       price_data: {
-        currency: "USD",
+        currency: "usd",
         product_data: {
           name: "Delivery Charges",
         },
@@ -43,14 +44,14 @@ const placeOrder = async (req, res) => {
 
     const session = await stripe.checkout.sessions.create({
       line_items: line_items,
-      mode: "payement",
+      mode: "payment",
       success_url: `${frontend_url}/verify?success=true&orderId=${newOrder._id}`,
       cancel_url: `${frontend_url}/verify?success=false&orderId=${newOrder._id}`,
     });
     res.json({ success: true, session_url: session.url });
   } catch (err) {
     console.log(err);
-    req.json({ success: false, message: "Error" });
+    res.json({ success: false, message: "Error" });
   }
 };
 
