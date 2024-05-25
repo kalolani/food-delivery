@@ -76,6 +76,7 @@
   display: none;
   right: zero;
   z-index: 1;
+  animation: dropdownOpen 0.3s;
 }
 
 .navbar-profile:hover .nav-profile-dropdown {
@@ -106,6 +107,7 @@
   cursor: pointer;
   width: 35px;
 }
+
 @media (max-width: 1050px) {
   .navbar .logo {
     width: 140px;

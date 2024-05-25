@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useStores } from "../../contexts/storeContext";
 import "./PlaceOrder.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import LoginPopup from "../../components/LoginPopup/LoginPopup";
 
-function PlaceOrder() {
+function PlaceOrder({ showLogin, setShowLogin }) {
   const { getTotalCartAmount, cartItem, food_list, url, token } = useStores();
 
   const [data, setData] = useState({
@@ -52,6 +54,15 @@ function PlaceOrder() {
       alert("Error");
     }
   };
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!token) {
+      navigate("/cart");
+      alert("please login before proceeding to payement");
+    } else if (getTotalCartAmount() === 0) {
+      navigate("/cart");
+    }
+  }, [token]);
 
   return (
     <form onSubmit={placeOrderHandler} className="place-order">

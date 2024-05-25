@@ -4,21 +4,29 @@ import Stripe from "stripe";
 import "dotenv/config";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-console.log(process.env.STRIPE_SECRET_KEY);
-//placing userOrder for frontend
 
 const placeOrder = async (req, res) => {
+  const url = "http://localhost:4000";
   const frontend_url = "http://localhost:5173";
   try {
     const newOrder = new orderModel({
       userId: req.body.userId,
       items: req.body.items,
+
       amount: req.body.amount,
       address: req.body.address,
     });
 
     await newOrder.save();
     await userModel.findByIdAndUpdate(req.body.userId, { cartData: {} });
+
+    const customer = await stripe.customers.create({
+      metadata: {
+        user_Id: req.body.userId,
+        cart: req.body.cart,
+        total_amount: req.body.amount,
+      },
+    });
 
     const line_items = req.body.items.map((item) => ({
       price_data: {
@@ -44,6 +52,7 @@ const placeOrder = async (req, res) => {
 
     const session = await stripe.checkout.sessions.create({
       line_items: line_items,
+      customer: customer.id,
       mode: "payment",
       success_url: `${frontend_url}/verify?success=true&orderId=${newOrder._id}`,
       cancel_url: `${frontend_url}/verify?success=false&orderId=${newOrder._id}`,
@@ -81,4 +90,4 @@ const userOrders = async (req, res) => {
   }
 };
 
-export { placeOrder, verifyOrder, userOrders };
+export { placeOrder, userOrders, verifyOrder };
