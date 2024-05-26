@@ -3,7 +3,6 @@ import { useStores } from "../../contexts/storeContext";
 import "./PlaceOrder.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import LoginPopup from "../../components/LoginPopup/LoginPopup";
 
 function PlaceOrder({ showLogin, setShowLogin }) {
   const { getTotalCartAmount, cartItem, food_list, url, token } = useStores();

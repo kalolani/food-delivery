@@ -4,17 +4,22 @@ import Stripe from "stripe";
 import "dotenv/config";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-
-const placeOrder = async (req, res) => {
-  const url = "http://localhost:4000";
-  const frontend_url = "http://localhost:5173";
+const url = "http://localhost:4000";
+const frontend_url = "http://localhost:5173";
+const placeOrder = async (customer, intent, res) => {
   try {
+    const orderId = Date.now();
     const newOrder = new orderModel({
-      userId: req.body.userId,
-      items: req.body.items,
+      intent: intent.id,
+      orderId: orderId,
+      amount: intent.amount_total,
+      created: intent.created,
+      payment_method_types,
 
-      amount: req.body.amount,
-      address: req.body.address,
+      // userId: req.body.userId,
+      // items: req.body.items,
+      // amount: req.body.amount,
+      // address: req.body.address,
     });
 
     await newOrder.save();
@@ -23,7 +28,7 @@ const placeOrder = async (req, res) => {
     const customer = await stripe.customers.create({
       metadata: {
         user_Id: req.body.userId,
-        cart: req.body.cart,
+        cart: JSON.stringify(req.body.items),
         total_amount: req.body.amount,
       },
     });
@@ -33,6 +38,7 @@ const placeOrder = async (req, res) => {
         currency: "usd",
         product_data: {
           name: item.name,
+          // images: [item.image],
         },
         unit_amount: item.price * 100,
       },

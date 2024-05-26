@@ -6,13 +6,18 @@ import {
   verifyOrder,
 } from "../controllers/orderController.js";
 
+import Stripe from "stripe";
+import "dotenv/config";
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
 const orderRouter = express.Router();
 
 orderRouter.post("/place", authMiddleware, placeOrder);
 orderRouter.post("/verify", verifyOrder);
 orderRouter.post("/userorder", authMiddleware, userOrders);
 
-const endpointSecret = process.env.WEBHOOK_SECRET;
+let endpointSecret;
+// endpointSecret = process.env.WEBHOOK_SECRET;
 orderRouter.post(
   "/webhook",
   express.raw({ type: "application/json" }),
@@ -40,10 +45,13 @@ orderRouter.post(
 
     // Handle the event
     if (eventType === "checkout.session.completed") {
-      console.log(data);
+      stripe.customers.retrieve(data.customer).then((customer) => {
+        console.log("customer details", customer);
+        console.log("data", data);
+      });
     }
     // Return a 200 res to acknowledge receipt of the event
-    res.send();
+    res.send().end();
   }
 );
 export default orderRouter;
