@@ -5,6 +5,7 @@ import {
   userOrders,
   verifyOrder,
   listOrders,
+  updateStatus,
 } from "../controllers/orderController.js";
 import orderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js";
@@ -19,6 +20,7 @@ orderRouter.post("/place", authMiddleware, placeOrder);
 orderRouter.post("/verify", verifyOrder);
 orderRouter.post("/userorder", authMiddleware, userOrders);
 orderRouter.get("/list", listOrders);
+orderRouter.post("/status", updateStatus);
 
 let endpointSecret;
 // endpointSecret = process.env.WEBHOOK_SECRET;
