@@ -6,30 +6,14 @@ import "dotenv/config";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 const url = "http://localhost:4000";
 const frontend_url = "http://localhost:5173";
-const placeOrder = async (customer, intent, res) => {
+const placeOrder = async (req, res) => {
   try {
-    const orderId = Date.now();
-    const newOrder = new orderModel({
-      intent: intent.id,
-      orderId: orderId,
-      amount: intent.amount_total,
-      created: intent.created,
-      payment_method_types,
-
-      // userId: req.body.userId,
-      // items: req.body.items,
-      // amount: req.body.amount,
-      // address: req.body.address,
-    });
-
-    await newOrder.save();
-    await userModel.findByIdAndUpdate(req.body.userId, { cartData: {} });
-
     const customer = await stripe.customers.create({
       metadata: {
         user_Id: req.body.userId,
         cart: JSON.stringify(req.body.items),
         total_amount: req.body.amount,
+        address: JSON.stringify(req.body.address),
       },
     });
 
@@ -60,8 +44,8 @@ const placeOrder = async (customer, intent, res) => {
       line_items: line_items,
       customer: customer.id,
       mode: "payment",
-      success_url: `${frontend_url}/verify?success=true&orderId=${newOrder._id}`,
-      cancel_url: `${frontend_url}/verify?success=false&orderId=${newOrder._id}`,
+      success_url: `${frontend_url}/verify?success=true`,
+      cancel_url: `${frontend_url}/verify?success=false`,
     });
     res.json({ success: true, session_url: session.url });
   } catch (err) {
@@ -86,6 +70,16 @@ const verifyOrder = async (req, res) => {
   }
 };
 
+const listOrders = async (req, res) => {
+  try {
+    const orderData = await orderModel.find({});
+    res.json({ success: true, data: orderData });
+  } catch (err) {
+    console.log(err);
+    res.json({ success: false, message: "Error" });
+  }
+};
+
 const userOrders = async (req, res) => {
   try {
     const orders = await orderModel.find({ userId: req.body.userId });
@@ -96,4 +90,4 @@ const userOrders = async (req, res) => {
   }
 };
 
-export { placeOrder, userOrders, verifyOrder };
+export { placeOrder, userOrders, verifyOrder, listOrders };

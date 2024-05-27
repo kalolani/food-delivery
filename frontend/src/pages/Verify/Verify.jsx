@@ -4,10 +4,11 @@ import "./Verify.css";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useStores } from "../../contexts/storeContext";
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function Verify() {
   const [searchParams, setSearchParams] = useSearchParams();
+
   const success = searchParams.get("success");
   const orderId = searchParams.get("orderId");
   const { url } = useStores();
