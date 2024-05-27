@@ -23,7 +23,12 @@
 .my-orders-order img {
   width: 50px;
 }
-.my-orders-order p span {
+.complete {
+  color: #51cf66;
+  margin-right: 5px;
+  font-size: 20px;
+}
+.progress {
   color: yellow;
   margin-right: 5px;
   font-size: 20px;

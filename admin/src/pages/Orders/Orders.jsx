@@ -2,22 +2,47 @@ import "./Orders.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-
+import HashLoader from "react-spinners/HashLoader";
 function Orders({ url }) {
   const [orders, setOrders] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const fetchAllOrders = async () => {
-    const response = await axios.get(url + "/api/order/list");
+    try {
+      setIsLoading(true);
+      const response = await axios.get(url + "/api/order/list");
+      if (response.data.success) {
+        setOrders(response.data.data);
+        console.log(response.data.data);
+      } else {
+        toast.error("error");
+      }
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleUpdateStatus = async (event, orderId) => {
+    const response = await axios.post(url + "/api/order/status", {
+      orderId,
+      status: event.target.value,
+    });
     if (response.data.success) {
-      setOrders(response.data.data);
-      console.log(response.data.data);
-    } else {
-      toast.error("error");
+      await fetchAllOrders();
     }
   };
 
   useEffect(() => {
     fetchAllOrders();
   }, []);
+
+  if (isLoading)
+    return (
+      <div className="loadingComponent">
+        <HashLoader color="#FF6347" loading={isLoading} size={50} />
+      </div>
+    );
   return (
     <div className="order add">
       <h3>order page</h3>
@@ -47,7 +72,11 @@ function Orders({ url }) {
             </div>
             <p>Items :{order.items.length}</p>
             <p>{order.amount} ETB</p>
-            <select className="order-items-select">
+            <select
+              onChange={(event) => handleUpdateStatus(event, order._id)}
+              value={order.status}
+              className="order-items-select"
+            >
               <option value="preparing">preparing</option>
               <option value="Out for delivery">Out for delivery</option>
               <option value="Delivered">Delivered</option>

@@ -34,6 +34,12 @@
   padding: 10px;
   outline: none;
 }
+.loadingComponent {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(50%, -50%);
+}
 
 @media (max-width: 1000px) {
   .order-item {
