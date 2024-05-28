@@ -34,6 +34,7 @@ function ExploreMenu({ catagory, setCatagory }) {
           );
         })}
       </div>
+
       <hr />
     </div>
   );

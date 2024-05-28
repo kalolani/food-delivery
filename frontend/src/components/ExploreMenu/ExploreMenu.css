@@ -20,9 +20,15 @@
   margin: 20px 0px;
   text-align: center;
   overflow-x: scroll;
+
+  /* animation: scroll 4s linear infinite; */
 }
+
 .explore-menu-list::-webkit-scrollbar {
   overflow-x: hidden;
+}
+.explore-menu-list-cotainer {
+  overflow: hidden;
 }
 
 .explore-menu-list-item img {

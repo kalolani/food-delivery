@@ -1,13 +1,19 @@
 .header {
   height: 34vw;
   margin: 0 auto;
-  background: url("./header_img.png");
-  /* background-color: #f76707; */
-  /* border-radius: 10px 10px 10px 10px; */
+  background-image: linear-gradient(
+      to right bottom,
+      rgba(130, 201, 30, 0.5),
+      rgba(92, 148, 13, 0.5)
+    ),
+    url("./food-1.avif");
+
   background-repeat: no-repeat;
-  background-size: contain;
+  background-position: top;
+  background-size: cover;
   position: relative;
   z-index: 0;
+  border-radius: 10px 10px 10px 10px;
 }
 /*  width: 52%;
 

@@ -41,11 +41,11 @@ a {
   }
 }
 
-@keyframes rotate360 {
+@keyframes scroll {
   from {
-    transform: rotate(0deg);
+    transform: translateX(0);
   }
   to {
-    transform: rotate(360deg);
+    transform: translateX(100%);
   }
 }
