@@ -3,8 +3,8 @@
   margin: 0 auto;
   background-image: linear-gradient(
       to right bottom,
-      rgba(130, 201, 30, 0.5),
-      rgba(92, 148, 13, 0.5)
+      rgba(130, 201, 30, 0.4),
+      rgba(92, 148, 13, 0.4)
     ),
     url("./food-1.avif");
 

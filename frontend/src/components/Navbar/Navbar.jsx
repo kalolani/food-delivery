@@ -8,7 +8,8 @@ import { useStores } from "../../contexts/storeContext";
 
 function Navbar({ setShowLogin }) {
   const [menu, setMenu] = useState("home");
-  const { cartItem, getTotalCartAmount, token, setToken } = useStores();
+  const { cartItem, getTotalCartAmount, token, setToken, cartNumber } =
+    useStores();
 
   const navigate = useNavigate();
   const logout = () => {
@@ -75,10 +76,13 @@ function Navbar({ setShowLogin }) {
 
         <div className="navbar-search-icon">
           <NavLink to="/cart">
-            <img src={assets.basket_icon} alt="" />
+            <img src="cart-1.png" className="cart" alt="" />
           </NavLink>
 
-          <div className={getTotalCartAmount() > 0 ? "dot" : ""}></div>
+          <div className={getTotalCartAmount() > 0 ? "dot" : ""}>
+            {" "}
+            <p className="cartNumber"> {cartNumber}</p>
+          </div>
         </div>
         {!token ? (
           <button onClick={() => setShowLogin(true)}>sign in</button>

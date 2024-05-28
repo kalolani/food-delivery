@@ -12,6 +12,7 @@ function StoreProvider({ children }) {
   const [isLoading, setIsLoading] = useState(false);
   const [cartAddLoading, setCartAddLoading] = useState(false);
   const [cartRemLoading, setCartRemLoading] = useState(false);
+  const [isRated, setIsRated] = useState(false);
   const url = "http://localhost:4000";
   const [food_list, setFoodList] = useState([]);
 
@@ -75,6 +76,17 @@ function StoreProvider({ children }) {
 
     return totalAmount;
   }
+  let cartNumber;
+  function getCartNumber() {
+    for (const item in cartItem) {
+      if (cartItem[item] > 0) {
+        cartNumber = cartItem[item];
+      }
+    }
+
+    return cartNumber;
+  }
+  console.log(getCartNumber());
 
   const loadCartData = async (token) => {
     const response = await axios.post(
@@ -122,6 +134,10 @@ function StoreProvider({ children }) {
         cartAddLoading,
         setCartAddLoading,
         cartRemLoading,
+        isRated,
+        setIsRated,
+        cartNumber,
+        getCartNumber,
       }}
     >
       {children}
