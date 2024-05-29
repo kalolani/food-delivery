@@ -88,12 +88,7 @@ function LoginPopup({ setShowLogin }) {
         )}
 
         <div className="login-popup-title">
-          <h2>{currState}</h2>
-          <img
-            onClick={() => setShowLogin(false)}
-            src={assets.cross_icon}
-            alt=""
-          />
+          <h2 className="title">{currState}</h2>
         </div>
         <div className="login-popup-inputs">
           {currState === "Login" ? (

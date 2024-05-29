@@ -9,18 +9,20 @@ import { StoreProvider } from "./contexts/storeContext";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useState } from "react";
 const url = "http://localhost:4000";
 function App() {
+  const [showLogin, setShowLogin] = useState(true);
   return (
     <div>
       <StoreProvider>
+        {showLogin ? <LoginPopup setShowLogin={setShowLogin} /> : <></>}
         <ToastContainer />
         <Navbar />
         <hr />
         <div className="app-content">
           <Sidebar />
           <Routes>
-            <Route path="/" element={<LoginPopup />} />
             <Route path="/add" element={<Add url={url} />} />
             <Route path="/list" element={<List url={url} />} />
             <Route path="/orders" element={<Orders url={url} />} />

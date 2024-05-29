@@ -22,15 +22,8 @@
 }
 
 .login-popup-title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   color: black;
-}
-
-.login-popup-title img {
-  width: 16px;
-  cursor: pointer;
+  text-align: center;
 }
 
 .login-popup-inputs {
@@ -87,4 +80,14 @@
 .reg-message-container img {
   width: 18px;
   height: 18px;
+}
+
+.login-cross {
+  height: 40px;
+  width: 40px;
+  cursor: pointer;
+}
+
+.title {
+  text-align: center;
 }
