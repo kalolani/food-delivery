@@ -1,9 +1,11 @@
-/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import { useState } from "react";
 import "./LoginPopup.css";
 import { assets } from "../../assets/assets";
 import { useStores } from "../../contexts/storeContext";
 import axios from "axios";
+import FadeLoader from "react-spinners/FadeLoader";
+import { useNavigate } from "react-router-dom";
 
 function LoginPopup({ setShowLogin }) {
   const { url, setToken } = useStores();
@@ -16,6 +18,8 @@ function LoginPopup({ setShowLogin }) {
     email: "",
     password: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const createAccountHandler = () => {
     setCurrState("Sign up");
@@ -36,34 +40,49 @@ function LoginPopup({ setShowLogin }) {
   // };
 
   const onLogin = async (e) => {
-    e.preventDefault();
-    let newUrl = url;
-    let response;
-    if (currState === "Login") {
-      newUrl += "/api/user/login";
-      response = await axios.post(newUrl, data);
-      if (response.data.success) {
-        setToken(response.data.token);
-        localStorage.setItem("token", response.data.token);
-        setShowLogin(false);
-      } else {
-        setErrMessage("");
-        setRegMessage("");
-        setLoginError(response.data.message);
+    try {
+      setIsLoading(true);
+      e.preventDefault();
+      let newUrl = url;
+      let response;
+      if (currState === "Login") {
+        newUrl += "/api/admin/login";
+        response = await axios.post(newUrl, data);
+        if (response.data.success) {
+          setToken(response.data.token);
+          localStorage.setItem("token", response.data.token);
+          navigate("/add");
+        } else {
+          setErrMessage("");
+          setRegMessage("");
+          setLoginError(response.data.message);
+        }
       }
-    } else {
-      newUrl += "/api/user/register";
-      response = await axios.post(newUrl, data);
-      if (response.data.success) {
-        setRegMessage("registered successfully");
-        setCurrState("Login");
-        setErrMessage("");
-      } else {
-        setErrMessage(response.data.message);
-      }
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setIsLoading(false);
     }
+
+    // else {
+    //   newUrl += "/api/user/register";
+    //   response = await axios.post(newUrl, data);
+    //   if (response.data.success) {
+    //     setRegMessage("registered successfully");
+    //     setCurrState("Login");
+    //     setErrMessage("");
+    //   } else {
+    //     setErrMessage(response.data.message);
+    //   }
+    // }
   };
   console.log(errMessage, regMessage);
+  if (isLoading)
+    return (
+      <div className="loadingComponent">
+        <FadeLoader color="#FF6347" loading={isLoading} size={50} />
+      </div>
+    );
   return (
     <div className="login-popup">
       <form onSubmit={onLogin} className="login-popup-container">
@@ -128,21 +147,24 @@ function LoginPopup({ setShowLogin }) {
           <input type="checkbox" required />
           <p>By continuing, i agree to the terms of use & privacy policy</p>
         </div>
-        {currState === "Login" ? (
-          <p>
-            {/* () => setCurrState("Sign up") */}
-            Create a new account?{" "}
-            <span onClick={createAccountHandler}>Click here</span>
-          </p>
-        ) : (
-          <p>
-            Already have an account?{" "}
-            <span onClick={() => setCurrState("Login")}> Login here</span>
-          </p>
-        )}
       </form>
     </div>
   );
 }
 
 export default LoginPopup;
+
+// {
+//   currState === "Login" ? (
+//     <p>
+//       {/* () => setCurrState("Sign up") */}
+//       Create a new account?{" "}
+//       <span onClick={createAccountHandler}>Click here</span>
+//     </p>
+//   ) : (
+//     <p>
+//       Already have an account?{" "}
+//       <span onClick={() => setCurrState("Login")}> Login here</span>
+//     </p>
+//   );
+// }

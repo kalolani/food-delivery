@@ -12,13 +12,17 @@ import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
 const url = "http://localhost:4000";
 function App() {
-  const [showLogin, setShowLogin] = useState(true);
+  const [showLogin, setShowLogin] = useState(false);
+  console.log(showLogin);
   return (
     <div>
       <StoreProvider>
-        {showLogin ? <LoginPopup setShowLogin={setShowLogin} /> : <></>}
         <ToastContainer />
-        <Navbar />
+        <Routes>
+          <Route path="/" element={<LoginPopup />} />
+        </Routes>
+
+        <Navbar setShowLogin={setShowLogin} />
         <hr />
         <div className="app-content">
           <Sidebar />

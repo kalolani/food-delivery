@@ -63,7 +63,9 @@
 .add-icon,
 .order-icon,
 .list-icon,
-.home-icon {
+.home-icon,
+.user-icon,
+.category-icon {
   width: 30px;
   height: 30px;
 }

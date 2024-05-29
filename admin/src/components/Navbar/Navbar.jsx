@@ -1,29 +1,47 @@
+/* eslint-disable no-unused-vars */
 import "./Navbar.css";
 import { assets } from "../../../../admin/src/assets/assets";
 import { useStores } from "../../contexts/storeContext";
 import { useNavigate } from "react-router-dom";
 
-function Navbar() {
-  const { token, setShowLogin, logout } = useStores();
+function Navbar({ setShowLogin }) {
+  const { token, setToken } = useStores();
   const navigate = useNavigate();
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    setToken("");
+    navigate("/");
+  };
 
   return (
     <div className="navbar">
       <img src={assets.logo} className="logo" alt="" />
-      {!token ? (
-        <button onClick={() => setShowLogin(true)}>sign in</button>
-      ) : (
-        <div className="navbar-profile">
-          <img src="kal.png" className="profile-icon" alt="" />
-          <ul className="nav-profile-dropdown">
-            <hr />
-            <li onClick={logout}>
-              <img src={assets.logout_icon} alt="" />
-              <p>Logout</p>
-            </li>
-          </ul>
-        </div>
-      )}
+
+      <div className="navbar-profile">
+        <img src="kal.png" className="profile-icon" alt="" />
+        <ul className="nav-profile-dropdown">
+          <li onClick={logout}>
+            <p>Logout</p>
+          </li>
+          <li>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="#49557e"
+              className="theme"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
+              />
+            </svg>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 }
