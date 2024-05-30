@@ -18,7 +18,7 @@ function LoginPopup({ setShowLogin }) {
     email: "",
     password: "",
   });
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const createAccountHandler = () => {
@@ -41,7 +41,6 @@ function LoginPopup({ setShowLogin }) {
 
   const onLogin = async (e) => {
     try {
-      setIsLoading(true);
       e.preventDefault();
       let newUrl = url;
       let response;
@@ -60,8 +59,6 @@ function LoginPopup({ setShowLogin }) {
       }
     } catch (err) {
       console.log(err);
-    } finally {
-      setIsLoading(false);
     }
 
     // else {
@@ -76,13 +73,7 @@ function LoginPopup({ setShowLogin }) {
     //   }
     // }
   };
-  console.log(errMessage, regMessage);
-  if (isLoading)
-    return (
-      <div className="loadingComponent">
-        <FadeLoader color="#FF6347" loading={isLoading} size={50} />
-      </div>
-    );
+
   return (
     <div className="login-popup">
       <form onSubmit={onLogin} className="login-popup-container">

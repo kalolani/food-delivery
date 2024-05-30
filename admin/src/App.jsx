@@ -5,11 +5,13 @@ import Add from "./pages/Add/Add";
 import List from "./pages/List/List";
 import Orders from "./pages/Orders/Orders";
 import LoginPopup from "./pages/LoginPopup/LoginPopup";
+import Category from "./pages/Category/Category";
 import { StoreProvider } from "./contexts/storeContext";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
+import CatList from "./pages/CategoryList/CatList";
 const url = "http://localhost:4000";
 function App() {
   const [showLogin, setShowLogin] = useState(false);
@@ -30,6 +32,8 @@ function App() {
             <Route path="/add" element={<Add url={url} />} />
             <Route path="/list" element={<List url={url} />} />
             <Route path="/orders" element={<Orders url={url} />} />
+            <Route path="/category" element={<Category url={url} />} />
+            <Route path="/catlist" element={<CatList url={url} />} />
           </Routes>
         </div>
       </StoreProvider>
