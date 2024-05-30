@@ -12,7 +12,7 @@ function Users({ url }) {
   const fetchList = async () => {
     try {
       setListIsLoading(true);
-      const response = await axios.get(`${url}/api/category/list`);
+      const response = await axios.get(`${url}/api/user/list`);
       console.log(response.data);
       if (response.data.success) {
         setList(response.data.data);
@@ -26,22 +26,22 @@ function Users({ url }) {
     }
   };
 
-  const removeCategory = async (categoryId) => {
-    try {
-      // setIsRemoveLoading(true);
-      const response = await axios.post(`${url}/api/category/remove`, {
-        id: categoryId,
-      });
-      await fetchList();
-      if (response.data.success) {
-        toast.success(response.data.message);
-      } else {
-        toast.error("Error");
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  //   const removeUser = async (categoryId) => {
+  //     try {
+  //       // setIsRemoveLoading(true);
+  //       const response = await axios.post(`${url}/api/category/remove`, {
+  //         id: categoryId,
+  //       });
+  //       await fetchList();
+  //       if (response.data.success) {
+  //         toast.success(response.data.message);
+  //       } else {
+  //         toast.error("Error");
+  //       }
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   };
 
   useEffect(() => {
     fetchList();
@@ -60,16 +60,18 @@ function Users({ url }) {
         <div className="list-table-format title">
           <b>Image</b>
           <b>Name</b>
-          <b>Action</b>
+          <p>Emails</p>
         </div>
         {list.map((item, index) => {
           return (
             <div className="list-table-format" key={index}>
-              <img src={`${url}/images/` + item.image} alt="" />
+              {item.image ? (
+                <img src={`${url}/images/` + item.image} alt="" />
+              ) : (
+                "User doesn't upload a photo"
+              )}
               <p>{item.name}</p>
-              <p onClick={() => removeCategory(item._id)} className="cursor">
-                x
-              </p>
+              <p>{item.email}</p>
             </div>
           );
         })}
