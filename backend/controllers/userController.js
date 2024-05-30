@@ -72,4 +72,16 @@ const registerUser = async (req, res) => {
   }
 };
 
-export { registerUser, loginUser };
+//all users list
+
+const usersList = async (req, res) => {
+  try {
+    const users = await userModel.find({});
+    res.json({ success: true, data: users });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, mesage: error });
+  }
+};
+
+export { registerUser, loginUser, usersList };

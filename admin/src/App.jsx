@@ -12,6 +12,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
 import CatList from "./pages/CategoryList/CatList";
+import Users from "./pages/Users/Users";
 const url = "http://localhost:4000";
 function App() {
   const [showLogin, setShowLogin] = useState(false);
@@ -34,6 +35,7 @@ function App() {
             <Route path="/orders" element={<Orders url={url} />} />
             <Route path="/category" element={<Category url={url} />} />
             <Route path="/catlist" element={<CatList url={url} />} />
+            <Route path="/users" element={<Users url={url} />} />
           </Routes>
         </div>
       </StoreProvider>
