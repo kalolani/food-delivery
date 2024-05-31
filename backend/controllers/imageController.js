@@ -5,7 +5,7 @@ const addToImage = async (req, res) => {
   let file_name = `${req.file.filename}`;
   try {
     let userData = await userModel.findById(req.body.userId);
-    console.log(userData);
+
     let image = await userData.image;
     image = file_name;
 
@@ -20,7 +20,7 @@ const addToImage = async (req, res) => {
 const getImage = async (req, res) => {
   try {
     const user = await userModel.findById(req.body.userId);
-    console.log(user);
+
     res.json({ success: true, data: user });
   } catch (error) {
     console.log(error);

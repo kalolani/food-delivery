@@ -102,4 +102,38 @@ const updateStatus = async (req, res) => {
   }
 };
 
-export { placeOrder, userOrders, verifyOrder, listOrders, updateStatus };
+const getWeeklyRevenue = async (req, res) => {
+  try {
+    const orders = await orderModel.aggregate([
+      {
+        $group: {
+          _id: { $week: "$date" },
+          totalRevenue: { $sum: "$amount" },
+        },
+      },
+      {
+        $project: {
+          week: "$_id",
+          revenue: "$totalRevenue",
+          _id: 0,
+        },
+      },
+      {
+        $sort: { week: 1 },
+      },
+    ]);
+
+    res.json(orders);
+  } catch (error) {
+    res.status(500).json({ message: "Server Error", error });
+  }
+};
+
+export {
+  placeOrder,
+  userOrders,
+  verifyOrder,
+  listOrders,
+  updateStatus,
+  getWeeklyRevenue,
+};

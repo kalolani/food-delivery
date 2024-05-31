@@ -13,6 +13,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
 import CatList from "./pages/CategoryList/CatList";
 import Users from "./pages/Users/Users";
+import Dashboard from "./pages/Dashboard/Dashboard";
 const url = "http://localhost:4000";
 function App() {
   const [showLogin, setShowLogin] = useState(false);
@@ -30,6 +31,7 @@ function App() {
         <div className="app-content">
           <Sidebar />
           <Routes>
+            <Route path="/home" element={<Dashboard url={url} />} />
             <Route path="/add" element={<Add url={url} />} />
             <Route path="/list" element={<List url={url} />} />
             <Route path="/orders" element={<Orders url={url} />} />

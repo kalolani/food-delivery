@@ -5,5 +5,8 @@ export const connectDB = async () => {
     .connect(
       "mongodb+srv://kaleab:kalolani@cluster0.ofl3a1t.mongodb.net/food-delivery"
     )
-    .then(() => console.log("DB Connected"));
+    .then(() => console.log("DB Connected"), {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
 };

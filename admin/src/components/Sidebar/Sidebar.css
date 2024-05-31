@@ -1,19 +1,8 @@
 .sidebar {
-  width: 18%;
+  background-color: rgb(255 255 255);
+  width: 15%;
   min-height: 100vh;
-  border: 1.5px solid;
-  border-image-slice: 1;
-  border-width: 2px;
-  border-image-source: linear-gradient(
-    to bottom,
-    #d8f5a2,
-    #a9e34b,
-    #37b24d,
-    #2b8a3e,
-    #15aabf,
-    #6741d9,
-    #5f3dc4
-  );
+  border-right: 1px solid rgb(241 245 249);
 
   border-top: 0;
   font-size: max(1vw, 10px);
@@ -24,7 +13,7 @@
   padding-top: 50px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 25px;
   align-items: center;
 }
 
@@ -33,41 +22,24 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  border: 1px solid;
-  border-image-slice: 1;
-  border-width: 1.5px;
-  border-image-source: linear-gradient(
-    to right,
-    #d8f5a2,
-    #a9e34b,
-    #37b24d,
-    #2b8a3e,
-    #15aabf,
-    #2b8a3e,
-    #a9e34b
-  );
+  /* border: 1px solid; */
+  /* border-image-slice: 1; */
+  /* border-width: 1.5px ; */
 
   padding: 8px;
-  border-radius: 3px 0px 0px 3px;
+  /* border-radius: 3px 0px 0px 3px; */
   cursor: pointer;
   padding-left: 10px;
 }
-
 .sidebar-options p {
-  color: #1971c2;
+  font-size: 15px;
+  color: rgb(107 114 128);
+  font-weight: 500;
 }
-.sidebar-options a.active {
-  background-color: #e7f5ff;
-}
-
-.add-icon,
-.order-icon,
-.list-icon,
-.home-icon,
-.user-icon,
-.category-icon {
-  width: 30px;
-  height: 30px;
+.sidebar-option.active,
+.sidebar-option:hover {
+  background-color: rgb(241 245 249);
+  border-radius: 3px 3px 3px 3px;
 }
 
 @media (max-width: 750px) {
