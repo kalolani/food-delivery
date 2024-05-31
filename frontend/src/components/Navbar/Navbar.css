@@ -18,11 +18,13 @@
 .navbar-right {
   display: flex;
   align-items: center;
+  justify-content: center;
   position: relative;
-  gap: 40px;
+  gap: 30px;
 }
 .navbar-search-icon {
   position: relative;
+  display: flex;
 }
 .navbar-search-icon .cart {
   width: 35px;
@@ -76,6 +78,13 @@
 
 .navbar-profile {
   position: relative;
+}
+
+.navbar-profile .profile-icon {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 }
 
 .nav-profile-dropdown {

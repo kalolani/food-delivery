@@ -15,7 +15,8 @@
   text-align: center;
 }
 .list-table-format img {
-  text-align: center;
+  /* text-align: center; */
+  justify-self: center;
   width: 50px;
 }
 .list-table-format p {

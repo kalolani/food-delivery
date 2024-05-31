@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useStores } from "../../contexts/storeContext";
 import FoodItem from "../FoodItem/FoodItem";
 import "./FoodDisplay.css";

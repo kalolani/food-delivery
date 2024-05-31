@@ -58,6 +58,7 @@ const registerUser = async (req, res) => {
     const hashPasword = await bcrypt.hash(password, salt);
 
     const newUser = new userModel({
+      image: "",
       name: name,
       email: email,
       password: hashPasword,

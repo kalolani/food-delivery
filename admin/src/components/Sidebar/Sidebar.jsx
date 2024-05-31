@@ -77,15 +77,15 @@ function Sidebar() {
           </svg>
           <p>Orders</p>
         </NavLink>
-        <NavLink to="/orders" className="sidebar-option">
+        <NavLink to="/category" className="sidebar-option">
           <img src="add-category.png" className="category-icon" />
           <p>Add Category</p>
         </NavLink>
-        <NavLink to="/orders" className="sidebar-option">
+        <NavLink to="/catlist" className="sidebar-option">
           <img src="list-category.png" className="category-icon" />
           <p>List Category</p>
         </NavLink>
-        <NavLink to="/orders" className="sidebar-option">
+        <NavLink to="/users" className="sidebar-option">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

@@ -8,6 +8,7 @@ import orderRouter from "./routes/orderRoute.js";
 import "dotenv/config";
 import adminRouter from "./routes/adminRoute.js";
 import categoryRouter from "./routes/categoryRoute.js";
+import imageRouter from "./routes/imageRoute.js";
 
 //config
 const app = express();
@@ -27,6 +28,7 @@ app.use("/images", express.static("uploads"));
 app.use("/api/category", categoryRouter);
 app.use("/api/user", userRouter);
 app.use("/api/cart", cartRouter);
+app.use("/api/image", imageRouter);
 app.use("/api/order", orderRouter);
 app.use("/api/admin", adminRouter);
 

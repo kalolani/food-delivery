@@ -1,6 +1,3 @@
-/* eslint-disable react-refresh/only-export-components */
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 
@@ -15,10 +12,17 @@ function StoreProvider({ children }) {
   const [isRated, setIsRated] = useState(false);
   const url = "http://localhost:4000";
   const [food_list, setFoodList] = useState([]);
+  const [menu_list, setMenuList] = useState([]);
+  const [image, setImage] = useState(null);
 
   const fetchFoodList = async () => {
     const response = await axios.get(url + "/api/food/list");
     setFoodList(response.data.data);
+  };
+
+  const fetchCategoryList = async () => {
+    const response = await axios.get(url + "/api/category/list");
+    setMenuList(response.data.data);
   };
   /////add item
   const addItem = async (itemId) => {
@@ -28,13 +32,18 @@ function StoreProvider({ children }) {
       } else {
         setCartItem((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
       }
+      console.log(cartItem);
 
       if (token) {
         setCartAddLoading(true);
         await axios.post(
           url + "/api/cart/add",
           { itemId },
-          { headers: { token } }
+          {
+            headers: {
+              Authorization: `Bearer ${token}`, // Ensure the correct token format
+            },
+          }
         );
       }
     } catch (error) {
@@ -54,7 +63,11 @@ function StoreProvider({ children }) {
         await axios.post(
           url + "/api/cart/remove",
           { itemId },
-          { headers: { token } }
+          {
+            headers: {
+              Authorization: `Bearer ${token}`, // Ensure the correct token format
+            },
+          }
         );
       }
     } catch (error) {
@@ -76,11 +89,11 @@ function StoreProvider({ children }) {
 
     return totalAmount;
   }
-  let cartNumber;
+  let cartNumber = 0;
   function getCartNumber() {
     for (const item in cartItem) {
       if (cartItem[item] > 0) {
-        cartNumber = cartItem[item];
+        cartNumber += cartItem[item];
       }
     }
 
@@ -92,7 +105,11 @@ function StoreProvider({ children }) {
     const response = await axios.post(
       url + "/api/cart/get",
       {},
-      { headers: { token } }
+      {
+        headers: {
+          Authorization: `Bearer ${token}`, // Ensure the correct token format
+        },
+      }
     );
     setCartItem(response.data.cartData);
   };
@@ -102,6 +119,7 @@ function StoreProvider({ children }) {
       try {
         setIsLoading(true);
         await fetchFoodList();
+        await fetchCategoryList();
 
         const token = localStorage.getItem("token");
         if (token) {
@@ -138,6 +156,9 @@ function StoreProvider({ children }) {
         setIsRated,
         cartNumber,
         getCartNumber,
+        menu_list,
+        image,
+        setImage,
       }}
     >
       {children}

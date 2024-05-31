@@ -1,8 +1,10 @@
 /* eslint-disable react/prop-types */
 import "./ExploreMenu.css";
-import { menu_list } from "../../assets/assets";
+// import { menu_list } from "../../assets/assets";
+import { useStores } from "../../contexts/storeContext";
 
 function ExploreMenu({ catagory, setCatagory }) {
+  const { menu_list, url } = useStores();
   return (
     <div className="explore-menu" id="menu">
       <h1>Explore our menu</h1>
@@ -17,19 +19,18 @@ function ExploreMenu({ catagory, setCatagory }) {
           return (
             <div
               onClick={() =>
-                setCatagory((prev) =>
-                  prev === item.menu_name ? "All" : item.menu_name
-                )
+                setCatagory((prev) => (prev === item.name ? "All" : item.name))
               }
               className="explore-menu-list-item"
               key={index}
             >
+              {/*  <img src={`${url}/images/` + item.image} alt="" /> */}
               <img
-                src={item.menu_image}
+                src={`${url}/images/` + item.image}
                 alt=""
-                className={catagory === item.menu_name ? "Active" : ""}
+                className={catagory === item.name ? "Active" : ""}
               />
-              <p>{item.menu_name}</p>
+              <p>{item.name}</p>
             </div>
           );
         })}

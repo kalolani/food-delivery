@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-import "./List.css";
+import "./FoodList.css";
 import axios from "axios";
 import { toast } from "react-toastify";
 import FadeLoader from "react-spinners/FadeLoader";
