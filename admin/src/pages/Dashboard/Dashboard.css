@@ -1,4 +1,6 @@
 .dashboard-container {
+  margin-top: 20px;
+  padding-bottom: 50px;
   width: 90%;
   height: 100%;
   z-index: 10;
@@ -6,21 +8,76 @@
 }
 
 .dashboard-statics-container {
-  margin-top: 50px;
+  /* margin-top: 100px; */
+
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   margin: 0 auto;
   padding: 10px 50px;
-  gap: 30px;
+  column-gap: 30px;
+  row-gap: 50px;
 }
 .dashboard-statics {
   display: flex;
   gap: 10px;
   align-items: center;
   justify-content: center;
-  background-color: rgb(236 254 255);
-  box-shadow: 0px 0px 3px rgb(148 163 184);
   padding: 20px 0px;
+}
+.sold-amount {
+  background-color: rgb(254 226 226);
+}
+.sold-amount .dashboard-statics-icon {
+  background-color: rgb(220 252 231);
+}
+
+.categories {
+  background-color: rgb(236 252 203);
+}
+
+.categories .dashboard-statics-icon {
+  background-color: rgb(217 249 157);
+}
+
+.orders {
+  background-color: rgb(253 230 138);
+}
+.orders .dashboard-statics-icon {
+  background-color: rgb(252 211 77);
+}
+.products {
+  background-color: rgb(224 231 255);
+}
+.products .dashboard-statics-icon {
+  padding: 5px;
+  background-color: rgb(165 180 252);
+}
+.delivered {
+  background-color: rgb(187 247 208);
+}
+.delivered .dashboard-statics-icon {
+  background-color: rgb(134 239 172);
+}
+.pending {
+  background-color: rgb(204 251 241);
+}
+.pending .dashboard-statics-icon {
+  background-color: rgb(94 234 212);
+}
+.feedbacks {
+  background-color: rgb(255 237 213);
+}
+.feedbacks .dashboard-statics-icon {
+  background-color: rgb(253 186 116);
+}
+.users {
+  background-color: rgb(254 249 195);
+}
+.users .dashboard-statics-icon {
+  background-color: rgb(253 224 71);
+}
+.categories {
+  background-color: rgb(236 252 203);
 }
 
 .dashboard-statics-icon {
@@ -38,18 +95,18 @@
   transform: translate(-50%, 50%);
 }
 .dashboard-statics-content .name {
-  color: rgb(51 65 85);
+  color: rgb(100 116 139);
   font-weight: 500;
   font-size: 10px;
 }
 .dashboard-statics-content .number {
-  color: rgb(15 23 42);
+  color: rgb(100 116 139);
   font-weight: 500;
   font-size: 20px;
 }
 
 .dashboard-chart-container {
-  width: 100%;
+  width: 95%;
   margin: 0 auto;
   margin-top: 50px;
   display: grid;

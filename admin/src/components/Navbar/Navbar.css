@@ -52,6 +52,7 @@
   outline: 2px solid white;
   list-style: none;
   align-items: center;
+  z-index: 10000;
 }
 
 .nav-profile-dropdown li {

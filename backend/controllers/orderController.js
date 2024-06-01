@@ -129,6 +129,20 @@ const getWeeklyRevenue = async (req, res) => {
   }
 };
 
+const popularCategory = async (req, res) => {
+  try {
+    const orders = await orderModel.aggregate([
+      { $unwind: "$items" }, // Deconstruct the items array
+      { $group: { _id: "$items.category", total: { $sum: 1 } } },
+      { $project: { _id: 0, name: "$_id", value: "$total" } },
+    ]);
+
+    res.json(orders);
+  } catch (error) {
+    res.status(500).send("Server error");
+  }
+};
+
 export {
   placeOrder,
   userOrders,
@@ -136,4 +150,5 @@ export {
   listOrders,
   updateStatus,
   getWeeklyRevenue,
+  popularCategory,
 };

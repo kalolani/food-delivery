@@ -1,10 +1,10 @@
-/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 
 import axios from "axios";
 import { toast } from "react-toastify";
 import FadeLoader from "react-spinners/FadeLoader";
 import "./FoodList.css";
+
 function List({ url }) {
   const [list, setList] = useState([]);
   const [isListLoading, setListIsLoading] = useState(false);

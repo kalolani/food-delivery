@@ -33,9 +33,9 @@ const WeeklyRevenue = () => {
         data={data}
         margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
       >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="week" />
-        <YAxis />
+        <CartesianGrid strokeDasharray="3 3" stroke="rgb(163 230 53)" />
+        <XAxis dataKey="week" stroke="rgb(30 64 175)" />
+        <YAxis stroke="rgb(30 64 175)" />
         <Tooltip labelFormatter={(value) => `Week ${value}`} />
         <Legend />
         <Line type="monotone" dataKey="revenue" stroke="rgb(22 163 74)" />

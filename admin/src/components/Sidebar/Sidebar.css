@@ -42,6 +42,11 @@
   border-radius: 3px 3px 3px 3px;
 }
 
+.sidebar-option.active svg,
+.sidebar-option:hover svg {
+  stroke: rgb(30 64 175);
+}
+
 @media (max-width: 750px) {
   .sidebar-options p {
     display: none;
