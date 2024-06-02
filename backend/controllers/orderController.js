@@ -1,5 +1,5 @@
 import orderModel from "../models/orderModel.js";
-import userModel from "../models/userModel.js";
+import foodModel from "../models/foodModel.js";
 import Stripe from "stripe";
 import "dotenv/config";
 
@@ -143,6 +143,101 @@ const popularCategory = async (req, res) => {
   }
 };
 
+const getTotalAmount = async (req, res) => {
+  try {
+    console.log("Starting aggregation pipeline to get total amount sold");
+    const pipeline = [
+      {
+        $group: {
+          _id: null,
+          totalAmountSold: { $sum: "$amount" },
+        },
+      },
+    ];
+
+    const result = await orderModel.aggregate(pipeline).exec();
+    console.log("Aggregation result:", result);
+
+    if (result.length > 0) {
+      res.json({ totalAmountSold: result[0].totalAmountSold });
+    } else {
+      res.json({ totalAmountSold: 0 });
+    }
+  } catch (error) {
+    console.error("Error fetching total amount sold:", error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
+const getTotalCategory = async (req, res) => {
+  try {
+    const pipeline = [
+      { $group: { _id: "$category", count: { $sum: 1 } } },
+      { $project: { _id: 0, category: "$_id", count: 1 } },
+    ];
+
+    const result = await foodModel.aggregate(pipeline).exec();
+
+    if (result.length > 0) {
+      res.json(result.length);
+    } else {
+      res.json([]);
+    }
+  } catch (error) {
+    console.error("Error fetching category types:", error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+const getTotalOrder = async (req, res) => {
+  try {
+    const orderCount = await orderModel.countDocuments();
+
+    res.json({ orderCount });
+  } catch (error) {
+    console.error("Error fetching order count:", error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
+const deliveredOrder = async (req, res) => {
+  try {
+    const pipeline = [
+      { $match: { status: "Delivered" } }, // Match documents with status "delivered"
+      { $count: "deliveredOrderCount" }, // Count the matched documents
+    ];
+
+    const result = await orderModel.aggregate(pipeline).exec();
+
+    if (result.length > 0) {
+      res.json({ deliveredOrderCount: result[0].deliveredOrderCount });
+    } else {
+      res.json({ deliveredOrderCount: 0 });
+    }
+  } catch (error) {
+    console.error("Error fetching delivered order count:", error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+const PendingOrder = async (req, res) => {
+  try {
+    const pipeline = [
+      { $match: { status: "Out for delivery" } }, // Match documents with status "delivered"
+      { $count: "deliveredOrderCount" }, // Count the matched documents
+    ];
+
+    const result = await orderModel.aggregate(pipeline).exec();
+
+    if (result.length > 0) {
+      res.json({ deliveredOrderCount: result[0].deliveredOrderCount });
+    } else {
+      res.json({ deliveredOrderCount: 0 });
+    }
+  } catch (error) {
+    console.error("Error fetching delivered order count:", error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
 export {
   placeOrder,
   userOrders,
@@ -151,4 +246,9 @@ export {
   updateStatus,
   getWeeklyRevenue,
   popularCategory,
+  getTotalAmount,
+  getTotalCategory,
+  getTotalOrder,
+  deliveredOrder,
+  PendingOrder,
 };

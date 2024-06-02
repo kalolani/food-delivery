@@ -85,4 +85,15 @@ const usersList = async (req, res) => {
   }
 };
 
-export { registerUser, loginUser, usersList };
+const getUserCount = async (req, res) => {
+  try {
+    const userCount = await userModel.countDocuments();
+
+    res.json({ userCount });
+  } catch (error) {
+    console.error("Error fetching user count:", error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
+export { registerUser, loginUser, usersList, getUserCount };

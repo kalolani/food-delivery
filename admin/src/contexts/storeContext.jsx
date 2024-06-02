@@ -1,9 +1,11 @@
+/* eslint-disable react/prop-types */
 import { createContext, useContext, useEffect, useState } from "react";
 
 const StoreContext = createContext();
 
 function StoreProvider({ children }) {
   const [token, setToken] = useState("");
+  const [totalAmountSold, setTotalAmountSold] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const url = "http://localhost:4000";
@@ -35,6 +37,8 @@ function StoreProvider({ children }) {
         setToken,
         isLoading,
         setIsLoading,
+        totalAmountSold,
+        setTotalAmountSold,
       }}
     >
       {children}

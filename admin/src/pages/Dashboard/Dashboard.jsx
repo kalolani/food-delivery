@@ -1,7 +1,7 @@
 import CategoryPopularityChart from "../../components/PieChart/CategoryPopularityChart";
 import WeeklyRevenue from "../../components/WeeklyRevenue/WeeklyRevenue";
+import TotalAmount from "../../components/TotalAmount/TotalAmount";
 import "./Dashboard.css";
-import { PiCurrencyCircleDollarThin } from "react-icons/pi";
 import { IoGridOutline } from "react-icons/io5";
 import { MdOutlineAddShoppingCart } from "react-icons/md";
 import { IoFastFoodOutline } from "react-icons/io5";
@@ -10,6 +10,12 @@ import { MdOutlineHourglassTop } from "react-icons/md";
 import { AiOutlineMail } from "react-icons/ai";
 import { PiUsersFourLight } from "react-icons/pi";
 import { GiMoneyStack } from "react-icons/gi";
+import TotalCategory from "../../components/TotalCategory/TotalCategory";
+import TotalOrder from "../../components/TotalOrder/TotalOrder";
+import FoodItem from "../../components/FoodItem/FoodItem";
+import Delivered from "../../components/Delivered/Delivered";
+import Pending from "../../components/Pending/Pending";
+import User from "../../components/User/User";
 
 function Dashboard() {
   return (
@@ -23,7 +29,9 @@ function Dashboard() {
           </div>
           <div className="dashboard-statics-content">
             <p className="name">Sold Amount</p>
-            <p className="number">100 ETB</p>
+            <p className="number">
+              <TotalAmount />
+            </p>
           </div>
         </div>
         <div className="dashboard-statics categories">
@@ -34,7 +42,7 @@ function Dashboard() {
           </div>
           <div className="dashboard-statics-content">
             <p className="name">Categories</p>
-            <p className="number">100 ETB</p>
+            <TotalCategory />
           </div>
         </div>
         <div className="dashboard-statics orders">
@@ -45,7 +53,7 @@ function Dashboard() {
           </div>
           <div className="dashboard-statics-content">
             <p className="name">Total Orders</p>
-            <p className="number">100 ETB</p>
+            <TotalOrder />
           </div>
         </div>
         <div className="dashboard-statics products">
@@ -56,7 +64,7 @@ function Dashboard() {
           </div>
           <div className="dashboard-statics-content">
             <p className="name">Products</p>
-            <p className="number">100 ETB</p>
+            <FoodItem />
           </div>
         </div>
         <div className="dashboard-statics delivered">
@@ -67,7 +75,7 @@ function Dashboard() {
           </div>
           <div className="dashboard-statics-content">
             <p className="name">Delivred Items</p>
-            <p className="number">100 ETB</p>
+            <Delivered />
           </div>
         </div>
         <div className="dashboard-statics pending">
@@ -78,7 +86,7 @@ function Dashboard() {
           </div>
           <div className="dashboard-statics-content">
             <p className="name">Pending Items</p>
-            <p className="number">100 ETB</p>
+            <Pending />
           </div>
         </div>
         <div className="dashboard-statics feedbacks">
@@ -100,7 +108,7 @@ function Dashboard() {
           </div>
           <div className="dashboard-statics-content">
             <p className="name">Users</p>
-            <p className="number">100 ETB</p>
+            <User />
           </div>
         </div>
       </div>

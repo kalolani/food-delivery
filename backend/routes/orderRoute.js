@@ -8,6 +8,11 @@ import {
   updateStatus,
   getWeeklyRevenue,
   popularCategory,
+  getTotalAmount,
+  getTotalCategory,
+  getTotalOrder,
+  deliveredOrder,
+  PendingOrder,
 } from "../controllers/orderController.js";
 import orderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js";
@@ -25,7 +30,11 @@ orderRouter.get("/list", listOrders);
 orderRouter.post("/status", updateStatus);
 orderRouter.get("/weeklyRevenue", getWeeklyRevenue);
 orderRouter.get("/popularCategory", popularCategory);
-
+orderRouter.get("/totalAmount", getTotalAmount);
+orderRouter.get("/totalCategory", getTotalCategory);
+orderRouter.get("/totalOrder", getTotalOrder);
+orderRouter.get("/delivered", deliveredOrder);
+orderRouter.get("/pending", PendingOrder);
 let endpointSecret;
 // endpointSecret = process.env.WEBHOOK_SECRET;
 orderRouter.post(

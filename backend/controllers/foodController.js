@@ -46,4 +46,15 @@ const removeFood = async (req, res) => {
   }
 };
 
-export { addFood, foodList, removeFood };
+const countFoodItem = async (req, res) => {
+  try {
+    const foodItemCount = await foodModel.countDocuments();
+
+    res.json({ foodItemCount });
+  } catch (error) {
+    console.error("Error fetching food item count:", error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
+export { addFood, foodList, removeFood, countFoodItem };
