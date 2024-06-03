@@ -43,7 +43,9 @@ function PlaceOrder({ showLogin, setShowLogin }) {
     };
 
     let response = await axios.post(url + "/api/order/place", orderData, {
-      headers: { token },
+      headers: {
+        Authorization: `Bearer ${token}`, // Ensure the correct token format
+      },
     });
 
     if (response.data.success) {

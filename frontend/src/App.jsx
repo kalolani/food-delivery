@@ -11,6 +11,7 @@ import LoginPopup from "./components/LoginPopup/LoginPopup";
 import Verify from "./pages/Verify/Verify";
 import MyOrders from "./pages/Myorder/MyOrders";
 import EditProfile from "./pages/EditProfile/EditProfile";
+import RatingPage from "./pages/RatingPage/RatingPage";
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
@@ -28,6 +29,7 @@ function App() {
             <Route path="/verify" element={<Verify />} />
             <Route path="/myorders" element={<MyOrders />} />
             <Route path="/edit" element={<EditProfile />} />
+            <Route path="/rating" element={<RatingPage />} />
           </Routes>
         </div>
       </StoreProvider>

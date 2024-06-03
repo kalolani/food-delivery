@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { useStores } from "../../contexts/storeContext";
-import "./MyOrders.css";
+import "./RatingPage.css";
 import axios from "axios";
 
 import ClipLoader from "react-spinners/ClipLoader";
 import { NavLink } from "react-router-dom";
+import RatingComponent from "../../components/Rating/Rating";
 
-function MyOrders() {
+function RatingPage() {
   const { url, token } = useStores();
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -48,41 +49,32 @@ function MyOrders() {
         </div>
       )}
       <div className="container">
-        {data.map((order, index) => {
+        {data.map((item, index) => {
           return (
             <div key={index} className="my-orders-order">
-              <img src="mosob.png" alt="" />
-              <p>
-                {order.items.map((item, index) => {
-                  if (index === order.items.length - 1) {
-                    return item.name + "(" + item.quantity + ")";
-                  } else {
-                    return item.name + "(" + item.quantity + ")" + ",";
-                  }
-                })}
-              </p>
-              <p>${order.amount}.00</p>
-              <p>Items:{order.items.length}</p>
-              <p>
-                <span
-                  className={
-                    order.status === "Delivered" ? "complete" : "progress"
-                  }
-                >
-                  &#x25cf;
-                </span>
-                <b>{order.status}</b>
-              </p>
-              <button onClick={fetchOrders}>Track Order</button>
+              {item.items.map((item, index) => {
+                return (
+                  <>
+                    <img
+                      src={`${url}/images/` + item.image}
+                      alt="item-photo"
+                      key={index}
+                    />
+                    <p>{item.name}</p>
+                    <p>{item.price}</p>
+                    <RatingComponent foodId={item._id} />
+                  </>
+                );
+              })}
             </div>
           );
         })}
       </div>
-      <NavLink to="/rating">
+      {/* <NavLink to="/rating">
         <p>Rate your order</p>
-      </NavLink>
+      </NavLink> */}
     </div>
   );
 }
 
-export default MyOrders;
+export default RatingPage;

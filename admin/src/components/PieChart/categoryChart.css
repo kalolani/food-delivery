@@ -1,0 +1,6 @@
+.recharts-legend-wrapper {
+  display: flex;
+  flex-direction: column;
+  left: 5%;
+  top: 5%;
+}

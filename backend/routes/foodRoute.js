@@ -3,6 +3,7 @@ import {
   addFood,
   countFoodItem,
   foodList,
+  rateFoodItem,
   removeFood,
 } from "../controllers/foodController.js";
 import multer from "multer";
@@ -23,4 +24,5 @@ foodRouter.post("/add", upload.single("image"), addFood);
 foodRouter.get("/list", foodList);
 foodRouter.post("/remove", removeFood);
 foodRouter.get("/countFood", countFoodItem);
+foodRouter.post("/rating", rateFoodItem);
 export default foodRouter;

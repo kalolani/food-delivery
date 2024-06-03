@@ -7,6 +7,7 @@ import { useStores } from "../../contexts/storeContext";
 import ClipLoader from "react-spinners/ClipLoader";
 import StarRating from "../UserRating/StarRating";
 import { useState } from "react";
+import RatingComponent from "../Rating/Rating";
 
 function FoodItem({ id, name, price, description, image }) {
   const [userRating, setUserRating] = useState("");
@@ -77,15 +78,7 @@ function FoodItem({ id, name, price, description, image }) {
       <div className="food-item-info">
         <div className="food-item-name-rating">
           <p>{name}</p>
-          {isRated ? (
-            <p>Rated ⭐</p>
-          ) : (
-            <StarRating
-              maxRating={5}
-              size={15}
-              userRatingHandler={setUserRating}
-            />
-          )}
+          <StarRating />
         </div>
         <p className="food-item-desc">{description}</p>
         <p className="food-item-price">${price}</p>

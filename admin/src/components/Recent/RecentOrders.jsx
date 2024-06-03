@@ -1,22 +1,21 @@
 /* eslint-disable react/prop-types */
-import "./Orders.css";
+import "./Recent.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import HashLoader from "react-spinners/HashLoader";
-function Orders({ url }) {
+import { useStores } from "../../contexts/storeContext";
+function RecentOrders() {
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const { url } = useStores();
   const fetchAllOrders = async () => {
     try {
       setIsLoading(true);
-      const response = await axios.get(url + "/api/order/list");
-      if (response.data.success) {
-        setOrders(response.data.data);
-        console.log(response.data.data);
-      } else {
-        toast.error("error");
-      }
+      const response = await axios.get(`${url}/api/order/recent`);
+
+      setOrders(response.data);
+      console.log(response.data.data);
     } catch (err) {
       console.log(err);
     } finally {
@@ -46,7 +45,7 @@ function Orders({ url }) {
     );
   return (
     <div className="order add">
-      <h3>order page</h3>
+      <h3>Recent orders</h3>
       <div className="order-list">
         {orders.map((order, index) => (
           <div key={index} className="order-item">
@@ -62,15 +61,8 @@ function Orders({ url }) {
                   }
                 })}
               </p>
-              <p className="order-item-name">
-                {order.address.firstName + " " + order.address.lastName}
-              </p>
-              <div className="order-item-address">
-                <p>{order.address.street + ","}</p>
-                <p>{order.address.city + "," + order.address.state}</p>
-              </div>
-              <p className="order-item-phone">{order.address.phone}</p>
             </div>
+            <p className="order-item-phone">{order.address.phone}</p>
             <p>Items :{order.items.length}</p>
             <p>{order.amount} ETB</p>
             <select
@@ -89,4 +81,4 @@ function Orders({ url }) {
   );
 }
 
-export default Orders;
+export default RecentOrders;

@@ -16,6 +16,7 @@ import FoodItem from "../../components/FoodItem/FoodItem";
 import Delivered from "../../components/Delivered/Delivered";
 import Pending from "../../components/Pending/Pending";
 import User from "../../components/User/User";
+import RecentOrders from "../../components/Recent/RecentOrders";
 
 function Dashboard() {
   return (
@@ -122,9 +123,12 @@ function Dashboard() {
           <WeeklyRevenue />
         </div>
         <div className="line-charts">
-          <h3>Category Popularity</h3>
+          <p>Category Popularity</p>
           <CategoryPopularityChart />
         </div>
+      </div>
+      <div className="recent-orders-container">
+        <RecentOrders />
       </div>
     </div>
   );

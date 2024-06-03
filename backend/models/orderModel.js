@@ -9,6 +9,7 @@ const orderSchema = new mongoose.Schema({
   status: { type: String, default: "Food Processing" },
   date: { type: Date, default: Date.now() },
   payment: { type: String, default: "Not Paid" },
+  rating: { type: String, default: "" },
 });
 
 const orderModel =

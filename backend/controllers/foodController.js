@@ -56,5 +56,23 @@ const countFoodItem = async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 };
+const rateFoodItem = async (req, res) => {
+  const { foodId, rating } = req.body;
 
-export { addFood, foodList, removeFood, countFoodItem };
+  try {
+    const order = await foodModel.findByIdAndUpdate(foodId, {
+      rating: rating,
+    });
+
+    if (!order) {
+      return res.status(404).send("Order not found");
+    }
+
+    res.json({ message: "Rating submitted successfully" });
+  } catch (error) {
+    console.error("Error submitting rating:", error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
+export { addFood, foodList, removeFood, countFoodItem, rateFoodItem };

@@ -238,6 +238,18 @@ const PendingOrder = async (req, res) => {
   }
 };
 
+const recentOrders = async (req, res) => {
+  try {
+    const recentOrders = await orderModel
+      .find()
+      .sort({ order_date: -1 })
+      .limit(5);
+    res.json(recentOrders);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
 export {
   placeOrder,
   userOrders,
@@ -251,4 +263,5 @@ export {
   getTotalOrder,
   deliveredOrder,
   PendingOrder,
+  recentOrders,
 };

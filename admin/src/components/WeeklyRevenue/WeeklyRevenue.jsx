@@ -28,7 +28,7 @@ const WeeklyRevenue = () => {
   console.log(data);
 
   return (
-    <ResponsiveContainer width="100%" height={220}>
+    <ResponsiveContainer width="100%" height={200}>
       <LineChart
         data={data}
         margin={{ top: 5, right: 20, left: 10, bottom: 5 }}

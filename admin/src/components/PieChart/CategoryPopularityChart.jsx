@@ -22,11 +22,11 @@ const CategoryPopularityChart = () => {
   }, []);
 
   return (
-    <PieChart width={350} height={230}>
+    <PieChart width={300} height={245}>
       <Pie
         data={categoryData}
-        cx={130}
-        cy={95}
+        cx={100}
+        cy={100}
         innerRadius={60}
         outerRadius={100}
         fill="#8884d8"
@@ -38,7 +38,7 @@ const CategoryPopularityChart = () => {
         ))}
       </Pie>
       <Tooltip />
-      <Legend />
+      <Legend layout="vertical" verticalAlign="start" align="left" />
     </PieChart>
   );
 };

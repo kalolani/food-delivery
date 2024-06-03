@@ -13,6 +13,7 @@ import {
   getTotalOrder,
   deliveredOrder,
   PendingOrder,
+  recentOrders,
 } from "../controllers/orderController.js";
 import orderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js";
@@ -35,6 +36,8 @@ orderRouter.get("/totalCategory", getTotalCategory);
 orderRouter.get("/totalOrder", getTotalOrder);
 orderRouter.get("/delivered", deliveredOrder);
 orderRouter.get("/pending", PendingOrder);
+orderRouter.get("/recent", recentOrders);
+
 let endpointSecret;
 // endpointSecret = process.env.WEBHOOK_SECRET;
 orderRouter.post(
