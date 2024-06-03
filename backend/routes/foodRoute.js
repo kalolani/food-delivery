@@ -3,6 +3,7 @@ import {
   addFood,
   countFoodItem,
   foodList,
+  getAverageRating,
   rateFoodItem,
   removeFood,
 } from "../controllers/foodController.js";
@@ -25,4 +26,5 @@ foodRouter.get("/list", foodList);
 foodRouter.post("/remove", removeFood);
 foodRouter.get("/countFood", countFoodItem);
 foodRouter.post("/rating", rateFoodItem);
+foodRouter.get("/average-rating/:foodId", getAverageRating);
 export default foodRouter;

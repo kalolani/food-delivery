@@ -60,13 +60,14 @@ const rateFoodItem = async (req, res) => {
   const { foodId, rating } = req.body;
 
   try {
-    const order = await foodModel.findByIdAndUpdate(foodId, {
-      rating: rating,
-    });
+    const foodItem = await foodModel.findById(foodId);
 
-    if (!order) {
-      return res.status(404).send("Order not found");
+    if (!foodItem) {
+      return res.status(404).send("Food item not found");
     }
+
+    foodItem.ratings.push(rating);
+    await foodItem.save();
 
     res.json({ message: "Rating submitted successfully" });
   } catch (error) {
@@ -75,4 +76,34 @@ const rateFoodItem = async (req, res) => {
   }
 };
 
-export { addFood, foodList, removeFood, countFoodItem, rateFoodItem };
+const getAverageRating = async (req, res) => {
+  const { foodId } = req.params;
+
+  try {
+    const foodItem = await foodModel.findById(foodId);
+
+    if (!foodItem) {
+      return res.status(404).send("Food item not found");
+    }
+
+    const ratings = foodItem.ratings;
+    const averageRating =
+      ratings.length > 0
+        ? ratings.reduce((a, b) => a + b, 0) / ratings.length
+        : 0;
+
+    res.json({ averageRating });
+  } catch (error) {
+    console.error("Error fetching average rating:", error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
+export {
+  addFood,
+  foodList,
+  removeFood,
+  countFoodItem,
+  rateFoodItem,
+  getAverageRating,
+};

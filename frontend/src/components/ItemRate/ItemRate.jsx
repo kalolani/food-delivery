@@ -1,12 +1,11 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
-import "./Rating.css";
 import axios from "axios";
 import Rating from "react-rating-stars-component";
 import { useStores } from "../../contexts/storeContext";
 
-const RatingComponent = ({ foodId }) => {
+const ItemRate = ({ foodId }) => {
   const [rating, setRating] = useState(0);
   const [message, setMessage] = useState("");
   const { url } = useStores();
@@ -37,12 +36,8 @@ const RatingComponent = ({ foodId }) => {
         size={20}
         activeColor="#fcc419"
       />
-      <button onClick={submitRating} className="rating-btn">
-        Submit Rating
-      </button>
-      {message && <p>{message}</p>}
     </div>
   );
 };
 
-export default RatingComponent;
+export default ItemRate;

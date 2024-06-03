@@ -17,7 +17,7 @@ const starContainerStyle = {
 export default function StarRating({
   maxRating = 5,
   color = "#fcc419",
-  size = 48,
+  size = 18,
   messages = [],
   defaultRating = 0,
   userRatingHandler,
@@ -25,10 +25,10 @@ export default function StarRating({
   const [rating, setRating] = useState(defaultRating);
   const [tempRating, setTempRating] = useState(0);
 
-  function handleRating(rating) {
-    setRating(rating);
+  function handleRating() {
+    setRating(5);
   }
-  userRatingHandler(rating);
+  //  userRatingHandler(rating);
 
   function handleTempRating(rating) {
     setTempRating(rating);
@@ -40,7 +40,7 @@ export default function StarRating({
         {Array.from({ length: maxRating }, (_, i) => (
           <Stars
             key={i}
-            onRating={() => handleRating(i + 1)}
+            // onRating={() => handleRating(i + 1)}
             full={tempRating ? tempRating >= i + 1 : rating >= i + 1}
             onMouseEnter={() => handleTempRating(i + 1)}
             onMouseLeave={() => handleTempRating(0)}
@@ -49,11 +49,11 @@ export default function StarRating({
           />
         ))}
       </div>
-      <p>
+      {/* <p>
         {messages.length === maxRating
           ? messages[tempRating ? tempRating - 1 : rating - 1]
           : tempRating || rating || ""}
-      </p>
+      </p> */}
     </div>
   );
 }
