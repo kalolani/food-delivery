@@ -12,6 +12,7 @@ import Verify from "./pages/Verify/Verify";
 import MyOrders from "./pages/Myorder/MyOrders";
 import EditProfile from "./pages/EditProfile/EditProfile";
 import RatingPage from "./pages/RatingPage/RatingPage";
+import Contact from "./pages/Contact/Contact";
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
@@ -30,6 +31,7 @@ function App() {
             <Route path="/myorders" element={<MyOrders />} />
             <Route path="/edit" element={<EditProfile />} />
             <Route path="/rating" element={<RatingPage />} />
+            <Route path="/contact" element={<Contact />} />
           </Routes>
         </div>
       </StoreProvider>
