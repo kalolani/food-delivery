@@ -79,7 +79,7 @@ function FoodItem({ id, name, price, description, image }) {
       <div className="food-item-info">
         <div className="food-item-name-rating">
           <p>{name}</p>
-          <ItemRate />
+          <ItemRate id={id} />
         </div>
         <p className="food-item-desc">{description}</p>
         <p className="food-item-price">${price}</p>
