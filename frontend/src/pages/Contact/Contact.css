@@ -65,6 +65,7 @@
   background-color: rgb(15 23 42);
   color: white;
   border-radius: 5px 5px 5px 5px;
+  cursor: pointer;
 }
 
 .contact-image-container {

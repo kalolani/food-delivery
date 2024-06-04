@@ -17,6 +17,7 @@ import Delivered from "../../components/Delivered/Delivered";
 import Pending from "../../components/Pending/Pending";
 import User from "../../components/User/User";
 import RecentOrders from "../../components/Recent/RecentOrders";
+import RatingChart from "../../components/RatingChart/RatingChart";
 
 function Dashboard() {
   return (
@@ -120,10 +121,10 @@ function Dashboard() {
         </div>
         <div className="line-charts">
           <h3>Weekly Sales Revenue Over Time</h3>
-          <WeeklyRevenue />
+          <RatingChart />
         </div>
         <div className="line-charts">
-          <p>Category Popularity</p>
+          <p>Top rated items</p>
           <CategoryPopularityChart />
         </div>
       </div>

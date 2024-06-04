@@ -13,14 +13,16 @@ const ItemRate = ({ id }) => {
   const { url } = useStores();
 
   const handleRatingChange = (newRating) => {
-    setAverageRating(newRating);
+    // setAverageRating(newRating);
   };
-  console.log(averageRating);
+
+  let rating = averageRating;
+  console.log(rating);
 
   const getAverageRating = async (id) => {
     try {
       const response = await axios.get(`${url}/api/food/average-rating/${id}`);
-      console.log(response);
+
       setAverageRating(response.data.averageRating);
     } catch (error) {
       console.error("Error fetching average rating:", error);
@@ -37,7 +39,7 @@ const ItemRate = ({ id }) => {
       {/* <h2>Rate Your Order</h2> */}
       <Rating
         count={5}
-        value={averageRating}
+        value={rating}
         onChange={handleRatingChange}
         size={20}
         activeColor="#fcc419"

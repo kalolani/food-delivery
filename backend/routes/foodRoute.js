@@ -4,6 +4,7 @@ import {
   countFoodItem,
   foodList,
   getAverageRating,
+  listTopRatings,
   rateFoodItem,
   removeFood,
 } from "../controllers/foodController.js";
@@ -27,4 +28,5 @@ foodRouter.post("/remove", removeFood);
 foodRouter.get("/countFood", countFoodItem);
 foodRouter.post("/rating", rateFoodItem);
 foodRouter.get("/average-rating/:foodId", getAverageRating);
+foodRouter.get("/top-rated", listTopRatings);
 export default foodRouter;

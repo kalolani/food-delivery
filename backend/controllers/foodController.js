@@ -99,6 +99,20 @@ const getAverageRating = async (req, res) => {
   }
 };
 
+const listTopRatings = async (req, res) => {
+  try {
+    const foods = await foodModel.find();
+    const averageRatings = foods.map((food) => {
+      const sum = food.ratings.reduce((a, b) => a + b, 0);
+      const avg = sum / food.ratings.length;
+      return { name: food.name, rating: avg };
+    });
+    res.json(averageRatings);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching average ratings" });
+  }
+};
+
 export {
   addFood,
   foodList,
@@ -106,4 +120,5 @@ export {
   countFoodItem,
   rateFoodItem,
   getAverageRating,
+  listTopRatings,
 };
