@@ -41,12 +41,12 @@ function RatingChart() {
         bottom: 5,
       }}
     >
-      <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="name" />
-      <YAxis />
+      <CartesianGrid strokeDasharray="3 3" stroke="rgb(163 230 53)" />
+      <XAxis dataKey="name" stroke="rgb(30 64 175)" />
+      <YAxis stroke="rgb(30 64 175)" />
       <Tooltip />
       <Legend />
-      <Bar dataKey="rating" fill="#8884d8" />
+      <Bar dataKey="rating" fill="rgb(29 78 216)" />
     </BarChart>
   );
 }

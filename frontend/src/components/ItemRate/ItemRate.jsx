@@ -2,7 +2,10 @@
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Rating from "react-rating-stars-component";
+import Rating from "@mui/material/Rating";
+// import StarIcon from "@mui/icons-material/Star";
+// import StarOutlineIcon from "@mui/icons-material/StarOutline";
+
 import { useStores } from "../../contexts/storeContext";
 
 const ItemRate = ({ id }) => {
@@ -15,14 +18,13 @@ const ItemRate = ({ id }) => {
   const handleRatingChange = (newRating) => {
     // setAverageRating(newRating);
   };
-
-  let rating = averageRating;
-  console.log(rating);
+  console.log(averageRating);
 
   const getAverageRating = async (id) => {
     try {
       const response = await axios.get(`${url}/api/food/average-rating/${id}`);
-
+      console.log(response);
+      console.log(response.data.averageRating);
       setAverageRating(response.data.averageRating);
     } catch (error) {
       console.error("Error fetching average rating:", error);
@@ -35,15 +37,8 @@ const ItemRate = ({ id }) => {
   }, [id]);
 
   return (
-    <div className="rating-container">
-      {/* <h2>Rate Your Order</h2> */}
-      <Rating
-        count={5}
-        value={rating}
-        onChange={handleRatingChange}
-        size={20}
-        activeColor="#fcc419"
-      />
+    <div>
+      <Rating name="simple-controlled" value={averageRating} readOnly />
     </div>
   );
 };

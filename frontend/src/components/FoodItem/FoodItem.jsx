@@ -11,9 +11,6 @@ import RatingComponent from "../Rating/Rating";
 import ItemRate from "../ItemRate/ItemRate";
 
 function FoodItem({ id, name, price, description, image }) {
-  const [userRating, setUserRating] = useState("");
-  const { isRated } = useStores();
-
   const {
     cartItem,
     addItem,

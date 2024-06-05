@@ -120,11 +120,11 @@ function Dashboard() {
           <WeeklyRevenue />
         </div>
         <div className="line-charts">
-          <h3>Weekly Sales Revenue Over Time</h3>
+          <h3>Top Rated Items By Users</h3>
           <RatingChart />
         </div>
         <div className="line-charts">
-          <p>Top rated items</p>
+          <p>Category Popularity</p>
           <CategoryPopularityChart />
         </div>
       </div>

@@ -31,14 +31,38 @@ const removeFromCart = async (req, res) => {
     res.json({ success: false, message: "Error" });
   }
 };
+
 const getFromCart = async (req, res) => {
   try {
-    let userData = await userModel.findById(req.body.userId);
-    let cartData = await userData.cartData;
+    const userId = req.body.userId;
+    console.log("User ID from Middleware:", userId); // Log the user ID from the middleware
+
+    // Fetch user data
+    const userData = await userModel.findById(userId).exec();
+    if (!userData) {
+      console.log("User not found in database for ID:", userId);
+      return res
+        .status(404)
+        .json({ success: false, message: "User not found" });
+    }
+
+    // Access cart data
+    const cartData = userData.cartData;
+    if (!cartData) {
+      console.log("Cart data is empty for user ID:", userId);
+      return res
+        .status(404)
+        .json({ success: false, message: "Cart data is empty" });
+    }
+
+    console.log("Cart Data:", cartData); // Log the cart data
+
     res.json({ success: true, cartData });
   } catch (error) {
-    console.log(error);
-    res.json({ success: false, message: "Error" });
+    console.log("Error in getFromCart:", error.message);
+    res
+      .status(500)
+      .json({ success: false, message: "Error retrieving cart data" });
   }
 };
 
