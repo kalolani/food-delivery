@@ -7,44 +7,45 @@ import { useStores } from "../../contexts/storeContext";
 import axios from "axios";
 import "./Contact.css";
 
-function Contact({ setShowLogin }) {
-  const { url, setToken } = useStores();
-  const [currState, setCurrState] = useState("Login");
-  const [regMessage, setRegMessage] = useState("");
-  const [errMessage, setErrMessage] = useState("");
-  const [loginError, setLoginError] = useState("");
-  const [data, setData] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
+function Contact() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [responseMessage, setResponseMessage] = useState("");
+  const { url } = useStores();
 
-  const createAccountHandler = () => {
-    setCurrState("Sign up");
-    setLoginError("");
-    setRegMessage("");
-    setErrMessage("");
-  };
-
-  const onChangeHandler = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
-    setData((data) => ({ ...data, [name]: value }));
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch(url + "/api/email/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, message }),
+      });
+      const data = await response.json();
+      setResponseMessage(data.message);
+    } catch (error) {
+      setResponseMessage("An error occurred while sending your message.");
+    }
   };
 
   return (
-    <div className="contact-container">
+    <div className="contact-container" id="contact">
       <div className="contact-image-container">
         <img src="contacts.png" />
       </div>
       <div className="contact-content-container">
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="name-container">
             <label htmlFor="name">name</label>
             <input
               name="name"
               type="text"
               id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               placeholder="Your Name"
               required
             />
@@ -55,13 +56,21 @@ function Contact({ setShowLogin }) {
               name="email"
               type="email"
               id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="Your E-mail Address"
               required
             />
           </div>
           <div className="textarea-container">
             <label htmlFor="message">Message</label>
-            <textarea placeholder="Your Message" required></textarea>
+            <textarea
+              placeholder="Your Message"
+              id="message"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              required
+            ></textarea>
           </div>
 
           <div className="contact-btn-container">
@@ -70,6 +79,7 @@ function Contact({ setShowLogin }) {
             </button>
           </div>
         </form>
+        {responseMessage && <p>{responseMessage}</p>}
       </div>
     </div>
   );

@@ -35,12 +35,11 @@ const removeFromCart = async (req, res) => {
 const getFromCart = async (req, res) => {
   try {
     const userId = req.body.userId;
-    console.log("User ID from Middleware:", userId); // Log the user ID from the middleware
 
     // Fetch user data
     const userData = await userModel.findById(userId).exec();
     if (!userData) {
-      console.log("User not found in database for ID:", userId);
+      // console.log("User not found in database for ID:", userId);
       return res
         .status(404)
         .json({ success: false, message: "User not found" });
@@ -49,13 +48,13 @@ const getFromCart = async (req, res) => {
     // Access cart data
     const cartData = userData.cartData;
     if (!cartData) {
-      console.log("Cart data is empty for user ID:", userId);
+      // console.log("Cart data is empty for user ID:", userId);
       return res
         .status(404)
         .json({ success: false, message: "Cart data is empty" });
     }
 
-    console.log("Cart Data:", cartData); // Log the cart data
+    // console.log("Cart Data:", cartData); // Log the cart data
 
     res.json({ success: true, cartData });
   } catch (error) {

@@ -31,7 +31,7 @@ function App() {
             <Route path="/myorders" element={<MyOrders />} />
             <Route path="/edit" element={<EditProfile />} />
             <Route path="/rating" element={<RatingPage />} />
-            <Route path="/contact" element={<Contact />} />
+            {/* <Route path="/contact" element={<Contact />} /> */}
           </Routes>
         </div>
       </StoreProvider>

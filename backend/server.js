@@ -1,5 +1,7 @@
 import express from "express";
 import cors from "cors";
+import bodyParser from "body-parser";
+import path from "path";
 import { connectDB } from "./config/db.js";
 import foodRouter from "./routes/foodRoute.js";
 import userRouter from "./routes/userRoute.js";
@@ -9,6 +11,7 @@ import "dotenv/config";
 import adminRouter from "./routes/adminRoute.js";
 import categoryRouter from "./routes/categoryRoute.js";
 import imageRouter from "./routes/imageRoute.js";
+import emailRouter from "./routes/emailRoute.js";
 
 //config
 const app = express();
@@ -18,6 +21,7 @@ const port = 4000;
 
 app.use(express.json());
 app.use(cors());
+app.use(bodyParser.json());
 
 //db connection
 connectDB();
@@ -31,6 +35,7 @@ app.use("/api/cart", cartRouter);
 app.use("/api/image", imageRouter);
 app.use("/api/order", orderRouter);
 app.use("/api/admin", adminRouter);
+app.use("/api/email", emailRouter);
 
 app.get("/", (req, res) => {
   res.send("API working");

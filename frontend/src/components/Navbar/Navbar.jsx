@@ -101,7 +101,7 @@ function Navbar({ setShowLogin }) {
           dishes
         </Link>
         <Link
-          to="footer"
+          to="contact"
           spy={true}
           smooth={true}
           offset={-50}
