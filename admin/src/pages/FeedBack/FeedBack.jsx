@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import axios from "axios";
 import FadeLoader from "react-spinners/FadeLoader";
 import "./FeedBack.css";
-import { useStores } from "../../contexts/storeContext";
 
 function FeedBack({ url }) {
   const [feedback, setFeedback] = useState([]);
   const [isListLoading, setIsLoading] = useState(false);
-  const { message, setMessage } = useStores();
+  const maxLength = 50;
 
   useEffect(() => {
     fetchEmails();
@@ -35,6 +34,7 @@ function FeedBack({ url }) {
   return (
     <div className="list add flex-col">
       <p>All foods list</p>
+
       <div className="list-table">
         <div className="list-table-format title">
           <b>Name</b>
@@ -42,16 +42,21 @@ function FeedBack({ url }) {
           <b>Message</b>
         </div>
         {feedback.map((item, index) => {
-          console.log(item);
           return (
             <>
-              <div className="list-table-format" key={index}>
-                <Link to="/messages">
+              <NavLink to={`/messages?id=${item._id}`}>
+                <div className="list-table-format" key={index}>
                   <p>{item.name}</p>
                   <p>{item.email}</p>
-                  <p>{item.message}</p>
-                </Link>
-              </div>
+                  <p>
+                    {item.message
+                      ? item.message.length > maxLength
+                        ? `${item.message.substring(0, maxLength)}...`
+                        : item.message
+                      : "No message available"}
+                  </p>
+                </div>
+              </NavLink>
             </>
           );
         })}

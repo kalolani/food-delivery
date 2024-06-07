@@ -25,4 +25,17 @@ const fetchEmails = async (req, res) => {
   }
 };
 
-export { fetchEmails, receiveEmail };
+const message = async (req, res) => {
+  try {
+    const email = await emailModel.findById(req.params.id);
+    if (email) {
+      res.json(email);
+    } else {
+      res.status(404).send("Email not found");
+    }
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+};
+
+export { fetchEmails, receiveEmail, message };

@@ -1,0 +1,28 @@
+.message {
+  width: 100%;
+  height: 100%;
+  padding: 100px;
+  padding-left: 100px;
+  position: relative;
+}
+
+.message-container {
+}
+
+.message-name,
+.message-email,
+.message-date {
+  margin-bottom: 20px;
+}
+
+.message-body {
+  margin-top: 50px;
+  line-height: 2.1rem;
+}
+
+.back-arrow {
+  position: absolute;
+  left: 5%;
+  top: 4%;
+  cursor: pointer;
+}
