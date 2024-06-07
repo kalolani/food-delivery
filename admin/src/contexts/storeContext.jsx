@@ -7,6 +7,7 @@ function StoreProvider({ children }) {
   const [token, setToken] = useState("");
   const [totalAmountSold, setTotalAmountSold] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState({});
 
   const url = "http://localhost:4000";
 
@@ -39,6 +40,8 @@ function StoreProvider({ children }) {
         setIsLoading,
         totalAmountSold,
         setTotalAmountSold,
+        message,
+        setMessage,
       }}
     >
       {children}

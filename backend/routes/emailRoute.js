@@ -1,9 +1,9 @@
 // backend/routes/emailRoutes.js
 import express from "express";
-import { sendEmail } from "../controllers/emailController.js";
+import { receiveEmail, fetchEmails } from "../controllers/emailController.js";
 
-const router = express.Router();
+const EmailRouter = express.Router();
 
-router.post("/send-email", sendEmail);
-
-export default router;
+EmailRouter.post("/receive-email", receiveEmail);
+EmailRouter.get("/fetch-email", fetchEmails);
+export default EmailRouter;

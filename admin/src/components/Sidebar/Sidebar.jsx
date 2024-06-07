@@ -45,6 +45,11 @@ function Sidebar() {
 
           <p>Users</p>
         </NavLink>
+        <NavLink to="/feedback" className="sidebar-option">
+          <HiOutlineUsers size={20} color="rgb(37 99 235)" />
+
+          <p>Feedback</p>
+        </NavLink>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { assets } from "../../assets/assets";
 import { useStores } from "../../contexts/storeContext";
@@ -9,25 +9,26 @@ import "./Contact.css";
 
 function Contact() {
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  // const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
+  const [email, setEmail] = useState([]);
   const [responseMessage, setResponseMessage] = useState("");
   const { url } = useStores();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(url + "/api/email/send-email", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name, email, message }),
+      const response = await axios.post(url + "/api/email/receive-email", {
+        email,
+        name,
+        message,
       });
-      const data = await response.json();
-      setResponseMessage(data.message);
+      setResponseMessage(response.message);
+      setEmail("");
+      setName("");
+      setMessage("");
     } catch (error) {
-      setResponseMessage("An error occurred while sending your message.");
+      console.error("Error sending email:", error);
     }
   };
 
@@ -53,7 +54,6 @@ function Contact() {
           <div className="email-container">
             <label htmlFor="email">email</label>
             <input
-              name="email"
               type="email"
               id="email"
               value={email}

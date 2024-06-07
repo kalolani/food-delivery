@@ -1,42 +1,28 @@
-import nodemailer from "nodemailer";
-import sendgridTransport from "nodemailer-sendgrid-transport";
-import dotenv from "dotenv";
+import emailModel from "../models/emailModel.js";
 
-dotenv.config();
-
-const transporter = nodemailer.createTransport(
-  sendgridTransport({
-    auth: {
-      api_key: process.env.SENDGRID_API_KEY,
-    },
-  })
-);
-
-const sendEmail = async (req, res) => {
+const receiveEmail = async (req, res) => {
   const { name, email, message } = req.body;
 
-  if (!name || !email || !message) {
+  if (!name || !message || !email) {
     return res.status(400).json({ message: "All fields are required!" });
   }
 
-  // Send email using SendGrid
   try {
-    await transporter.sendMail({
-      to: "kkaleabseven@gmail.com", // Receiver email address
-      from: process.env.SENDGRID_VERIFIED_EMAIL, // Your SendGrid verified email
-      subject: `New Contact Form Submission from ${name}`,
-      text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
-    });
-
-    res
-      .status(200)
-      .json({ message: "Email sent successfully using SendGrid!" });
+    const emails = new emailModel({ name, email, message });
+    await emails.save();
+    res.status(201).json({ message: "Email received successfully" });
   } catch (error) {
-    console.error("SendGrid error", error);
-    res.status(500).json({
-      message: `Failed to send email using SendGrid: ${error.message}`,
-    });
+    res.status(500).json({ message: "Failed to save email", error });
   }
 };
 
-export { sendEmail };
+const fetchEmails = async (req, res) => {
+  try {
+    const emails = await emailModel.find().sort({ receivedAt: -1 });
+    res.status(200).json(emails);
+  } catch (error) {
+    res.status(500).json({ message: "Failed to fetch emails", error });
+  }
+};
+
+export { fetchEmails, receiveEmail };

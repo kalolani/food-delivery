@@ -14,6 +14,8 @@ import { useState } from "react";
 import CatList from "./pages/CategoryList/CatList";
 import Users from "./pages/Users/Users";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import FeedBack from "./pages/FeedBack/FeedBack";
+import Message from "./pages/Message/Message";
 const url = "http://localhost:4000";
 function App() {
   const [showLogin, setShowLogin] = useState(false);
@@ -38,6 +40,8 @@ function App() {
             <Route path="/category" element={<Category url={url} />} />
             <Route path="/catlist" element={<CatList url={url} />} />
             <Route path="/users" element={<Users url={url} />} />
+            <Route path="/Feedback" element={<FeedBack url={url} />} />
+            <Route path="/messages" element={<Message url={url} />} />
           </Routes>
         </div>
       </StoreProvider>
