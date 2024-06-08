@@ -1,22 +1,24 @@
-import { useEffect, useState } from "react";
-import { useStores } from "../../contexts/storeContext";
-import "./PlaceOrder.css";
+/* eslint-disable no-unused-vars */
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import { useEffect, useState } from "react";
+import "./PlaceOrder.css";
+import { useStores } from "../../contexts/storeContext";
 function PlaceOrder({ showLogin, setShowLogin }) {
-  const { getTotalCartAmount, cartItem, food_list, url, token } = useStores();
+  const frontend_url = "http://localhost:5173";
+  const { getTotalCartAmount, cartItem, food_list, url, token } = useStores(); // Assuming useStores is a context hook you have
+  const tx_ref = "tx-" + Math.random().toString(36).substr(2, 9); // unique reference
+  const callback_url = frontend_url; // replace with your callback URL
 
   const [data, setData] = useState({
     firstName: "",
     lastName: "",
     email: "",
-    street: "",
-    city: "",
-    state: "",
-    zipcode: "",
-    country: "",
     phone: "",
+    amount: getTotalCartAmount() + 2,
+    currency: "ETB",
+    tx_ref,
+    callback_url,
   });
 
   const onChangeHandler = (event) => {
@@ -27,43 +29,41 @@ function PlaceOrder({ showLogin, setShowLogin }) {
 
   const placeOrderHandler = async (event) => {
     event.preventDefault();
-    let orderItems = [];
-    food_list.map((item) => {
-      if (cartItem[item._id] > 0) {
-        let itemInfo = item;
-        itemInfo["quantity"] = cartItem[item._id];
-        orderItems.push(itemInfo);
+
+    try {
+      let response = await axios.post(
+        url + "/api/payment/create-payment",
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.data.status === "success") {
+        window.location.href = response.data.data.checkout_url;
+      } else {
+        alert("Payment initialization failed");
       }
-    });
-
-    let orderData = {
-      address: data,
-      items: orderItems,
-      amount: getTotalCartAmount() + 2,
-    };
-
-    let response = await axios.post(url + "/api/order/place", orderData, {
-      headers: {
-        Authorization: `Bearer ${token}`, // Ensure the correct token format
-      },
-    });
-
-    if (response.data.success) {
-      const { session_url } = response.data;
-      window.location.replace(session_url);
-    } else {
-      alert("Error");
+    } catch (error) {
+      console.error(
+        "Error during payment initialization:",
+        error.response ? error.response.data : error.message
+      );
     }
   };
+
   const navigate = useNavigate();
   useEffect(() => {
     if (!token) {
       navigate("/cart");
-      alert("please login before proceeding to payement");
+      alert("please login before proceeding to payment");
     } else if (getTotalCartAmount() === 0) {
       navigate("/cart");
     }
-  }, [token]);
+  }, [token, navigate, getTotalCartAmount]);
 
   return (
     <form onSubmit={placeOrderHandler} className="place-order">
@@ -168,7 +168,7 @@ function PlaceOrder({ showLogin, setShowLogin }) {
                 {getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 2} ETB
               </p>
             </div>
-            <button type="submit">PROCEED TO PAYEMENT</button>
+            <button type="submit">PROCEED TO PAYMENT</button>
           </div>
         </div>
       </div>

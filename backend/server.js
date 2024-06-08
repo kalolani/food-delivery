@@ -12,6 +12,7 @@ import adminRouter from "./routes/adminRoute.js";
 import categoryRouter from "./routes/categoryRoute.js";
 import imageRouter from "./routes/imageRoute.js";
 import emailRouter from "./routes/emailRoute.js";
+import paymentRouter from "./routes/chapaRoute.js";
 
 //config
 const app = express();
@@ -36,6 +37,7 @@ app.use("/api/image", imageRouter);
 app.use("/api/order", orderRouter);
 app.use("/api/admin", adminRouter);
 app.use("/api/email", emailRouter);
+app.use("/api/payment", paymentRouter);
 
 app.get("/", (req, res) => {
   res.send("API working");
