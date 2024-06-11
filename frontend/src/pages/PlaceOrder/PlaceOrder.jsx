@@ -7,7 +7,8 @@ import { useStores } from "../../contexts/storeContext";
 function PlaceOrder({ showLogin, setShowLogin }) {
   const frontend_url = "http://localhost:5173";
   const { getTotalCartAmount, cartItem, food_list, url, token } = useStores(); // Assuming useStores is a context hook you have
-  const tx_ref = "tx-" + Math.random().toString(36).substr(2, 9); // unique reference
+  const tx_ref = "tx-myecommerce12345-" + Date.now();
+
   const callback_url = frontend_url; // replace with your callback URL
 
   const [data, setData] = useState({
@@ -15,10 +16,7 @@ function PlaceOrder({ showLogin, setShowLogin }) {
     lastName: "",
     email: "",
     phone: "",
-    amount: getTotalCartAmount() + 2,
-    currency: "ETB",
-    tx_ref,
-    callback_url,
+    street: "",
   });
 
   const onChangeHandler = (event) => {
@@ -29,11 +27,32 @@ function PlaceOrder({ showLogin, setShowLogin }) {
 
   const placeOrderHandler = async (event) => {
     event.preventDefault();
+    let orderItems = [];
+    food_list.map((item) => {
+      if (cartItem[item._id] > 0) {
+        let itemInfo = item;
+        itemInfo["quantity"] = cartItem[item._id];
+        orderItems.push(itemInfo);
+      }
+    });
+
+    let orderData = {
+      address: data,
+      items: orderItems,
+      amount: getTotalCartAmount() + 2,
+      currency: "ETB",
+      email: data.email,
+      first_name: data.firstName,
+      last_name: data.lastName,
+      phone_number: data.phone,
+      tx_ref: tx_ref,
+      callback_url: callback_url,
+    };
 
     try {
       let response = await axios.post(
         url + "/api/payment/create-payment",
-        data,
+        orderData,
         {
           headers: {
             Authorization: `Bearer ${token}`,

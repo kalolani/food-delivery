@@ -117,37 +117,5 @@ const createOrder = async (customer, intent, res) => {
 };
 
 //chapa payment integration
-orderRouter.post("/webhook/chapa", (req, res) => {
-  const event = req.body;
-  const signature = req.headers["chapa-signature"];
-  const secret = "CHASECK_TEST-8DdIMMbf7yjEcsbAaaBoZbWjqRCgoM3x"; // Get this from your Chapa account
-
-  const hash = crypto
-    .createHmac("sha256", secret)
-    .update(JSON.stringify(event))
-    .digest("hex");
-
-  if (hash !== signature) {
-    return res.status(400).send("Invalid signature");
-  }
-  // Handle the event
-  switch (event.event) {
-    case "payment.success":
-      // Handle successful payment
-      console.log("Payment successful:", event.data);
-      // Perform actions like updating the database, sending confirmation emails, etc.
-      break;
-    case "payment.failed":
-      // Handle failed payment
-      console.log("Payment failed:", event.data);
-      break;
-    // Handle other events
-    default:
-      console.log(`Unhandled event type: ${event.event}`);
-  }
-
-  // Respond to Chapa to acknowledge receipt of the event
-  res.status(200).send("Event received");
-});
 
 export default orderRouter;
