@@ -52,22 +52,20 @@ function RatingPage() {
         </div>
       )}
       <div className="container">
-        <div className="my-orders-order">
-          {data.items?.map((item, index) => {
-            return (
-              <>
-                <img
-                  src={`${url}/images/` + item.image}
-                  alt="item-photo"
-                  key={index}
-                />
-                <p>{item.name}</p>
-                <p>{item.price}</p>
-                <RatingComponent foodId={item._id} />
-              </>
-            );
-          })}
-        </div>
+        {data.items?.map((item, index) => {
+          return (
+            <div key={index} className="my-orders-order">
+              <img
+                src={`${url}/images/` + item.image}
+                alt="item-photo"
+                key={index}
+              />
+              <p>{item.name}</p>
+              <p>{item.price}</p>
+              <RatingComponent foodId={item._id} />
+            </div>
+          );
+        })}
       </div>
       {/* <NavLink to="/rating">
         <p>Rate your order</p>

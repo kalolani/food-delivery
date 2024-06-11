@@ -1,6 +1,6 @@
 .contact-container {
   /* background-image: url("./contacts.jpg"); */
-  background-color: rgb(255 255 255);
+  /* background: linear-gradient(#ffdad5, #fff7f9); */
   padding: 80px 0px;
 }
 
@@ -13,7 +13,7 @@
   background-color: rgb(241 245 249);
 }
 .contact-content-container {
-  width: 85%;
+  width: 75%;
   background-color: rgb(241 245 249);
   display: grid;
   justify-self: center;
@@ -31,7 +31,7 @@
 }
 .name-container input,
 .email-container input {
-  width: 90%;
+  width: 100%;
   display: inline-block;
   height: 30px;
   padding: 20px 30px;
@@ -48,7 +48,7 @@
 .textarea-container textarea {
   display: inline-block;
   height: 100px;
-  width: 90%;
+  width: 100%;
   border: 1px solid rgb(148 163 184);
   border-radius: 3px 3px 3px 3px;
   margin-bottom: 25px;
@@ -62,13 +62,40 @@
 .contact-btn-container button {
   border: none;
   padding: 10px 20px;
-  width: 35%;
+  width: 50%;
   background-color: rgb(15 23 42);
   color: white;
   border-radius: 5px 5px 5px 5px;
   cursor: pointer;
 }
-
 .contact-image-container {
+  justify-self: center;
+  display: grid;
+}
+
+.contact-image-container img {
+  display: inline-block;
+  margin: 0 auto;
   width: 100%;
+}
+
+@media (max-width: 900px) {
+  .contact-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .contact-image-container img {
+    width: 80%;
+  }
+}
+
+@media (max-width: 700px) {
+  .contact-content-container {
+    width: 80%;
+  }
+}
+@media (max-width: 500px) {
+  .contact-content-container {
+    width: 100%;
+  }
 }

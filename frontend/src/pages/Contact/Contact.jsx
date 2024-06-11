@@ -35,7 +35,7 @@ function Contact() {
   return (
     <div className="contact-container" id="contact">
       <div className="contact-image-container">
-        <img src="contacts.png" />
+        <img src="right_img.png" />
       </div>
       <div className="contact-content-container">
         <form onSubmit={handleSubmit}>

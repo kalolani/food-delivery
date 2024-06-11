@@ -100,17 +100,17 @@ function Navbar({ setShowLogin }) {
         >
           dishes
         </Link>
-        <Link
-          to="contact"
-          spy={true}
-          smooth={true}
-          offset={-50}
-          duration={500}
-          onClick={() => setMenu("contact")}
-          className={menu === "contact" ? "active" : ""}
+        <NavLink
+          to="/contact"
+          // spy={true}
+          // smooth={true}
+          // offset={-50}
+          // duration={500}
+          // onClick={() => setMenu("contact")}
+          // className={menu === "contact" ? "active" : ""}
         >
           contact
-        </Link>
+        </NavLink>
       </ul>
       <div className="navbar-right">
         <img src={assets.search_icon} alt="" className="navbar-logo" />
