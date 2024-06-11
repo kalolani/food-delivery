@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useStores } from "../../contexts/storeContext";
-import "./MyOrders.css";
+
 import axios from "axios";
 
 import ClipLoader from "react-spinners/ClipLoader";
 import { NavLink } from "react-router-dom";
-
+import "./MyOrders.css";
 function MyOrders() {
   const { url, token } = useStores();
   const [data, setData] = useState([]);

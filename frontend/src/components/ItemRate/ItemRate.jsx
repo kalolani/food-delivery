@@ -38,7 +38,12 @@ const ItemRate = ({ id }) => {
 
   return (
     <div>
-      <Rating name="simple-controlled" value={averageRating} readOnly />
+      <Rating
+        name="simple-controlled"
+        value={averageRating}
+        precision={0.5}
+        readOnly
+      />
     </div>
   );
 };

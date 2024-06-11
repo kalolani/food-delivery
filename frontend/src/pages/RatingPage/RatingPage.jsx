@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useStores } from "../../contexts/storeContext";
-import "./RatingPage.css";
+
 import axios from "axios";
 
 import ClipLoader from "react-spinners/ClipLoader";
 import { NavLink } from "react-router-dom";
 import RatingComponent from "../../components/Rating/Rating";
-
+import "./RatingPage.css";
 function RatingPage() {
   const { url, token } = useStores();
   const [data, setData] = useState([]);

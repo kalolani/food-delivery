@@ -15,7 +15,7 @@ function Verify() {
   const navigate = useNavigate();
 
   const verifyPayment = async () => {
-    const response = await axios.post(url + "/api/order/verify", {
+    const response = await axios.post(url + "/api/payment/verify", {
       success,
       orderId,
     });

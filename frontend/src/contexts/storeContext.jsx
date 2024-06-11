@@ -14,7 +14,7 @@ function StoreProvider({ children }) {
   const [food_list, setFoodList] = useState([]);
   const [menu_list, setMenuList] = useState([]);
   const [image, setImage] = useState(null);
-
+  const tx_ref = "tx-myecommerce12345-" + Date.now();
   const fetchFoodList = async () => {
     const response = await axios.get(url + "/api/food/list");
     setFoodList(response.data.data);
@@ -159,6 +159,7 @@ function StoreProvider({ children }) {
         menu_list,
         image,
         setImage,
+        tx_ref,
       }}
     >
       {children}

@@ -7,7 +7,7 @@ import { useStores } from "../../contexts/storeContext";
 function PlaceOrder({ showLogin, setShowLogin }) {
   const frontend_url = "http://localhost:5173";
   const { getTotalCartAmount, cartItem, food_list, url, token } = useStores(); // Assuming useStores is a context hook you have
-  const tx_ref = "tx-myecommerce12345-" + Date.now();
+  const { tx_ref } = useStores();
 
   const callback_url = frontend_url; // replace with your callback URL
 

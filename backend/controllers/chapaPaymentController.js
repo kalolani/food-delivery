@@ -26,7 +26,7 @@ const createPayment = async (req, res) => {
   console.log(phone_number);
   const key = process.env.CHAPA_SECRET_KEY;
   // Create metadata object
-  console.log(address);
+  // console.log(address);
 
   try {
     const response = await axios.post(
@@ -40,8 +40,8 @@ const createPayment = async (req, res) => {
         last_name,
         phone_number,
         tx_ref,
-        callback_url,
-        return_url: callback_url,
+        callback_url: `${callback_url}/verify-payment`,
+        return_url: `${callback_url}/verify?success=true`,
         customization: {
           title: "food-del",
           description: "food-del-app",
@@ -150,4 +150,21 @@ const handleWebhook = async (req, res) => {
   }
 };
 
-export { createPayment, handleWebhook };
+const verifyOrder = async (req, res) => {
+  const { success, orderId } = req.body;
+
+  try {
+    if (success === "true") {
+      await orderModel.findByIdAndUpdate(orderId, { payement: true });
+      res.json({ success: true, message: "Paid" });
+    } else {
+      await orderModel.findByIdAndDelete(orderId);
+      res.json({ success: false, message: "Not Paid" });
+    }
+  } catch (err) {
+    console.log(err);
+    req.json({ success: false, message: "Error" });
+  }
+};
+
+export { createPayment, handleWebhook, verifyOrder };
