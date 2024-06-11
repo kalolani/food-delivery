@@ -1,23 +1,25 @@
 import { useEffect, useState } from "react";
 import { useStores } from "../../contexts/storeContext";
-
 import axios from "axios";
-
 import ClipLoader from "react-spinners/ClipLoader";
-import { NavLink } from "react-router-dom";
 import RatingComponent from "../../components/Rating/Rating";
 import "./RatingPage.css";
+import { useSearchParams } from "react-router-dom";
+
 function RatingPage() {
   const { url, token } = useStores();
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   console.log(data);
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const id = searchParams.get("id");
 
   const fetchOrders = async () => {
     try {
       setIsLoading(true);
       const response = await axios.post(
-        url + "/api/order/userorder",
+        `${url}/api/order/userorder/${id}`,
         {},
         {
           headers: {
@@ -25,7 +27,8 @@ function RatingPage() {
           },
         }
       );
-      setData(response.data.data);
+      console.log(response);
+      setData(response.data);
     } catch (err) {
       console.log(err);
     } finally {
@@ -49,26 +52,22 @@ function RatingPage() {
         </div>
       )}
       <div className="container">
-        {data.map((item, index) => {
-          return (
-            <div key={index} className="my-orders-order">
-              {item.items.map((item, index) => {
-                return (
-                  <>
-                    <img
-                      src={`${url}/images/` + item.image}
-                      alt="item-photo"
-                      key={index}
-                    />
-                    <p>{item.name}</p>
-                    <p>{item.price}</p>
-                    <RatingComponent foodId={item._id} />
-                  </>
-                );
-              })}
-            </div>
-          );
-        })}
+        <div className="my-orders-order">
+          {data.items?.map((item, index) => {
+            return (
+              <>
+                <img
+                  src={`${url}/images/` + item.image}
+                  alt="item-photo"
+                  key={index}
+                />
+                <p>{item.name}</p>
+                <p>{item.price}</p>
+                <RatingComponent foodId={item._id} />
+              </>
+            );
+          })}
+        </div>
       </div>
       {/* <NavLink to="/rating">
         <p>Rate your order</p>

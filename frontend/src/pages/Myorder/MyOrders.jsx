@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { useStores } from "../../contexts/storeContext";
-
 import axios from "axios";
-
 import ClipLoader from "react-spinners/ClipLoader";
 import { NavLink } from "react-router-dom";
 import "./MyOrders.css";
+
 function MyOrders() {
   const { url, token } = useStores();
   const [data, setData] = useState([]);
@@ -50,37 +49,39 @@ function MyOrders() {
       <div className="container">
         {data.map((order, index) => {
           return (
-            <div key={index} className="my-orders-order">
-              <img src="mosob.png" alt="" />
-              <p>
-                {order.items.map((item, index) => {
-                  if (index === order.items.length - 1) {
-                    return item.name + "(" + item.quantity + ")";
-                  } else {
-                    return item.name + "(" + item.quantity + ")" + ",";
-                  }
-                })}
-              </p>
-              <p>${order.amount}.00</p>
-              <p>Items:{order.items.length}</p>
-              <p>
-                <span
-                  className={
-                    order.status === "Delivered" ? "complete" : "progress"
-                  }
-                >
-                  &#x25cf;
-                </span>
-                <b>{order.status}</b>
-              </p>
-              <button onClick={fetchOrders}>Track Order</button>
-            </div>
+            <>
+              <div key={index} className="my-orders-order">
+                <img src="mosob.png" alt="" />
+                <p>
+                  {order.items.map((item, index) => {
+                    if (index === order.items.length - 1) {
+                      return item.name + "(" + item.quantity + ")";
+                    } else {
+                      return item.name + "(" + item.quantity + ")" + ",";
+                    }
+                  })}
+                </p>
+                <p>${order.amount}.00</p>
+                <p>Items:{order.items.length}</p>
+                <p>
+                  <span
+                    className={
+                      order.status === "Delivered" ? "complete" : "progress"
+                    }
+                  >
+                    &#x25cf;
+                  </span>
+                  <b>{order.status}</b>
+                </p>
+                <button onClick={fetchOrders}>Track Order</button>
+              </div>
+              <NavLink to={`/rating?id=${order._id}`}>
+                <p>Rate your order</p>
+              </NavLink>
+            </>
           );
         })}
       </div>
-      <NavLink to="/rating">
-        <p>Rate your order</p>
-      </NavLink>
     </div>
   );
 }

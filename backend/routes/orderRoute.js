@@ -14,6 +14,7 @@ import {
   deliveredOrder,
   PendingOrder,
   recentOrders,
+  orderRating,
 } from "../controllers/orderController.js";
 import orderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js";
@@ -28,6 +29,7 @@ const orderRouter = express.Router();
 orderRouter.post("/place", authMiddleware, placeOrder);
 orderRouter.post("/verify", verifyOrder);
 orderRouter.post("/userorder", authMiddleware, userOrders);
+orderRouter.post("/userorder/:id", authMiddleware, orderRating);
 orderRouter.get("/list", listOrders);
 orderRouter.post("/status", updateStatus);
 orderRouter.get("/weeklyRevenue", getWeeklyRevenue);

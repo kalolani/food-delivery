@@ -91,6 +91,19 @@ const userOrders = async (req, res) => {
   }
 };
 
+const orderRating = async (req, res) => {
+  try {
+    const order = await orderModel.findById(req.params.id);
+    if (order) {
+      res.json(order);
+    } else {
+      res.status(404).send("order not found");
+    }
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+};
+
 const updateStatus = async (req, res) => {
   try {
     await orderModel.findByIdAndUpdate(req.body.orderId, {
@@ -265,4 +278,5 @@ export {
   deliveredOrder,
   PendingOrder,
   recentOrders,
+  orderRating,
 };
