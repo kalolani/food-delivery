@@ -4,10 +4,27 @@ import { assets } from "../../assets/assets";
 import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useEffect } from "react";
 
 function Add({ url }) {
   const [image, setImage] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [categories, setCategories] = useState([]);
+
+  // Inside your Add component
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await axios.get(`${url}/api/category/list-category`);
+        setCategories(response.data.categories);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+        toast.error("Failed to load categories");
+      }
+    };
+
+    fetchCategories();
+  }, [url]);
   const [data, setData] = useState({
     name: "",
     description: "",
@@ -101,16 +118,14 @@ function Add({ url }) {
               onChange={handleChange}
               name="category"
             >
-              <option value="Salad" selected disabled>
-                Salad
+              <option value="" disabled>
+                Select category
               </option>
-              <option value="Rolls">Rolls</option>
-              <option value="Desserts">Desserts</option>
-              <option value="Sandwich">Sandwich</option>
-              <option value="Cake">Cake</option>
-              <option value="Pure Veg">Pure Veg</option>
-              <option value="Pasta">Pasta</option>
-              <option value="Noodles">Noodles</option>
+              {categories?.map((category) => (
+                <option key={category._id} value={category.name}>
+                  {category.name}
+                </option>
+              ))}
             </select>
           </div>
           <div className="add-price flex-col">

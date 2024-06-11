@@ -29,6 +29,15 @@ const categoryList = async (req, res) => {
     res.json({ success: false, mesage: error });
   }
 };
+const getCategory = async (req, res) => {
+  try {
+    const categories = await categoryModel.find();
+    res.json({ categories });
+  } catch (error) {
+    console.error("Error fetching categories:", error);
+    res.status(500).json({ message: "Error fetching categories" });
+  }
+};
 
 const removeCategory = async (req, res) => {
   try {
@@ -43,4 +52,4 @@ const removeCategory = async (req, res) => {
   }
 };
 
-export { addCategory, categoryList, removeCategory };
+export { addCategory, categoryList, removeCategory, getCategory };
