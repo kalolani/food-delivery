@@ -4,6 +4,7 @@ import { assets } from "../../assets/assets";
 import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useStores } from "../../contexts/storeContext";
 
 function Category({ url }) {
   const [image, setImage] = useState(false);
@@ -17,10 +18,14 @@ function Category({ url }) {
     const value = e.target.value;
     setData({ ...data, [name]: value });
   };
+  const { token } = useStores();
 
   //   const handleChange = (event) => {
   //     // setSelectedCategory(event.target.value);
   //   };
+
+  // const { token } = useStores();
+  // if (!token) return;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -41,6 +46,7 @@ function Category({ url }) {
       toast.error(response.data.message);
     }
   };
+  if (!token) return;
   return (
     <div className="add">
       <form className="flex-col" onSubmit={handleSubmit}>

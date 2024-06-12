@@ -8,8 +8,11 @@ import {
   HiOutlineGift,
 } from "react-icons/hi2";
 import { HiOutlineViewGridAdd, HiOutlineViewGrid } from "react-icons/hi";
+import { useStores } from "../../contexts/storeContext";
 
 function Sidebar() {
+  const { token } = useStores();
+  if (!token) return;
   return (
     <div className="sidebar">
       <div className="sidebar-options">

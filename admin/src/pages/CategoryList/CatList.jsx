@@ -4,10 +4,15 @@ import "./CatList.css";
 import axios from "axios";
 import { toast } from "react-toastify";
 import FadeLoader from "react-spinners/FadeLoader";
+import { useStores } from "../../contexts/storeContext";
 function CatList({ url }) {
   const [list, setList] = useState([]);
   const [isListLoading, setListIsLoading] = useState(false);
   // const [isRemoveLoading, setIsRemoveLoading] = useState(false);
+  const { token } = useStores();
+
+  // const { token } = useStores();
+  // if (!token) return;
 
   const fetchList = async () => {
     try {
@@ -53,6 +58,7 @@ function CatList({ url }) {
         <FadeLoader color="#FF6347" loading={isListLoading} size={50} />
       </div>
     );
+  if (!token) return;
   return (
     <div className="list add flex-col">
       <p>All categories list</p>

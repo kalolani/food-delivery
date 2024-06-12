@@ -1,12 +1,19 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import FadeLoader from "react-spinners/FadeLoader";
 import "./FeedBack.css";
+import { useStores } from "../../contexts/storeContext";
 
 function FeedBack({ url }) {
   const [feedback, setFeedback] = useState([]);
   const [isListLoading, setIsLoading] = useState(false);
+  // const { token } = useStores();
+  // if (!token) return;
+  const { token } = useStores();
+
   const maxLength = 50;
 
   useEffect(() => {
@@ -30,7 +37,7 @@ function FeedBack({ url }) {
         <FadeLoader color="#FF6347" loading={isListLoading} size={50} />
       </div>
     );
-
+  if (!token) return;
   return (
     <div className="list add flex-col">
       <p>All Messages</p>

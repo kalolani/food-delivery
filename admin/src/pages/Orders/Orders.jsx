@@ -4,9 +4,12 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import HashLoader from "react-spinners/HashLoader";
+import { useStores } from "../../contexts/storeContext";
 function Orders({ url }) {
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const { token } = useStores();
+
   const fetchAllOrders = async () => {
     try {
       setIsLoading(true);
@@ -37,6 +40,8 @@ function Orders({ url }) {
   useEffect(() => {
     fetchAllOrders();
   }, []);
+
+  if (!token) return;
 
   if (isLoading)
     return (

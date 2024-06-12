@@ -3,10 +3,19 @@ import "./Navbar.css";
 import { assets } from "../../../../admin/src/assets/assets";
 import { useStores } from "../../contexts/storeContext";
 import { useNavigate } from "react-router-dom";
-
+import { IoLogOutOutline } from "react-icons/io5";
+import { MdOutlineLightMode } from "react-icons/md";
 function Navbar({ setShowLogin }) {
   const { token, setToken } = useStores();
   const navigate = useNavigate();
+
+  if (!token)
+    return (
+      <p>
+        You are not eligible to access this page, If you are an admin please
+        login properly to access this page
+      </p>
+    );
 
   const logout = () => {
     localStorage.removeItem("token");
@@ -22,23 +31,16 @@ function Navbar({ setShowLogin }) {
         <img src="kal.png" className="profile-icon" alt="" />
         <ul className="nav-profile-dropdown">
           <li onClick={logout}>
+            <IoLogOutOutline size={27} />
             <p>Logout</p>
           </li>
+          <li onClick={logout}>
+            <IoLogOutOutline size={27} />
+            <p>profile</p>
+          </li>
           <li>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="#49557e"
-              className="theme"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
-              />
-            </svg>
+            <MdOutlineLightMode size={25} />
+            <p>theme</p>
           </li>
         </ul>
       </div>

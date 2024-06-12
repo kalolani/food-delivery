@@ -5,11 +5,14 @@ import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useEffect } from "react";
+import { useStores } from "../../contexts/storeContext";
 
 function Add({ url }) {
   const [image, setImage] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [categories, setCategories] = useState([]);
+
+  const { token } = useStores();
 
   // Inside your Add component
   useEffect(() => {
@@ -68,6 +71,7 @@ function Add({ url }) {
       toast.error(response.data.message);
     }
   };
+  if (!token) return;
   return (
     <div className="add">
       <form className="flex-col" onSubmit={handleSubmit}>

@@ -19,8 +19,12 @@ import User from "../../components/User/User";
 import RecentOrders from "../../components/Recent/RecentOrders";
 import RatingChart from "../../components/RatingChart/RatingChart";
 import Email from "../../components/Email/Email";
+import { useStores } from "../../contexts/storeContext";
 
 function Dashboard() {
+  const { token } = useStores();
+  console.log(token);
+  if (!token) return;
   return (
     <div className="dashboard-container">
       <div className="dashboard-statics-container">

@@ -21,12 +21,19 @@
   gap: 15px;
 }
 .nav-profile-dropdown li {
+  border: 1px solid #49557e;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 5px 5px 5px 5px;
+  color: inherit;
   list-style: none;
+}
+.nav-profile-dropdown img {
+  color: tomato;
 }
 .nav-profile-dropdown p {
   cursor: pointer;
-  border: 1px solid #49557e;
-
+  font-size: 20px;
   padding: 4px 8px;
   border-radius: 5px 5px 5px 5px;
   color: inherit;
@@ -58,11 +65,12 @@
 .nav-profile-dropdown li {
   display: flex;
   align-items: center;
-  gap: 10px;
+  /* gap: 10px; */
   cursor: pointer;
 }
 .nav-profile-dropdown img {
   width: 20px;
+  height: 20px;
 }
 .nav-profile-dropdown li:hover {
   color: tomato;
@@ -74,4 +82,7 @@
 }
 .theme:hover {
   stroke: tomato;
+}
+p {
+  text-align: center;
 }

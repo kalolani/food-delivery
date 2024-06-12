@@ -11,11 +11,10 @@ const Message = ({ url }) => {
   const [message, setMessage] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
   const [searchParams, setSearchParams] = useSearchParams();
   const id = searchParams.get("id");
-
   const navigate = useNavigate();
+  const { token } = useStores();
 
   const goBack = () => {
     navigate("/feedback");
@@ -36,6 +35,7 @@ const Message = ({ url }) => {
     fetchEmail();
   }, [id]);
 
+  if (!token) return;
   if (loading) {
     return <p>Loading...</p>;
   }

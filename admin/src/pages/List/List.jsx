@@ -4,11 +4,16 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import FadeLoader from "react-spinners/FadeLoader";
 import "./FoodList.css";
+import { useStores } from "../../contexts/storeContext";
 
 function List({ url }) {
   const [list, setList] = useState([]);
   const [isListLoading, setListIsLoading] = useState(false);
   // const [isRemoveLoading, setIsRemoveLoading] = useState(false);
+  const { token } = useStores();
+
+  // const { token } = useStores();
+  // if (!token) return;
 
   const fetchList = async () => {
     try {
@@ -47,6 +52,7 @@ function List({ url }) {
   useEffect(() => {
     fetchList();
   }, []);
+  if (!token) return;
 
   if (isListLoading)
     return (
