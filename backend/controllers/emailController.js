@@ -37,5 +37,15 @@ const message = async (req, res) => {
     res.status(500).send(err.message);
   }
 };
+const getEmailCount = async (req, res) => {
+  try {
+    const emailCount = await emailModel.countDocuments();
 
-export { fetchEmails, receiveEmail, message };
+    res.json({ emailCount });
+  } catch (error) {
+    console.error("Error fetching user count:", error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
+export { fetchEmails, receiveEmail, message, getEmailCount };
