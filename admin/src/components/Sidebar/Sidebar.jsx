@@ -16,12 +16,12 @@ function Sidebar() {
         <NavLink to="/home" className="sidebar-option">
           <HiOutlineHome size={20} color="rgb(37 99 235)" />
 
-          <p>Dashboard</p>
+          <p>OVERVIEW</p>
         </NavLink>
         <NavLink to="/add" className="sidebar-option">
           <HiOutlinePlus size={20} color="rgb(37 99 235)" />
 
-          <p>Add items</p>
+          <p>ADD ITEMS</p>
         </NavLink>
         <NavLink to="/list" className="sidebar-option">
           <HiOutlineListBullet size={20} color="rgb(37 99 235)" />

@@ -18,6 +18,7 @@ import Pending from "../../components/Pending/Pending";
 import User from "../../components/User/User";
 import RecentOrders from "../../components/Recent/RecentOrders";
 import RatingChart from "../../components/RatingChart/RatingChart";
+import Email from "../../components/Email/Email";
 
 function Dashboard() {
   return (
@@ -99,7 +100,7 @@ function Dashboard() {
           </div>
           <div className="dashboard-statics-content">
             <p className="name">Feedbacks</p>
-            <p className="number">100 ETB</p>
+            <Email />
           </div>
         </div>
         <div className="dashboard-statics users">
@@ -119,13 +120,16 @@ function Dashboard() {
           <h3>Weekly Sales Revenue Over Time</h3>
           <WeeklyRevenue />
         </div>
-        <div className="line-charts">
-          <h3>Top Rated Items By Users</h3>
-          <RatingChart />
-        </div>
+
         <div className="line-charts">
           <p>Category Popularity</p>
           <CategoryPopularityChart />
+        </div>
+      </div>
+      <div className="rating-component">
+        <div className="line-charts">
+          <h3>Top Rated Items By Users</h3>
+          <RatingChart />
         </div>
       </div>
       <div className="recent-orders-container">

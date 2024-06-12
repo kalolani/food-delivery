@@ -1,4 +1,9 @@
+.orders {
+  max-width: 100%;
+}
+
 .order-item {
+  width: 100%;
   display: grid;
   grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr;
   align-items: start;
@@ -21,6 +26,7 @@
   font-size: 14px;
   color: #505050;
 }
+
 .order-item img {
   width: 50px;
 }

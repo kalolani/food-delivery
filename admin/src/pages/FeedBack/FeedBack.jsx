@@ -33,7 +33,7 @@ function FeedBack({ url }) {
 
   return (
     <div className="list add flex-col">
-      <p>All foods list</p>
+      <p>All Messages</p>
 
       <div className="list-table">
         <div className="list-table-format title">

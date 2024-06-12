@@ -6,6 +6,7 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
+  ResponsiveContainer,
 } from "recharts";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -28,26 +29,29 @@ function RatingChart() {
     };
 
     fetchData();
-  }, []);
+  }, [url]);
+
   return (
-    <BarChart
-      width={300}
-      height={200}
-      data={data}
-      margin={{
-        top: 5,
-        right: 5,
-        left: 0,
-        bottom: 5,
-      }}
-    >
-      <CartesianGrid strokeDasharray="3 3" stroke="rgb(163 230 53)" />
-      <XAxis dataKey="name" stroke="rgb(30 64 175)" />
-      <YAxis stroke="rgb(30 64 175)" />
-      <Tooltip />
-      <Legend />
-      <Bar dataKey="rating" fill="rgb(29 78 216)" />
-    </BarChart>
+    <div style={{ width: "100%", height: 250 }}>
+      <ResponsiveContainer>
+        <BarChart
+          data={data}
+          margin={{
+            top: 5,
+            right: 5,
+            left: 0,
+            bottom: 5,
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" stroke="rgb(163 230 53)" />
+          <XAxis dataKey="name" stroke="rgb(30 64 175)" />
+          <YAxis stroke="rgb(30 64 175)" />
+          <Tooltip />
+          <Legend />
+          <Bar dataKey="rating" fill="rgb(29 78 216)" barSize={80} />
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
   );
 }
 

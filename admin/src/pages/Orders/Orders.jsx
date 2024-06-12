@@ -45,7 +45,7 @@ function Orders({ url }) {
       </div>
     );
   return (
-    <div className="order add">
+    <div className="order add orders">
       <h3>order page</h3>
       <div className="order-list">
         {orders.map((order, index) => (

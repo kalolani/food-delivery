@@ -1,5 +1,12 @@
 import { useState, useEffect } from "react";
-import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
+import {
+  PieChart,
+  Pie,
+  Cell,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 import axios from "axios";
 import { useStores } from "../../contexts/storeContext";
 
@@ -7,7 +14,7 @@ const CategoryPopularityChart = () => {
   const [categoryData, setCategoryData] = useState([]);
   const { url } = useStores();
   const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#FF6347"];
-  console.log(categoryData);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -19,27 +26,34 @@ const CategoryPopularityChart = () => {
     };
 
     fetchData();
-  }, []);
+  }, [url]);
 
   return (
-    <PieChart width={300} height={245}>
-      <Pie
-        data={categoryData}
-        cx={100}
-        cy={100}
-        innerRadius={60}
-        outerRadius={100}
-        fill="#8884d8"
-        paddingAngle={5}
-        dataKey="value"
-      >
-        {categoryData.map((entry, index) => (
-          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-        ))}
-      </Pie>
-      <Tooltip />
-      <Legend layout="vertical" verticalAlign="start" align="left" />
-    </PieChart>
+    <div style={{ width: "100%", height: 250 }}>
+      <ResponsiveContainer>
+        <PieChart>
+          <Pie
+            data={categoryData}
+            cx="50%"
+            cy="50%"
+            innerRadius="40%"
+            outerRadius="80%"
+            fill="#8884d8"
+            paddingAngle={5}
+            dataKey="value"
+          >
+            {categoryData.map((entry, index) => (
+              <Cell
+                key={`cell-${index}`}
+                fill={COLORS[index % COLORS.length]}
+              />
+            ))}
+          </Pie>
+          <Tooltip />
+          <Legend layout="vertical" verticalAlign="start" align="left" />
+        </PieChart>
+      </ResponsiveContainer>
+    </div>
   );
 };
 
