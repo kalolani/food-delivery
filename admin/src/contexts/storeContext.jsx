@@ -8,7 +8,7 @@ function StoreProvider({ children }) {
   const [totalAmountSold, setTotalAmountSold] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState({});
-
+  const [image, setImage] = useState(null);
   const url = "http://localhost:4000";
 
   useEffect(() => {
@@ -42,6 +42,8 @@ function StoreProvider({ children }) {
         setTotalAmountSold,
         message,
         setMessage,
+        image,
+        setImage,
       }}
     >
       {children}
