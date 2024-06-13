@@ -4,7 +4,6 @@ import HashLoader from "react-spinners/HashLoader";
 import { useStores } from "../../contexts/storeContext";
 import Carousel from "../Carousel/Carousel";
 import "./Recent.css";
-
 function RecentOrders() {
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(false);

@@ -63,14 +63,14 @@ function CatList({ url }) {
     <div className="list add flex-col">
       <p>All categories list</p>
       <div className="list-table">
-        <div className="list-table-format title">
+        <div className="list-table-formated title">
           <b>Image</b>
           <b>Name</b>
           <b>Action</b>
         </div>
         {list.map((item, index) => {
           return (
-            <div className="list-table-format" key={index}>
+            <div className="list-table-formated" key={index}>
               <img src={`${url}/images/` + item.image} alt="" />
               <p>{item.name}</p>
               <p onClick={() => removeCategory(item._id)} className="cursor">

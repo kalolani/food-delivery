@@ -1,4 +1,4 @@
-.list-table-format {
+.list-table-format-user {
   display: grid;
   grid-template-columns: 0.5fr 1fr 1fr;
   align-items: center;
@@ -8,17 +8,17 @@
   font-size: 13px;
 }
 
-.list-table-format.title {
+.list-table-format-user.title {
   background-color: #f9f9f9;
 }
-.list-table-format {
+.list-table-format-user {
   text-align: center;
 }
-.list-table-format img {
+.list-table-format-user img {
   text-align: center;
   width: 50px;
 }
-.list-table-format p {
+.list-table-format-user p {
   text-align: center;
 }
 .loadingComponent {
@@ -29,12 +29,12 @@
 }
 
 @media (max-width: 600px) {
-  .list-table-format {
+  .list-table-format-user {
     grid-template-columns: 1fr 3fr 1fr;
     gap: 15px;
   }
 
-  .list-table-format.title {
+  .list-table-format-user.title {
     display: none;
   }
 }

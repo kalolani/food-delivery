@@ -9,7 +9,7 @@ function EditProfile() {
   const { url, image, setImage } = useStores();
   console.log(image);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   // Function to retrieve token from localStorage
   const getToken = () => {
@@ -21,21 +21,26 @@ function EditProfile() {
     const formData = new FormData();
     formData.append("image", image);
     const token = getToken(); // Retrieve the token
-    navigate("/");
+    console.log(token);
+    // navigate("/");
     window.location.reload();
 
-    if (!token) {
-      console.error("No token found, please log in again");
-      return;
-    }
+    // if (!token) {
+    //   console.error("No token found, please log in again");
+    //   return;
+    // }
 
     try {
       console.log("Submitting with token:", token); // Debugging: Log token to ensure it's correct
-      const response = await axios.post(`${url}/api/image/add`, formData, {
-        headers: {
-          Authorization: `Bearer ${token}`, // Ensure the correct token format
-        },
-      });
+      const response = await axios.post(
+        `${url}/api/image/add-admin`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Ensure the correct token format
+          },
+        }
+      );
 
       if (response.data.success) {
         console.log("Response Message:", response.data.message);
@@ -51,18 +56,18 @@ function EditProfile() {
   };
 
   return (
-    <div className="add">
-      <form className="flex-col" onSubmit={handleSubmit}>
-        <div className="add-img-upload flex-col">
+    <div className="adds">
+      <form className="flex-cols" onSubmit={handleSubmit}>
+        <div className="add-img-uploads flex-cols">
           <p>upload image</p>
-          <label htmlFor="image" className="label">
+          <label htmlFor="image" className="labels">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="red"
-              className="edit-camera"
+              className="edit-cameras"
             >
               <path
                 strokeLinecap="round"
@@ -87,14 +92,14 @@ function EditProfile() {
           </label>
         </div>
 
-        <button type="submit" className="add-button">
+        <button type="submit" className="add-buttons">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="edit"
+            className="edits"
           >
             <path
               strokeLinecap="round"

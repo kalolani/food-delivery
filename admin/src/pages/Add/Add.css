@@ -10,8 +10,15 @@
   gap: 20px;
 }
 
-.add-img-upload img {
-  width: 120px;
+.add-img-uploaded img {
+  display: inline-block;
+  width: 370px;
+  height: 160px;
+}
+.add-img-uploaded label {
+  display: inline-block;
+  width: 350px;
+  height: 160px;
 }
 .add-product-name,
 .add-product-description {
@@ -40,4 +47,7 @@
   background-color: black;
   color: white;
   cursor: pointer;
+}
+p {
+  text-align: left;
 }

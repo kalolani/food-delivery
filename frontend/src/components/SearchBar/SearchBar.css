@@ -1,0 +1,50 @@
+/* src/SearchBar.css */
+input {
+  padding: 10px;
+  width: 300px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.SearchNavbar ul {
+  position: absolute;
+  top: 100%;
+  left: 5%;
+  background-color: #f3f4f6;
+  list-style-type: none;
+  padding: 20px 50px;
+  z-index: 10;
+  border-radius: 3px 3px 3px 3px;
+}
+.SearchNavbar ul li:not(:last-child) {
+  border-bottom: 1px solid #94a3b8;
+}
+.SearchNavbar ul li:not(:first-child) {
+  padding-top: 20px;
+}
+
+.SearchNavbar ul li {
+  padding: 5px 0;
+}
+.SearchNavbar ul li:hover {
+  cursor: pointer;
+  color: #ea580c;
+}
+.search {
+  display: inline-block;
+  width: 200px;
+  height: 35px;
+  border-radius: 50px;
+  border: 1px solid #334155;
+}
+
+.search:focus {
+  outline: none;
+}
+.SearchNavbar {
+  display: grid;
+  justify-self: center;
+  align-self: center;
+  margin-top: 15px;
+  gap: 20px;
+}

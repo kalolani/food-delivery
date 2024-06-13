@@ -7,6 +7,7 @@ import { Link } from "react-scroll";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useStores } from "../../contexts/storeContext";
 import axios from "axios";
+import SearchBar from "../SearchBar/SearchBar";
 
 function Navbar({ setShowLogin }) {
   const [menu, setMenu] = useState("home");
@@ -114,8 +115,8 @@ function Navbar({ setShowLogin }) {
         </NavLink>
       </ul>
       <div className="navbar-right">
-        <img src={assets.search_icon} alt="" className="navbar-logo" />
-
+        {/* <img src={assets.search_icon} alt="" className="navbar-logo" /> */}
+        <SearchBar className="navbar-logo" />
         <div className="navbar-search-icon">
           <NavLink to="/cart">
             <img src="cart-1.png" className="cart" alt="" />

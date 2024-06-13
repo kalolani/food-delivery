@@ -18,7 +18,7 @@ const Carousel = ({ orders, handleUpdateStatus }) => {
       {orders.map((order, index) => (
         <div key={index} className="carousel-item">
           {orders.map((singleOrder) => (
-            <div key={singleOrder._id} className="order-column">
+            <div key={singleOrder._id} className="order-columns">
               <img src="mosob.png" alt="mosob" />
 
               <p className="order-item-phone">{singleOrder.address.phone}</p>

@@ -1,4 +1,4 @@
-.add {
+.adds {
   width: 50%;
   color: #6d6d6d;
   font-size: 16px;
@@ -7,20 +7,20 @@
   text-align: center;
 }
 
-.add form {
+.adds form {
   gap: 20px;
 }
 
-.add-img-upload img {
+.add-img-uploads img {
   margin-top: 5px;
   width: 200px;
   height: 200px;
   border-radius: 50%;
 }
-.add-product-name,
+/* .add-product-name,
 .add-product-description {
   width: max(40%, 280px);
-}
+} */
 
 .add-product-name input,
 .add-product-descripton textarea {
@@ -38,20 +38,20 @@
   padding: 10px;
 }
 
-.flex-col {
+.flex-cols {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.edit {
+.edits {
   width: 25px;
 }
-.label {
+.labels {
   position: relative;
 }
 
-.add-button {
+.add-buttons {
   display: flex;
   justify-self: center;
   gap: 8px;
@@ -66,7 +66,7 @@
   /* color: white; */
   cursor: pointer;
 }
-.edit-camera {
+.edit-cameras {
   width: 25px;
   position: absolute;
   bottom: 15%;

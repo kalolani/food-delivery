@@ -1,3 +1,4 @@
+import adminModel from "../models/adminModel.js";
 import userModel from "../models/userModel.js";
 import fs from "fs";
 
@@ -28,4 +29,32 @@ const getImage = async (req, res) => {
   }
 };
 
-export { addToImage, getImage };
+const addAdminImage = async (req, res) => {
+  let file_name = `${req.file.filename}`;
+  try {
+    let adminData = await adminModel.findById(req.body.userId);
+    console.log(req.body.userId);
+
+    let image = await adminData.image;
+    image = file_name;
+
+    await adminModel.findByIdAndUpdate(req.body.userId, { image: image });
+    res.json({ success: true, message: "Image added successfully" });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: "Error" });
+  }
+};
+
+const getAdminImage = async (req, res) => {
+  try {
+    const admin = await adminModel.findById(req.body.userId);
+
+    res.json({ success: true, data: admin });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, mesage: error });
+  }
+};
+
+export { addToImage, getImage, getAdminImage, addAdminImage };

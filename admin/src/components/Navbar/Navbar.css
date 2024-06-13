@@ -7,6 +7,7 @@
 
 .navbar .logo {
   width: max(10%, 80px);
+  height: 60px;
 }
 
 .profile-icon {
@@ -85,4 +86,23 @@
 }
 p {
   text-align: center;
+}
+.navbar-profile .profile-icon {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.admin-profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #49557e;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 5px 5px 5px 5px;
+}
+.admin-profile:hover {
+  color: tomato;
 }

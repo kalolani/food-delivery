@@ -59,16 +59,16 @@ function Users({ url }) {
     );
   return (
     <div className="list add flex-col">
-      <p>All categories list</p>
+      <p>All Users List</p>
       <div className="list-table">
-        <div className="list-table-format title">
+        <div className="list-table-format-user title">
           <b>Image</b>
           <b>Name</b>
           <p>Emails</p>
         </div>
         {list.map((item, index) => {
           return (
-            <div className="list-table-format" key={index}>
+            <div className="list-table-format-user" key={index}>
               {item.image ? (
                 <img src={`${url}/images/` + item.image} alt="" />
               ) : (

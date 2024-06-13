@@ -1,7 +1,12 @@
 import express from "express";
 import authMiddleware from "../middleware/auth.js";
 
-import { addToImage, getImage } from "../controllers/imageController.js";
+import {
+  addAdminImage,
+  addToImage,
+  getAdminImage,
+  getImage,
+} from "../controllers/imageController.js";
 import multer from "multer";
 
 const imageRouter = express.Router();
@@ -16,6 +21,13 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 imageRouter.post("/add", upload.single("image"), authMiddleware, addToImage);
+imageRouter.post(
+  "/add-admin",
+  upload.single("image"),
+  authMiddleware,
+  addAdminImage
+);
 imageRouter.post("/list", authMiddleware, getImage);
+imageRouter.post("/list-admin", authMiddleware, getAdminImage);
 
 export default imageRouter;

@@ -34,10 +34,10 @@ function LoginPopup({ setShowLogin }) {
     setData((data) => ({ ...data, [name]: value }));
   };
 
-  // const handleCreateAccount = (e) => {
-  //   e.preventDefault();
-  //   setLoginError("");
-  // };
+  const handleCreateAccount = (e) => {
+    e.preventDefault();
+    setLoginError("");
+  };
 
   const onLogin = async (e) => {
     try {
@@ -55,6 +55,16 @@ function LoginPopup({ setShowLogin }) {
           setErrMessage("");
           setRegMessage("");
           setLoginError(response.data.message);
+        }
+      } else {
+        newUrl += "/api/admin/register";
+        response = await axios.post(newUrl, data);
+        if (response.data.success) {
+          setRegMessage("registered successfully");
+          setCurrState("Login");
+          setErrMessage("");
+        } else {
+          setErrMessage(response.data.message);
         }
       }
     } catch (err) {
@@ -138,6 +148,19 @@ function LoginPopup({ setShowLogin }) {
           <input type="checkbox" required />
           <p>By continuing, i agree to the terms of use & privacy policy</p>
         </div>
+
+        {currState === "Login" ? (
+          <p>
+            {/* () => setCurrState("Sign up") */}
+            Create a new account?{" "}
+            <span onClick={createAccountHandler}>Click here</span>
+          </p>
+        ) : (
+          <p>
+            Already have an account?{" "}
+            <span onClick={() => setCurrState("Login")}> Login here</span>
+          </p>
+        )}
       </form>
     </div>
   );

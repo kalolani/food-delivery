@@ -75,7 +75,7 @@ function Add({ url }) {
   return (
     <div className="add">
       <form className="flex-col" onSubmit={handleSubmit}>
-        <div className="add-img-upload flex-col">
+        <div className="add-img-uploaded flex-col">
           <p>upload image</p>
           <label htmlFor="image">
             <img

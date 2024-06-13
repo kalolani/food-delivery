@@ -64,7 +64,7 @@ function List({ url }) {
     <div className="list add flex-col">
       <p>All foods list</p>
       <div className="list-table">
-        <div className="list-table-format title">
+        <div className="list-table-formats titles">
           <b>Image</b>
           <b>Name</b>
           <b>Category</b>
@@ -73,7 +73,7 @@ function List({ url }) {
         </div>
         {list.map((item, index) => {
           return (
-            <div className="list-table-format" key={index}>
+            <div className="list-table-formats" key={index}>
               <img src={`${url}/images/` + item.image} alt="" />
               <p>{item.name}</p>
               <p>{item.category}</p>

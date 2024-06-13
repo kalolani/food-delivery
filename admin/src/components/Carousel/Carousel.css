@@ -36,10 +36,11 @@
   gap: 10px;
 } */
 
-.order-column {
+.order-columns {
   display: grid;
   /* grid-template-columns: repeat(5, 1fr); */
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+
   gap: 15px;
   border: 1px solid #ccc;
   padding: 10px;
@@ -47,8 +48,8 @@
   margin-bottom: 15px;
   color: #ccc;
 }
-.order-column img {
-  width: 20px;
+.order-columns img {
+  width: 30px;
 }
 
 .order {
