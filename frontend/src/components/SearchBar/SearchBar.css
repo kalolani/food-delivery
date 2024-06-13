@@ -16,15 +16,14 @@ input {
   z-index: 10;
   border-radius: 5px 5px 5px 5px;
 }
-.SearchNavbar ul li:not(:last-child) {
+
+.SearchNavbar ul li {
+  padding-top: 5px;
   border-bottom: 1px solid #94a3b8;
-}
-.SearchNavbar ul li:not(:first-child) {
-  padding-top: 20px;
 }
 
 .SearchNavbar ul li {
-  padding: 5px 0;
+  padding-bottom: 10px;
 }
 .SearchNavbar ul li:hover {
   cursor: pointer;

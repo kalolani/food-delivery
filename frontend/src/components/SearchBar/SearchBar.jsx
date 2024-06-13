@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useStores } from "../../contexts/storeContext";
 import { Link } from "react-scroll";
+import { IoSearchOutline } from "react-icons/io5";
 
 const SearchBar = () => {
   const [query, setQuery] = useState("");
@@ -56,10 +57,12 @@ const SearchBar = () => {
                 smooth={true}
                 offset={-50}
                 duration={500}
-                // onClick={() => setMenu("menu")}
+                className="navbar-search"
                 onClick={() => setCatagory(item.name)}
               >
-                <li key={index}>{item.name}</li>
+                <li key={index} onClick={() => setQuery("")}>
+                  {item.name}
+                </li>
               </Link>
             </>
           ))}

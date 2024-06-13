@@ -76,46 +76,48 @@ function Add({ url }) {
     <div className="add">
       <form className="flex-col" onSubmit={handleSubmit}>
         <div className="add-img-uploaded flex-col">
-          <p>upload image</p>
-          <label htmlFor="image">
-            <img
-              src={image ? URL.createObjectURL(image) : assets.upload_area}
-              alt=""
-            />
+          <div className="flex-container">
+            <p>Upload Image</p>
+
             <input
               onChange={(e) => setImage(e.target.files[0])}
               type="file"
-              id="image"
-              hidden
+              // id="image"
+              // hidden
               required
             />
-          </label>
+          </div>
         </div>
         <div className="add-product-name flex-col">
-          <p>product name</p>
+          <div className="flex-container">
+            <p>product name</p>
 
-          <input
-            onChange={onChangeHandler}
-            value={data.name}
-            type="text"
-            placeholder="Type here"
-            name="name"
-          />
+            <input
+              onChange={onChangeHandler}
+              value={data.name}
+              type="text"
+              placeholder="Type here"
+              name="name"
+            />
+          </div>
         </div>
         <div className="add-product-description flex-col">
-          <p>product description</p>
+          <div className="description-container">
+            <p>product description</p>
 
-          <textarea
-            onChange={onChangeHandler}
-            value={data.description}
-            type="text"
-            placeholder="Write content here"
-            rows={6}
-            name="description"
-          />
+            <textarea
+              onChange={onChangeHandler}
+              value={data.description}
+              type="text"
+              placeholder="Write content here"
+              rows={6}
+              name="description"
+            />
+          </div>
         </div>
-        <div className="add-category-price">
-          <div className="add-category flex-col">
+
+        <div className="add-category flex-col">
+          <div className="category-container">
             <p>product category</p>
             <select
               value={selectedCategory}
@@ -132,7 +134,9 @@ function Add({ url }) {
               ))}
             </select>
           </div>
-          <div className="add-price flex-col">
+        </div>
+        <div className="add-price flex-col">
+          <div className="product-container">
             <p>product price</p>
             <input
               onChange={onChangeHandler}
@@ -143,6 +147,7 @@ function Add({ url }) {
             />
           </div>
         </div>
+
         <button type="submit" className="add-button">
           ADD
         </button>
