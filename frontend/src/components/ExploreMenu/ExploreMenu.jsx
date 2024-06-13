@@ -3,8 +3,8 @@ import "./ExploreMenu.css";
 // import { menu_list } from "../../assets/assets";
 import { useStores } from "../../contexts/storeContext";
 
-function ExploreMenu({ catagory, setCatagory }) {
-  const { menu_list, url } = useStores();
+function ExploreMenu() {
+  const { menu_list, url, catagory, setCatagory } = useStores();
   return (
     <div className="explore-menu" id="menu">
       <h1>Explore our menu</h1>

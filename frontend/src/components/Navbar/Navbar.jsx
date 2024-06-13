@@ -10,7 +10,6 @@ import axios from "axios";
 import SearchBar from "../SearchBar/SearchBar";
 
 function Navbar({ setShowLogin }) {
-  const [menu, setMenu] = useState("home");
   const [loading, setIsLoading] = useState(false);
   const [user, setUser] = useState({});
   const {
@@ -21,6 +20,8 @@ function Navbar({ setShowLogin }) {
     cartNumber,
     url,
     image,
+    menu,
+    setMenu,
   } = useStores();
   console.log(cartNumber);
 

@@ -4,12 +4,13 @@ import "./SearchBar.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useStores } from "../../contexts/storeContext";
+import { Link } from "react-scroll";
 
 const SearchBar = () => {
   const [query, setQuery] = useState("");
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState(data);
-  const { url } = useStores();
+  const { url, menu, setMenu, setCatagory } = useStores();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -48,7 +49,19 @@ const SearchBar = () => {
       {query.length && filteredData?.length > 0 ? (
         <ul>
           {filteredData?.map((item, index) => (
-            <li key={index}>{item.name}</li>
+            <>
+              <Link
+                to="menu"
+                spy={true}
+                smooth={true}
+                offset={-50}
+                duration={500}
+                // onClick={() => setMenu("menu")}
+                onClick={() => setCatagory(item.name)}
+              >
+                <li key={index}>{item.name}</li>
+              </Link>
+            </>
           ))}
         </ul>
       ) : (

@@ -4,8 +4,8 @@ import FoodItem from "../FoodItem/FoodItem";
 import "./FoodDisplay.css";
 import ClipLoader from "react-spinners/ClipLoader";
 
-function FoodDisplay({ catagory }) {
-  const { food_list, isLoading } = useStores();
+function FoodDisplay() {
+  const { food_list, isLoading, catagory } = useStores();
 
   if (isLoading)
     return (
