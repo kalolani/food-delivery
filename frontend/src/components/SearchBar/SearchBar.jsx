@@ -10,7 +10,7 @@ const SearchBar = () => {
   const [query, setQuery] = useState("");
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState(data);
-  const { url, menu, setMenu, setCatagory } = useStores();
+  const { url, setCatagory } = useStores();
 
   useEffect(() => {
     const fetchData = async () => {
