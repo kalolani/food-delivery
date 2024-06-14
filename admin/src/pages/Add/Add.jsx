@@ -73,24 +73,12 @@ function Add({ url }) {
   };
   if (!token) return;
   return (
-    <div className="add">
-      <form className="flex-col" onSubmit={handleSubmit}>
-        <div className="add-img-uploaded flex-col">
+    <div className="add-add">
+      <form className="flex-col-col" onSubmit={handleSubmit}>
+        <div className="add-img-uploaded flex-col"></div>
+        <div className="add-product-names flex-col">
           <div className="flex-container">
-            <p>Upload Image</p>
-
-            <input
-              onChange={(e) => setImage(e.target.files[0])}
-              type="file"
-              // id="image"
-              // hidden
-              required
-            />
-          </div>
-        </div>
-        <div className="add-product-name flex-col">
-          <div className="flex-container">
-            <p>product name</p>
+            <p>NAME</p>
 
             <input
               onChange={onChangeHandler}
@@ -101,24 +89,10 @@ function Add({ url }) {
             />
           </div>
         </div>
-        <div className="add-product-description flex-col">
-          <div className="description-container">
-            <p>product description</p>
-
-            <textarea
-              onChange={onChangeHandler}
-              value={data.description}
-              type="text"
-              placeholder="Write content here"
-              rows={6}
-              name="description"
-            />
-          </div>
-        </div>
 
         <div className="add-category flex-col">
           <div className="category-container">
-            <p>product category</p>
+            <p>CATEGORY</p>
             <select
               value={selectedCategory}
               onChange={handleChange}
@@ -137,7 +111,7 @@ function Add({ url }) {
         </div>
         <div className="add-price flex-col">
           <div className="product-container">
-            <p>product price</p>
+            <p>PRICE</p>
             <input
               onChange={onChangeHandler}
               value={data.price}
@@ -147,8 +121,33 @@ function Add({ url }) {
             />
           </div>
         </div>
+        <div className="add-product-descriptions flex-col">
+          <div className="description-container">
+            <p>DESCRIPTION</p>
 
-        <button type="submit" className="add-button">
+            <textarea
+              onChange={onChangeHandler}
+              value={data.description}
+              type="text"
+              placeholder="Write content here"
+              rows={6}
+              name="description"
+            />
+          </div>
+        </div>
+        <div className="upload-container">
+          <p>UPLOAD IMAGE</p>
+          <label htmlFor="file">upload file</label>
+
+          <input
+            onChange={(e) => setImage(e.target.files[0])}
+            type="file"
+            id="file"
+            required
+          />
+        </div>
+
+        <button type="submit" className="add-buttonss">
           ADD
         </button>
       </form>
