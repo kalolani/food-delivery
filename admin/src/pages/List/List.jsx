@@ -69,7 +69,8 @@ function List({ url }) {
           <b>Name</b>
           <b>Category</b>
           <b>Price</b>
-          <b>Action</b>
+          <b>Edit</b>
+          <b>Delete</b>
         </div>
         {list.map((item, index) => {
           return (
@@ -78,6 +79,7 @@ function List({ url }) {
               <p>{item.name}</p>
               <p>{item.category}</p>
               <p>{item.price} ETB</p>
+              <p>edit</p>
               <p onClick={() => removeFood(item._id)} className="cursor">
                 x
               </p>
