@@ -3,7 +3,7 @@
   color: #6d6d6d;
   font-size: 16px;
   display: grid;
-  margin-left: max(0%, 10px);
+  /* margin-left: max(0%, 10px); */
 }
 
 .flex-col-col {
@@ -134,4 +134,70 @@ p {
   cursor: pointer;
   margin-left: 160px;
   border-radius: 3px 3px 3px 3px;
+}
+
+@media (max-width: 700px) {
+  .flex-col-col {
+    margin-left: 50px;
+  }
+
+  .add-product-names input,
+  .add-product-descriptions textarea {
+    width: 150px;
+  }
+  .category-container select {
+    width: 150px;
+  }
+  .product-container input {
+    width: 150px;
+  }
+}
+
+@media (max-width: 450px) {
+  .flex-col-col {
+    margin-top: 10px;
+  }
+  .flex-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .flex-container input {
+    margin-left: 0;
+  }
+  .product-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .product-container input {
+    margin-left: 0;
+  }
+  .category-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .category-container select {
+    margin-left: 0;
+  }
+
+  .description-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .description-container textarea {
+    margin-left: 0px;
+  }
+
+  .upload-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .upload-container label {
+    margin-left: 0px;
+    display: inline-block;
+    width: 150px;
+  }
+  .add-buttonss {
+    margin-left: 0px;
+  }
 }
