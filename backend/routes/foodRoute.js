@@ -4,9 +4,11 @@ import {
   countFoodItem,
   foodList,
   getAverageRating,
+  getFoodItem,
   listTopRatings,
   rateFoodItem,
   removeFood,
+  updateFood,
 } from "../controllers/foodController.js";
 import multer from "multer";
 
@@ -23,6 +25,8 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 foodRouter.post("/add", upload.single("image"), addFood);
+foodRouter.get("/edit/:id", getFoodItem);
+foodRouter.put("/update/:id", upload.single("image"), updateFood);
 foodRouter.get("/list", foodList);
 foodRouter.post("/remove", removeFood);
 foodRouter.get("/countFood", countFoodItem);

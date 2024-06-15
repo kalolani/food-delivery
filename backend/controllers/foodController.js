@@ -21,6 +21,35 @@ const addFood = async (req, res) => {
   }
 };
 
+//Get specific food item
+const getFoodItem = async (req, res) => {
+  try {
+    const item = await foodModel.findById(req.params.id);
+    res.send(item);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+};
+// Update Food
+const updateFood = async (req, res) => {
+  try {
+    const updatedData = {
+      name: req.body.name,
+      description: req.body.description,
+      price: req.body.price,
+      category: req.body.category,
+    };
+    if (req.file) {
+      updatedData.image = `/${req.file.filename}`;
+    }
+    const item = await foodModel.findByIdAndUpdate(req.params.id, updatedData, {
+      new: true,
+    });
+    res.send({ success: true, data: item });
+  } catch (err) {
+    res.status(500).send(err);
+  }
+};
 //all food list
 
 const foodList = async (req, res) => {
@@ -121,4 +150,6 @@ export {
   rateFoodItem,
   getAverageRating,
   listTopRatings,
+  updateFood,
+  getFoodItem,
 };

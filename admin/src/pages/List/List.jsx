@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 
 import axios from "axios";
@@ -5,15 +6,23 @@ import { toast } from "react-toastify";
 import FadeLoader from "react-spinners/FadeLoader";
 import "./FoodList.css";
 import { useStores } from "../../contexts/storeContext";
+import { FiEdit } from "react-icons/fi";
+import { AiOutlineDelete } from "react-icons/ai";
+import { NavLink, useNavigate } from "react-router-dom";
 
 function List({ url }) {
   const [list, setList] = useState([]);
   const [isListLoading, setListIsLoading] = useState(false);
-  // const [isRemoveLoading, setIsRemoveLoading] = useState(false);
+
   const { token } = useStores();
 
   // const { token } = useStores();
   // if (!token) return;
+
+  // const handleEdit = async (e) => {
+  //   e.preventDefault();
+  //   navigate("/edit");
+  // };
 
   const fetchList = async () => {
     try {
@@ -79,9 +88,13 @@ function List({ url }) {
               <p>{item.name}</p>
               <p>{item.category}</p>
               <p>{item.price} ETB</p>
-              <p>edit</p>
+              <NavLink to={`/edit-list?id=${item._id}`}>
+                <p className="edit-item">
+                  <FiEdit size={20} color="rgb(22 163 74)" />
+                </p>
+              </NavLink>
               <p onClick={() => removeFood(item._id)} className="cursor">
-                x
+                <AiOutlineDelete size={20} color="rgb(220 38 38)" />
               </p>
             </div>
           );

@@ -17,6 +17,7 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import FeedBack from "./pages/FeedBack/FeedBack";
 import Message from "./pages/Message/Message";
 import EditProfile from "./pages/EditProfile/EditProfile";
+import Edit from "./pages/Edit/Edit";
 const url = "http://localhost:4000";
 function App() {
   const [showLogin, setShowLogin] = useState(false);
@@ -44,6 +45,7 @@ function App() {
             <Route path="/Feedback" element={<FeedBack url={url} />} />
             <Route path="/messages" element={<Message url={url} />} />
             <Route path="/edit" element={<EditProfile />} />
+            <Route path="/edit-list" element={<Edit />} />
           </Routes>
         </div>
       </StoreProvider>

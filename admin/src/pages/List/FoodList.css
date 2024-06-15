@@ -23,6 +23,9 @@
   top: 50%;
   transform: translate(50%, -50%);
 }
+.edit-item {
+  cursor: pointer;
+}
 
 @media (max-width: 600px) {
   .list-table-formats {
