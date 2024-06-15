@@ -8,8 +8,11 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useStores } from "../../contexts/storeContext";
 import axios from "axios";
 import SearchBar from "../SearchBar/SearchBar";
+import { MdOutlineLightMode } from "react-icons/md";
+import { MdOutlineDarkMode } from "react-icons/md";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 
-function Navbar({ setShowLogin }) {
+function Navbar({ setShowLogin, toggleTheme, theme }) {
   const [loading, setIsLoading] = useState(false);
   const [user, setUser] = useState({});
   const {
@@ -120,7 +123,7 @@ function Navbar({ setShowLogin }) {
         <SearchBar className="navbar-logo" />
         <div className="navbar-search-icon">
           <NavLink to="/cart">
-            <img src="cart-1.png" className="cart" alt="" />
+            <AiOutlineShoppingCart size={30} color="#49557e" />
           </NavLink>
 
           <div className={getTotalCartAmount() > 0 ? "dot" : ""}>
@@ -174,6 +177,17 @@ function Navbar({ setShowLogin }) {
                 </svg>
 
                 <p>profile</p>
+              </li>
+              <hr />
+              <li onClick={toggleTheme} className="theme">
+                {/* <MdOutlineLightMode size={25} /> */}
+                {theme === "light" ? (
+                  <MdOutlineDarkMode size={25} color="tomato" />
+                ) : (
+                  <MdOutlineLightMode size={25} color="tomato" />
+                )}
+
+                <p>Theme</p>
               </li>
             </ul>
           </div>

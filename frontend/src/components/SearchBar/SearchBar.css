@@ -1,9 +1,11 @@
 /* src/SearchBar.css */
-input {
+.SearchNavbar input {
+  display: inline-block;
   padding: 10px;
-  width: 300px;
+  width: 250px;
   margin-bottom: 20px;
   position: relative;
+  border: 2px solid #49557e;
 }
 
 .SearchNavbar ul {
