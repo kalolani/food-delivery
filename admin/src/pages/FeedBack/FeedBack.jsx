@@ -39,7 +39,7 @@ function FeedBack({ url }) {
     );
   if (!token) return;
   return (
-    <div className="list add flex-col">
+    <div className="list add feed-back-flex-col">
       <p>All Messages</p>
 
       <div className="list-table">

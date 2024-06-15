@@ -50,11 +50,11 @@ function Orders({ url }) {
       </div>
     );
   return (
-    <div className="order add orders">
+    <div className="order-order add orders-order">
       <h3>order page</h3>
       <div className="order-list">
         {orders.map((order, index) => (
-          <div key={index} className="order-item">
+          <div key={index} className="order-order-item">
             <img src="mosob.png" alt="mosob" />
 
             <div>

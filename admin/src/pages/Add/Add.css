@@ -1,4 +1,4 @@
-.add-add {
+.add-adds {
   width: 70%;
   color: #6d6d6d;
   font-size: 16px;
@@ -43,7 +43,9 @@
 .add-add p {
   text-align: left;
   font-weight: 500;
-  color: rgb(15 23 42);
+}
+.add-p {
+  color: none;
 }
 .upload-container {
   display: flex;
@@ -72,7 +74,7 @@
 }
 .flex-container input,
 .description-container textarea,
-.category-container select,
+.add-category-container select,
 .product-container input {
   border: 2px solid #3b82f6;
   border-radius: 3px 3px 3px 3px;
@@ -100,26 +102,28 @@
   outline: none;
 }
 
-.category-container {
+.add-category-container {
   display: flex;
+  flex-direction: row;
   gap: 60px;
-  justify-self: center;
+  /* justify-self: center; */
 }
-.category-container select {
+.add-category-container select {
   display: inline-block;
   width: 250px;
   height: 40px;
-  margin-left: 14px;
+  margin-left: 10px;
+  padding: 10px;
 }
 .product-container {
   display: flex;
-  gap: 62px;
+  gap: 60px;
 }
 .product-container input {
   display: inline-block;
   width: 250px;
   height: 40px;
-  margin-left: 53px;
+  margin-left: 40px;
   padding: 10px;
 }
 .product-container input:focus {

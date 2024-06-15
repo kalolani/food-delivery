@@ -58,7 +58,7 @@ function Users({ url }) {
       </div>
     );
   return (
-    <div className="list add flex-col">
+    <div className="list add user-flex-col">
       <p>All Users List</p>
       <div className="list-table">
         <div className="list-table-format-user title">

@@ -60,7 +60,7 @@ function CatList({ url }) {
     );
   if (!token) return;
   return (
-    <div className="list add flex-col">
+    <div className="list add category-list-flex-col">
       <p>All categories list</p>
       <div className="list-table">
         <div className="list-table-formated title">

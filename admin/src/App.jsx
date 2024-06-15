@@ -18,36 +18,54 @@ import FeedBack from "./pages/FeedBack/FeedBack";
 import Message from "./pages/Message/Message";
 import EditProfile from "./pages/EditProfile/EditProfile";
 import Edit from "./pages/Edit/Edit";
+
+import styled, { ThemeProvider } from "styled-components";
+import { backgroundColor, textColor } from "./theme";
+
+const Container = styled.div`
+  background-color: ${backgroundColor};
+  color: ${textColor};
+  transition: all 0.3s linear;
+`;
+
 const url = "http://localhost:4000";
 function App() {
-  const [showLogin, setShowLogin] = useState(false);
-  console.log(showLogin);
+  const [theme, setTheme] = useState("light");
+
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+  };
+
   return (
     <div>
       <StoreProvider>
-        <ToastContainer />
-        <Routes>
-          <Route path="/" element={<LoginPopup />} />
-        </Routes>
+        <ThemeProvider theme={{ mode: theme }}>
+          <Container>
+            <ToastContainer />
+            <Routes>
+              <Route path="/" element={<LoginPopup />} />
+            </Routes>
 
-        <Navbar setShowLogin={setShowLogin} />
-        <hr />
-        <div className="app-content">
-          <Sidebar />
-          <Routes>
-            <Route path="/home" element={<Dashboard url={url} />} />
-            <Route path="/add" element={<Add url={url} />} />
-            <Route path="/list" element={<List url={url} />} />
-            <Route path="/orders" element={<Orders url={url} />} />
-            <Route path="/category" element={<Category url={url} />} />
-            <Route path="/catlist" element={<CatList url={url} />} />
-            <Route path="/users" element={<Users url={url} />} />
-            <Route path="/Feedback" element={<FeedBack url={url} />} />
-            <Route path="/messages" element={<Message url={url} />} />
-            <Route path="/edit" element={<EditProfile />} />
-            <Route path="/edit-list" element={<Edit />} />
-          </Routes>
-        </div>
+            <Navbar toggleTheme={toggleTheme} theme={theme} />
+            <hr />
+            <div className="app-content">
+              <Sidebar />
+              <Routes>
+                <Route path="/home" element={<Dashboard url={url} />} />
+                <Route path="/add" element={<Add url={url} />} />
+                <Route path="/list" element={<List url={url} />} />
+                <Route path="/orders" element={<Orders url={url} />} />
+                <Route path="/category" element={<Category url={url} />} />
+                <Route path="/catlist" element={<CatList url={url} />} />
+                <Route path="/users" element={<Users url={url} />} />
+                <Route path="/Feedback" element={<FeedBack url={url} />} />
+                <Route path="/messages" element={<Message url={url} />} />
+                <Route path="/edit" element={<EditProfile />} />
+                <Route path="/edit-list" element={<Edit />} />
+              </Routes>
+            </div>
+          </Container>
+        </ThemeProvider>
       </StoreProvider>
     </div>
   );

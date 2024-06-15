@@ -8,9 +8,10 @@ import { useNavigate, NavLink } from "react-router-dom";
 import { IoLogOutOutline } from "react-icons/io5";
 import { MdOutlineLightMode } from "react-icons/md";
 import { HiOutlineUserCircle } from "react-icons/hi2";
+import { MdOutlineDarkMode } from "react-icons/md";
 import axios from "axios";
 
-function Navbar({ setShowLogin }) {
+function Navbar({ toggleTheme, theme }) {
   const [user, setUser] = useState({});
   const { url, token, setToken, image, setImage } = useStores();
   const [isLoading, setIsLoading] = useState(false);
@@ -90,7 +91,7 @@ function Navbar({ setShowLogin }) {
         ) : (
           <img src="user-pic.png" className="profile-icon" alt="user-photo" />
         )}
-        <ul className="nav-profile-dropdown">
+        <ul className="admin-nav-profile-dropdown">
           <li onClick={logout}>
             <IoLogOutOutline size={27} />
             <p>Logout</p>
@@ -101,8 +102,14 @@ function Navbar({ setShowLogin }) {
               <p>Profile</p>
             </div>
           </NavLink>
-          <li>
-            <MdOutlineLightMode size={25} />
+          <li onClick={toggleTheme}>
+            {/* <MdOutlineLightMode size={25} /> */}
+            {theme === "light" ? (
+              <MdOutlineDarkMode size={25} />
+            ) : (
+              <MdOutlineLightMode size={25} />
+            )}
+
             <p>Theme</p>
           </li>
         </ul>

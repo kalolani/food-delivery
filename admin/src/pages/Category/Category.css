@@ -16,7 +16,7 @@
 }
 
 .add-category-img-upload p {
-  color: rgb(17 24 39);
+  /* color: rgb(17 24 39); */
   font-size: 20px;
   font-weight: 500;
   text-transform: uppercase;
@@ -27,7 +27,7 @@
 }
 
 .add-category-product-name p {
-  color: rgb(17 24 39);
+  /* color: rgb(17 24 39); */
   font-size: 20px;
   font-weight: 500;
   text-transform: uppercase;

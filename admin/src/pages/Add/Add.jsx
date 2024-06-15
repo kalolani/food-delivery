@@ -73,12 +73,12 @@ function Add({ url }) {
   };
   if (!token) return;
   return (
-    <div className="add-add">
+    <div className="add-adds">
       <form className="flex-col-col" onSubmit={handleSubmit}>
         <div className="add-img-uploaded flex-col"></div>
         <div className="add-product-names flex-col">
           <div className="flex-container">
-            <p>NAME</p>
+            <p className="add-p">NAME</p>
 
             <input
               onChange={onChangeHandler}
@@ -90,8 +90,8 @@ function Add({ url }) {
           </div>
         </div>
 
-        <div className="add-category flex-col">
-          <div className="category-container">
+        <div className="add-category-add flex-col">
+          <div className="add-category-container">
             <p>CATEGORY</p>
             <select
               value={selectedCategory}

@@ -10,8 +10,16 @@
 }
 
 .list-table-formats.titles {
-  background-color: #f9f9f9;
+  /* background-color: #f9f9f9; */
   text-align: center;
+}
+.list-flex-col {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-left: 25px;
+  margin-top: 30px;
 }
 
 .list-table-formats img {

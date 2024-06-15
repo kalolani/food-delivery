@@ -70,7 +70,7 @@ function List({ url }) {
       </div>
     );
   return (
-    <div className="list add flex-col">
+    <div className="list add list-flex-col">
       <p>All foods list</p>
       <div className="list-table">
         <div className="list-table-formats titles">
