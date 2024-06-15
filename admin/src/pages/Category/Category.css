@@ -1,4 +1,4 @@
-.add {
+.add-category {
   width: 70%;
   margin-left: max(5vw, 25px);
   margin-top: 50px;
@@ -6,39 +6,52 @@
   font-size: 16px;
 }
 
-.add form {
+.add-category form {
   gap: 20px;
 }
 
-.add-img-upload img {
-  width: max(40%, 280px);
+.add-category-img-upload img {
+  width: max(30%, 240px);
   height: 150px;
 }
-.add-product-name,
-.add-product-description {
-  width: max(40%, 280px);
+
+.add-category-img-upload p {
+  color: rgb(17 24 39);
+  font-size: 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-align: left;
+}
+.add-category-product-name {
+  width: max(30%, 280px);
 }
 
-.add-product-name input,
-.add-product-descripton textarea {
+.add-category-product-name p {
+  color: rgb(17 24 39);
+  font-size: 20px;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-align: left;
+}
+.add-category-product-name input {
+  display: inline-block;
+  width: 100%;
+  height: 40px;
+  border: 2px solid rgb(37 99 235);
   padding: 10px;
 }
-.add-category-price {
-  display: flex;
-  gap: 30px;
+.add-category-product-name input:focus {
+  outline: none;
 }
 
-.add-category-price select,
-.add-category-price input {
-  max-width: 120px;
-  padding: 10px;
-}
-
-.add-button {
-  max-width: 120px;
+.add-category-button {
+  width: max(30%, 280px);
   border: none;
-  padding: 10px;
-  background-color: black;
+  padding: 20px 40px;
+  background-color: rgb(37 99 235);
   color: white;
+  font-size: 15px;
+  letter-spacing: 3px;
   cursor: pointer;
+  border-radius: 3px 3px 3px 3px;
 }

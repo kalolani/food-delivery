@@ -6,14 +6,14 @@ import { toast } from "react-toastify";
 import { useEffect } from "react";
 import { useStores } from "../../contexts/storeContext";
 import Category from "../Category/Category";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 function Edit() {
   const [image, setImage] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [categories, setCategories] = useState([]);
   const [currentItem, setCurrentItem] = useState(null);
-
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const id = searchParams.get("id");
   console.log(id);
@@ -112,6 +112,7 @@ function Edit() {
 
       // setImage(image);
       toast.success("Updated Succesfully");
+      navigate("/list");
     } else {
       toast.error("Error Occurred");
     }
@@ -194,7 +195,9 @@ function Edit() {
           />
           <img
             // src={`${url}/images/` + data.image}
-            src={image ? URL.createObjectURL(image) : data.image}
+            src={
+              image ? URL.createObjectURL(image) : `${url}/images/` + data.image
+            }
             alt=""
             className="edit-image"
           />

@@ -74,7 +74,7 @@ function List({ url }) {
       <p>All foods list</p>
       <div className="list-table">
         <div className="list-table-formats titles">
-          <b>Image</b>
+          <b className="image-title">Image</b>
           <b>Name</b>
           <b>Category</b>
           <b>Price</b>

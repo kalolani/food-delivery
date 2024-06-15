@@ -27,6 +27,10 @@
   cursor: pointer;
 }
 
+.image-title {
+  text-align: left;
+}
+
 @media (max-width: 600px) {
   .list-table-formats {
     grid-template-columns: 1fr 3fr 1fr;

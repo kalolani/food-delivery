@@ -48,9 +48,9 @@ function Category({ url }) {
   };
   if (!token) return;
   return (
-    <div className="add">
+    <div className="add-category">
       <form className="flex-col" onSubmit={handleSubmit}>
-        <div className="add-img-upload flex-col">
+        <div className="add-category-img-upload flex-col">
           <p>upload image</p>
           <label htmlFor="image">
             <img
@@ -66,7 +66,7 @@ function Category({ url }) {
             />
           </label>
         </div>
-        <div className="add-product-name flex-col">
+        <div className="add-category-product-name flex-col">
           <p>product name</p>
 
           <input
@@ -78,7 +78,7 @@ function Category({ url }) {
           />
         </div>
 
-        <button type="submit" className="add-button">
+        <button type="submit" className="add-category-button">
           ADD
         </button>
       </form>
