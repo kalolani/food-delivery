@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useStores } from "../../contexts/storeContext";
 import { Link } from "react-scroll";
-import { IoSearchOutline } from "react-icons/io5";
 
 const SearchBar = () => {
   const [query, setQuery] = useState("");

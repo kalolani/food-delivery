@@ -49,3 +49,14 @@
   margin-top: 15px;
   gap: 20px;
 }
+@media (max-width: 600px) {
+  .SearchNavbar input {
+    width: 150px;
+  }
+}
+
+@media (max-width: 470px) {
+  .SearchNavbar input {
+    width: 100px;
+  }
+}

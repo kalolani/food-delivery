@@ -174,3 +174,14 @@
     display: none;
   }
 }
+
+@media (max-width: 470px) {
+  .navbar .logo {
+    width: 100px;
+  }
+}
+@media (max-width: 380px) {
+  .navbar .logo {
+    width: 70px;
+  }
+}
