@@ -182,9 +182,9 @@ function Navbar({ setShowLogin, toggleTheme, theme }) {
               <li onClick={toggleTheme} className="theme">
                 {/* <MdOutlineLightMode size={25} /> */}
                 {theme === "light" ? (
-                  <MdOutlineDarkMode size={25} color="tomato" />
-                ) : (
                   <MdOutlineLightMode size={25} color="tomato" />
+                ) : (
+                  <MdOutlineDarkMode size={25} color="tomato" />
                 )}
 
                 <p>Theme</p>

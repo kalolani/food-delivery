@@ -105,9 +105,9 @@ function Navbar({ toggleTheme, theme }) {
           <li onClick={toggleTheme}>
             {/* <MdOutlineLightMode size={25} /> */}
             {theme === "light" ? (
-              <MdOutlineDarkMode size={25} />
-            ) : (
               <MdOutlineLightMode size={25} />
+            ) : (
+              <MdOutlineDarkMode size={25} />
             )}
 
             <p>Theme</p>
