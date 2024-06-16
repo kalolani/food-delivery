@@ -42,6 +42,10 @@
   background-color: rgb(41 37 36);
   border-radius: 3px 3px 3px 3px;
 }
+.sidebar-option.active p,
+.sidebar-option:hover p {
+  color: rgb(214 211 209);
+}
 
 .sidebar-option.active svg,
 .sidebar-option:hover svg {
