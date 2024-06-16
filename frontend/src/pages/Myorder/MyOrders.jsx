@@ -38,7 +38,7 @@ function MyOrders() {
   }, [token]);
 
   return (
-    <div className="my-orders">
+    <div className="my-order">
       <h2>My Orders</h2>
 
       {isLoading && (
@@ -50,7 +50,7 @@ function MyOrders() {
         {data.map((order, index) => {
           return (
             <>
-              <div key={index} className="my-orders-order">
+              <div key={index} className="my-orders-orders">
                 <img src="mosob.png" alt="" />
                 <p>
                   {order.items.map((item, index) => {
