@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Link } from "react-scroll";
 
 function Header() {
   const sliderRef = useRef(null);
@@ -55,7 +56,15 @@ function Header() {
                 and let us handle the rest. With easy online ordering and prompt
                 delivery, we're here to make your mealtime memorable.
               </p>
-              <button>order now</button>
+              <Link
+                to="food-display"
+                spy={true}
+                smooth={true}
+                offset={-10}
+                duration={500}
+              >
+                <button>order now</button>
+              </Link>
             </div>
           </div>
         </>

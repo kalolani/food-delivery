@@ -76,7 +76,7 @@ function MyOrders() {
                 <button onClick={fetchOrders}>Track Order</button>
               </div>
               <NavLink to={`/rating?id=${order._id}`}>
-                <p>Rate your order</p>
+                <p className="order-link">Rate your order</p>
               </NavLink>
             </>
           );

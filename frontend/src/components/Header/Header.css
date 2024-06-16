@@ -55,8 +55,39 @@
   padding: 1vw 2.3vw;
   font-size: max(1vw, 13px);
   cursor: pointer;
+  position: relative;
+}
+.header-contents button::after {
+  content: "";
+  height: 50%;
+  width: 50%;
+  border: none;
+  background-color: white;
+  border-radius: 50px;
+  font-weight: 500;
+  color: #747474;
+  padding: 1vw 2.3vw;
+  font-size: max(1vw, 13px);
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all 0.4s;
 }
 
+.header-contents button:hover {
+  box-shadow: 0 10px 20px rgba(black, 0.2);
+  transform: translateY(-3px);
+}
+.header-contents button:active {
+  transform: translateY(-1px);
+}
+
+.header-contents button:hover::after {
+  transform: scale(2);
+  opacity: 0;
+}
 @media (max-width: 1050px) {
   .header-contents {
     max-width: 45%;

@@ -46,6 +46,12 @@
   cursor: pointer;
   color: #454545;
 }
+.order-link:hover {
+  display: inline-block;
+  color: rgb(79 70 229);
+  transition: all 0.2s;
+  border-bottom: 1px solid rgb(79 70 229);
+}
 
 @media (max-width: 900px) {
   .my-orders-orders {
