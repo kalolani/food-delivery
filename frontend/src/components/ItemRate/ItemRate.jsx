@@ -3,10 +3,14 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Rating from "@mui/material/Rating";
-// import StarIcon from "@mui/icons-material/Star";
-// import StarOutlineIcon from "@mui/icons-material/StarOutline";
-
 import { useStores } from "../../contexts/storeContext";
+import { styled } from "@mui/system";
+
+const CustomRating = styled(Rating)({
+  "& .MuiRating-iconEmpty": {
+    color: "rgb(120 113 108)", // Change this to your desired border color
+  },
+});
 
 const ItemRate = ({ id }) => {
   const [averageRating, setAverageRating] = useState(0);
@@ -38,7 +42,7 @@ const ItemRate = ({ id }) => {
 
   return (
     <div>
-      <Rating
+      <CustomRating
         name="simple-controlled"
         value={averageRating}
         precision={0.5}

@@ -59,7 +59,7 @@
 }
 .header-contents button::after {
   content: "";
-  height: 50%;
+  height: 40%;
   width: 50%;
   border: none;
   background-color: white;
@@ -87,6 +87,11 @@
 .header-contents button:hover::after {
   transform: scale(2);
   opacity: 0;
+}
+
+.slick-prev,
+.slick-next {
+  color: rgb(120 113 108);
 }
 @media (max-width: 1050px) {
   .header-contents {

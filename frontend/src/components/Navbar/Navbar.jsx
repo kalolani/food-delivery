@@ -69,7 +69,7 @@ function Navbar({ setShowLogin, toggleTheme, theme }) {
     <div className="navbar">
       <div className="logo-container">
         <NavLink to="/">
-          <img src={assets.logo} alt="" className="logo" />
+          <img src="dila-uni-logo.png" alt="" className="logo" />
         </NavLink>
       </div>
       <ul className="navbar-menu">
