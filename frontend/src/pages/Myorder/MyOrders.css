@@ -16,7 +16,7 @@
   gap: 30px;
   font-size: 14px;
   padding: 10px 20px;
-  color: #454545;
+  /* color: #454545; */
   border: 1px solid green;
 }
 
@@ -36,7 +36,7 @@
 
 .my-orders-orders p b {
   font-weight: 500;
-  color: #454545;
+  /* color: #454545; */
 }
 .my-orders-orders button {
   border: none;
