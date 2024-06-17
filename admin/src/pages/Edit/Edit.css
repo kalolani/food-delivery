@@ -18,7 +18,7 @@
   gap: 30px;
 }
 
-.add-product-names input,
+.edit-product-names input,
 .add-product-descriptions textarea {
   display: inline-block;
   width: 250px;
@@ -43,7 +43,7 @@
 .add-add p {
   text-align: left;
   font-weight: 500;
-  color: rgb(15 23 42);
+  /* color: rgb(15 23 42); */
 }
 .upload-container {
   display: flex;
@@ -131,7 +131,7 @@
 .product-container input:focus {
   outline: none;
 }
-.add-buttonss {
+.edit-button {
   max-width: 130px;
   border: none;
   padding: 10px 20px;

@@ -16,7 +16,11 @@ function PlaceOrder({ showLogin, setShowLogin }) {
     lastName: "",
     email: "",
     phone: "",
-    street: "",
+    building: "",
+    kebele: "",
+    department: "",
+    campus: "",
+    id: "",
   });
 
   const onChangeHandler = (event) => {
@@ -116,46 +120,44 @@ function PlaceOrder({ showLogin, setShowLogin }) {
         />
         <input
           required
-          name="street"
+          name="building"
           onChange={onChangeHandler}
-          value={data.street}
+          value={data.building}
           type="text"
-          placeholder="street"
+          placeholder="Building"
         />
         <div className="multi-fields">
           <input
-            required
-            name="city"
+            name="kebele"
             onChange={onChangeHandler}
-            value={data.city}
+            value={data.kebele}
             type="text"
-            placeholder="City"
+            placeholder="Kebele (optional)"
           />
           <input
             required
-            name="state"
+            name="department"
             onChange={onChangeHandler}
-            value={data.state}
+            value={data.department}
             type="text"
-            placeholder="State"
+            placeholder="Department"
           />
         </div>
         <div className="multi-fields">
           <input
-            required
-            name="zipcode"
+            name="id"
             onChange={onChangeHandler}
-            value={data.zipcode}
+            value={data.id}
             type="text"
-            placeholder="Zip code"
+            placeholder="ID (optional)"
           />
           <input
             required
-            name="country"
+            name="campus"
             onChange={onChangeHandler}
-            value={data.country}
+            value={data.campus}
             type="text"
-            placeholder="Country"
+            placeholder="Campus"
           />
         </div>
         <input
@@ -164,7 +166,7 @@ function PlaceOrder({ showLogin, setShowLogin }) {
           onChange={onChangeHandler}
           value={data.phone}
           type="text"
-          placeholder="phone"
+          placeholder="Phone Number"
         />
       </div>
       <div className="place-order-right">

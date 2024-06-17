@@ -1,18 +1,19 @@
 .cart {
   margin-top: 100px;
+  padding-bottom: 50px;
 }
 
 .cart-items-title {
   display: grid;
   grid-template-columns: 1fr 1.5fr 1fr 1fr 1fr 0.5fr;
   align-items: center;
-  color: grey;
+  /* color: grey; */
   font-size: max(1vw, 12px);
 }
 
 .cart-items-item {
   margin: 10px 0px;
-  color: black;
+  /* color: black; */
 }
 
 .cart-items-item img {
@@ -46,7 +47,7 @@
 .cart-total-details {
   display: flex;
   justify-content: space-between;
-  color: #555;
+  /* color: #555; */
 }
 
 .cart-total hr {

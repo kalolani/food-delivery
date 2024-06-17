@@ -1,6 +1,8 @@
 import "./Cart.css";
 import { useStores } from "../../contexts/storeContext";
 import { useNavigate } from "react-router-dom";
+import { HiOutlineXCircle } from "react-icons/hi2";
+
 function Cart() {
   const { food_list, cartItem, removeItem, getTotalCartAmount, url } =
     useStores();
@@ -31,7 +33,7 @@ function Cart() {
                   <p>{cartItem[item._id]} ETB</p>
                   <p>{item.price * cartItem[item._id]} ETB</p>
                   <p onClick={() => removeItem(item._id)} className="cross">
-                    x
+                    <HiOutlineXCircle color="red" size={20} />
                   </p>
                 </div>
                 <hr />
@@ -67,11 +69,11 @@ function Cart() {
         </div>
         <div className="cart-promocode">
           <div>
-            <p>If you have a promo code, Enter it here</p>
+            {/* <p>If you have a promo code, Enter it here</p>
             <div className="cart-promocode-input">
               <input type="text" placeholder="promo code" />
               <button>Submit</button>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
