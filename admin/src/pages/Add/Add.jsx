@@ -124,7 +124,6 @@ function Add({ url }) {
         <div className="add-product-descriptions flex-col">
           <div className="description-container">
             <p>DESCRIPTION</p>
-
             <textarea
               onChange={onChangeHandler}
               value={data.description}

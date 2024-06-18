@@ -146,6 +146,14 @@
   border-radius: 3px 3px 3px 3px;
 }
 
+.add-category-container p,
+.flex-container p,
+.product-container p,
+.upload-container p,
+.description-container p {
+  text-align: left;
+}
+
 @media (max-width: 700px) {
   .flex-col-col {
     margin-left: 50px;
@@ -155,7 +163,7 @@
   .add-product-descriptions textarea {
     width: 150px;
   }
-  .category-container select {
+  .add-category-container select {
     width: 150px;
   }
   .product-container input {
@@ -181,11 +189,11 @@
   .product-container input {
     margin-left: 0;
   }
-  .category-container {
+  .add-category-container {
     flex-direction: column;
     gap: 10px;
   }
-  .category-container select {
+  .add-category-container select {
     margin-left: 0;
   }
 

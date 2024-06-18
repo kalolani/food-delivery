@@ -35,7 +35,7 @@
 }
 .add-category-product-name input {
   display: inline-block;
-  width: 100%;
+  width: max(30%, 280px);
   height: 40px;
   border: 2px solid rgb(37 99 235);
   padding: 10px;
@@ -54,4 +54,19 @@
   letter-spacing: 3px;
   cursor: pointer;
   border-radius: 3px 3px 3px 3px;
+}
+
+@media (max-width: 400px) {
+  .add-category-product-name input {
+    width: max(30%, 230px);
+  }
+  .add-category-product-name {
+    width: max(30%, 230px);
+  }
+  .add-category-button {
+    width: max(30%, 230px);
+  }
+  .add-category-img-upload img {
+    width: max(30%, 230px);
+  }
 }

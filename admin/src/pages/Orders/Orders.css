@@ -1,8 +1,11 @@
 .orders-order {
   max-width: 80%;
   margin: 0 auto;
+  /* margin-top: 30px;
+  margin-left: 30px; */
+}
+.orders-order h3 {
   margin-top: 30px;
-  margin-left: 30px;
 }
 
 .order-order-item {
@@ -64,9 +67,36 @@
 }
 
 @media (max-width: 1000px) {
-  .order-item {
+  .order-order-item {
     font-size: 12px;
+    grid-template-columns: 0.5fr 2fr 1fr 1fr;
+    padding: 15px 8px;
+  }
+  .order-items-select {
+    padding: 5px;
+    font-size: 12px;
+  }
+  .order-item img {
+    width: 40px;
+  }
+}
+@media (max-width: 600px) {
+  .order-order-item {
     grid-template-columns: 0.5fr 2fr 1fr;
+    padding: 10px 3px;
+  }
+  .order-items-select {
+    padding: 2px;
+    font-size: 10px;
+  }
+  .order-item img {
+    width: 20px;
+  }
+}
+@media (max-width: 350px) {
+  .order-order-item {
+    font-size: 12px;
+    grid-template-columns: 0.5fr 2fr;
     padding: 15px 8px;
   }
   .order-items-select {

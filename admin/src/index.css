@@ -9,6 +9,7 @@
 body {
   min-height: 100vh;
   background-color: rgb(249 250 251);
+  /* font-family: Outfit; */
 }
 a {
   text-decoration: none;
