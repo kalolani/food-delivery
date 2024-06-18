@@ -5,6 +5,10 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import FadeLoader from "react-spinners/FadeLoader";
 import { useStores } from "../../contexts/storeContext";
+import { AiOutlineDelete } from "react-icons/ai";
+import { FaRegEdit } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
+
 function CatList({ url }) {
   const [list, setList] = useState([]);
   const [isListLoading, setListIsLoading] = useState(false);
@@ -66,15 +70,24 @@ function CatList({ url }) {
         <div className="list-table-formated title">
           <b>Image</b>
           <b>Name</b>
-          <b>Action</b>
+          <b>Edit</b>
+          <b>Delete</b>
         </div>
         {list.map((item, index) => {
           return (
             <div className="list-table-formated" key={index}>
               <img src={`${url}/images/` + item.image} alt="" />
               <p>{item.name}</p>
-              <p onClick={() => removeCategory(item._id)} className="cursor">
-                x
+              <NavLink to={`/edit-menu?id=${item._id}`}>
+                <p className="menu-edit">
+                  <FaRegEdit color="rgb(22 163 74)" size={20} />
+                </p>
+              </NavLink>
+              <p
+                onClick={() => removeCategory(item._id)}
+                className="cursor menu-delete"
+              >
+                <AiOutlineDelete color="rgb(220 38 38)" size={20} />
               </p>
             </div>
           );

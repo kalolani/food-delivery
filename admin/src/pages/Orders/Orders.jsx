@@ -71,8 +71,8 @@ function Orders({ url }) {
                 {order.address.firstName + " " + order.address.lastName}
               </p>
               <div className="order-item-address">
-                <p>{order.address.street + ","}</p>
-                <p>{order.address.city + "," + order.address.state}</p>
+                <p>{order.address.kebele + ","}</p>
+                <p>{order.address.building + "," + order.address.department}</p>
               </div>
               <p className="order-item-phone">{order.address.phone}</p>
             </div>

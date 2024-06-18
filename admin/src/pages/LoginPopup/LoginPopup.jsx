@@ -149,18 +149,18 @@ function LoginPopup({ setShowLogin }) {
           <p>By continuing, i agree to the terms of use & privacy policy</p>
         </div>
 
-        {currState === "Login" ? (
-          <p>
-            {/* () => setCurrState("Sign up") */}
-            Create a new account?{" "}
-            <span onClick={createAccountHandler}>Click here</span>
-          </p>
-        ) : (
-          <p>
-            Already have an account?{" "}
-            <span onClick={() => setCurrState("Login")}> Login here</span>
-          </p>
-        )}
+        {/* {currState === "Login" ? ( */}
+        {/* <p> */}
+        {/* () => setCurrState("Sign up") */}
+        {/* Create a new account?{" "} */}
+        {/* <span onClick={createAccountHandler}>Click here</span> */}
+        {/* </p> */}
+        {/* ) : ( */}
+        {/* <p> */}
+        {/* Already have an account?{" "} */}
+        {/* <span onClick={() => setCurrState("Login")}> Login here</span> */}
+        {/* </p> */}
+        {/* )} */}
       </form>
     </div>
   );

@@ -21,6 +21,7 @@ import Edit from "./pages/Edit/Edit";
 
 import styled, { ThemeProvider } from "styled-components";
 import { backgroundColor, textColor } from "./theme";
+import Category_edit from "./pages/Category-edit/Category-edit";
 
 const Container = styled.div`
   background-color: ${backgroundColor};
@@ -65,6 +66,7 @@ function App() {
                 <Route path="/messages" element={<Message url={url} />} />
                 <Route path="/edit" element={<EditProfile />} />
                 <Route path="/edit-list" element={<Edit />} />
+                <Route path="/edit-menu" element={<Category_edit />} />
               </Routes>
             </div>
           </Container>

@@ -18,6 +18,38 @@ const addCategory = async (req, res) => {
   }
 };
 
+//Get specific menu item
+const getMenuItem = async (req, res) => {
+  try {
+    const item = await categoryModel.findById(req.params.id);
+    res.send(item);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+};
+
+// Update Category
+const updateMenu = async (req, res) => {
+  try {
+    const updatedData = {
+      name: req.body.name,
+    };
+    if (req.file) {
+      updatedData.image = `/${req.file.filename}`;
+    }
+    const item = await categoryModel.findByIdAndUpdate(
+      req.params.id,
+      updatedData,
+      {
+        new: true,
+      }
+    );
+    res.send({ success: true, data: item });
+  } catch (err) {
+    res.status(500).send(err);
+  }
+};
+
 //all food list
 
 const categoryList = async (req, res) => {
@@ -52,4 +84,11 @@ const removeCategory = async (req, res) => {
   }
 };
 
-export { addCategory, categoryList, removeCategory, getCategory };
+export {
+  addCategory,
+  categoryList,
+  removeCategory,
+  getCategory,
+  getMenuItem,
+  updateMenu,
+};
