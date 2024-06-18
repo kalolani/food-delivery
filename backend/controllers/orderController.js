@@ -116,24 +116,24 @@ const updateStatus = async (req, res) => {
   }
 };
 
-const getWeeklyRevenue = async (req, res) => {
+const getDailyRevenue = async (req, res) => {
   try {
     const orders = await orderModel.aggregate([
       {
         $group: {
-          _id: { $week: "$date" },
+          _id: { $dayOfYear: "$date" }, // Group by day of the year
           totalRevenue: { $sum: "$amount" },
         },
       },
       {
         $project: {
-          week: "$_id",
+          day: "$_id",
           revenue: "$totalRevenue",
           _id: 0,
         },
       },
       {
-        $sort: { week: 1 },
+        $sort: { day: 1 },
       },
     ]);
 
@@ -270,7 +270,7 @@ export {
   verifyOrder,
   listOrders,
   updateStatus,
-  getWeeklyRevenue,
+  getDailyRevenue,
   popularCategory,
   getTotalAmount,
   getTotalCategory,

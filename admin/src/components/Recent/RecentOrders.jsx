@@ -36,12 +36,12 @@ function RecentOrders() {
     fetchAllOrders();
   }, []);
 
-  if (isLoading)
-    return (
-      <div className="loadingComponent">
-        <HashLoader color="#FF6347" loading={isLoading} size={50} />
-      </div>
-    );
+  // if (isLoading)
+  //   return (
+  //     <div className="loadingComponent">
+  //       <HashLoader color="#FF6347" loading={isLoading} size={50} />
+  //     </div>
+  //   );
 
   return (
     <div className="order add">

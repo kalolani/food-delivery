@@ -12,6 +12,7 @@ import {
 } from "recharts";
 import axios from "axios";
 import { useStores } from "../../contexts/storeContext";
+import moment from "moment"; // Import moment.js to format dates
 
 const WeeklyRevenue = () => {
   const [data, setData] = useState([]);
@@ -20,11 +21,16 @@ const WeeklyRevenue = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get(`${url}/api/order/weeklyRevenue`);
-      setData(response.data);
+      const response = await axios.get(`${url}/api/order/dailyRevenue`); // Update the endpoint to /dailyRevenue
+      const formattedData = response.data.map((item) => ({
+        day: moment().dayOfYear(item.day).format("YYYY-MM-DD"), // Convert day of the year to date
+        revenue: item.revenue,
+      }));
+      setData(formattedData);
     };
     fetchData();
-  }, []);
+  }, [url]); // Add url as a dependency to useEffect
+
   console.log(data);
 
   return (
@@ -34,9 +40,9 @@ const WeeklyRevenue = () => {
         margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
       >
         <CartesianGrid strokeDasharray="3 3" stroke="rgb(163 230 53)" />
-        <XAxis dataKey="week" stroke="rgb(30 64 175)" />
+        <XAxis dataKey="day" stroke="rgb(30 64 175)" />
         <YAxis stroke="rgb(30 64 175)" />
-        <Tooltip labelFormatter={(value) => `Week ${value}`} />
+        <Tooltip labelFormatter={(value) => `Date: ${value}`} />
         <Legend />
         <Line type="monotone" dataKey="revenue" stroke="rgb(22 163 74)" />
       </LineChart>

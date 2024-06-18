@@ -6,7 +6,7 @@ import {
   verifyOrder,
   listOrders,
   updateStatus,
-  getWeeklyRevenue,
+  getDailyRevenue,
   popularCategory,
   getTotalAmount,
   getTotalCategory,
@@ -32,7 +32,7 @@ orderRouter.post("/userorder", authMiddleware, userOrders);
 orderRouter.post("/userorder/:id", authMiddleware, orderRating);
 orderRouter.get("/list", listOrders);
 orderRouter.post("/status", updateStatus);
-orderRouter.get("/weeklyRevenue", getWeeklyRevenue);
+orderRouter.get("/dailyRevenue", getDailyRevenue);
 orderRouter.get("/popularCategory", popularCategory);
 orderRouter.get("/totalAmount", getTotalAmount);
 orderRouter.get("/totalCategory", getTotalCategory);

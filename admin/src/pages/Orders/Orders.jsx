@@ -3,7 +3,7 @@ import "./Orders.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import HashLoader from "react-spinners/HashLoader";
+import FadeLoader from "react-spinners/FadeLoader";
 import { useStores } from "../../contexts/storeContext";
 function Orders({ url }) {
   const [orders, setOrders] = useState([]);
@@ -46,7 +46,7 @@ function Orders({ url }) {
   if (isLoading)
     return (
       <div className="loadingComponent">
-        <HashLoader color="#FF6347" loading={isLoading} size={50} />
+        <FadeLoader color="rgb(212 212 212)" loading={isLoading} size={50} />
       </div>
     );
   return (

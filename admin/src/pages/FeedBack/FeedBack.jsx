@@ -21,6 +21,7 @@ function FeedBack({ url }) {
   }, []);
   const fetchEmails = async () => {
     try {
+      setIsLoading(true);
       const response = await axios.get(url + "/api/email/fetch-email");
 
       setFeedback(response.data);
@@ -34,7 +35,11 @@ function FeedBack({ url }) {
   if (isListLoading)
     return (
       <div className="loadingComponent">
-        <FadeLoader color="#FF6347" loading={isListLoading} size={50} />
+        <FadeLoader
+          color="rgb(212 212 212)"
+          loading={isListLoading}
+          size={50}
+        />
       </div>
     );
   if (!token) return;

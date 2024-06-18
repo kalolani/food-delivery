@@ -6,11 +6,13 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useEffect } from "react";
 import { useStores } from "../../contexts/storeContext";
+import FadeLoader from "react-spinners/FadeLoader";
 
 function Add({ url }) {
   const [image, setImage] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [categories, setCategories] = useState([]);
+  const [isLoading, setIsLoading] = useState();
 
   const { token } = useStores();
 
@@ -18,11 +20,14 @@ function Add({ url }) {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
+        setIsLoading(true);
         const response = await axios.get(`${url}/api/category/list-category`);
         setCategories(response.data.categories);
       } catch (error) {
         console.error("Error fetching categories:", error);
         toast.error("Failed to load categories");
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -53,6 +58,7 @@ function Add({ url }) {
     formData.append("price", Number(data.price));
     formData.append("category", selectedCategory);
     formData.append("image", image);
+
     const response = await axios.post(`${url}/api/food/add`, formData);
 
     if (response.data.success) {
@@ -72,6 +78,12 @@ function Add({ url }) {
     }
   };
   if (!token) return;
+  if (isLoading)
+    return (
+      <div className="loadingComponent">
+        <FadeLoader color="rgb(212 212 212)" loading={isLoading} size={50} />
+      </div>
+    );
   return (
     <div className="add-adds">
       <form className="flex-col-col" onSubmit={handleSubmit}>

@@ -5,10 +5,11 @@ import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useStores } from "../../contexts/storeContext";
+import FadeLoader from "react-spinners/FadeLoader";
 
 function Category({ url }) {
   const [image, setImage] = useState(false);
-  //   const [selectedCategory, setSelectedCategory] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState({
     name: "",
   });
@@ -20,33 +21,39 @@ function Category({ url }) {
   };
   const { token } = useStores();
 
-  //   const handleChange = (event) => {
-  //     // setSelectedCategory(event.target.value);
-  //   };
-
-  // const { token } = useStores();
-  // if (!token) return;
-
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append("name", data.name);
-    formData.append("image", image);
-    const response = await axios.post(`${url}/api/category/add`, formData);
+    try {
+      e.preventDefault();
+      const formData = new FormData();
+      formData.append("name", data.name);
+      formData.append("image", image);
+      setIsLoading(true);
+      const response = await axios.post(`${url}/api/category/add`, formData);
 
-    if (response.data.success) {
-      setData({
-        name: "",
-      });
-      console.log(data);
+      if (response.data.success) {
+        setData({
+          name: "",
+        });
+        console.log(data);
 
-      setImage(false);
-      toast.success(response.data.message);
-    } else {
-      toast.error(response.data.message);
+        setImage(false);
+        toast.success(response.data.message);
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setIsLoading(false);
     }
   };
   if (!token) return;
+  if (isLoading)
+    return (
+      <div className="loadingComponent">
+        <FadeLoader color="rgb(212 212 212)" loading={isLoading} size={50} />
+      </div>
+    );
   return (
     <div className="add-category">
       <form className="flex-col" onSubmit={handleSubmit}>
