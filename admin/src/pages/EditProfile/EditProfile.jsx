@@ -3,15 +3,53 @@ import "./EditProfile.css";
 // import { useState } from "react";
 import axios from "axios";
 import { useStores } from "../../contexts/storeContext";
-import { useNavigate } from "react-router-dom";
+import FadeLoader from "react-spinners/FadeLoader";
+import { useCallback, useEffect, useState } from "react";
 
 function EditProfile() {
-  const { url, image, setImage } = useStores();
+  const { url, image, setImage, token } = useStores();
+  const [user, setUser] = useState();
+  const [isLoading, setIsLoading] = useState();
   console.log(image);
 
-  // const navigate = useNavigate();
+  const fetchList = useCallback(async () => {
+    if (!token) {
+      console.error("Token is missing");
+      return;
+    }
 
-  // Function to retrieve token from localStorage
+    try {
+      setIsLoading(true);
+      console.log("Token being sent:", token);
+      console.log("URL being called:", `${url}/api/image/list-admin`);
+
+      const response = await axios.post(
+        `${url}/api/image/list-admin`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Ensure the correct token format
+          },
+        }
+      );
+
+      console.log("Response data:", response.data);
+      if (response.data.success) {
+        setUser(response.data.data);
+      } else {
+        console.log("Error: Data fetch was not successful");
+      }
+    } catch (error) {
+      if (error.response) {
+        console.error("Error response from server:", error.response.data);
+      } else {
+        console.error("Error making request:", error.message);
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  }, [token, url]);
+
   const getToken = () => {
     return localStorage.getItem("token"); // Ensure this matches where you store the token
   };
@@ -54,6 +92,17 @@ function EditProfile() {
       );
     }
   };
+  useEffect(() => {
+    fetchList();
+  }, [image, fetchList]);
+
+  if (!token) return;
+  if (isLoading)
+    return (
+      <div className="loadingComponent">
+        <FadeLoader color="rgb(212 212 212)" loading={isLoading} size={50} />
+      </div>
+    );
 
   return (
     <div className="adds">
@@ -76,11 +125,20 @@ function EditProfile() {
               />
             </svg>
 
-            <img
+            {/* <img
               src={image ? URL.createObjectURL(image) : "camera.png"}
               className="label-img"
               alt=""
-            />
+            /> */}
+            {user?.image ? (
+              <img
+                src={`${url}/images/${user.image}`}
+                className="label-img"
+                alt="user-photo"
+              />
+            ) : (
+              <img src="camera.png" className="label-img" alt="user-photo" />
+            )}
 
             <input
               onChange={(e) => setImage(e.target.files[0])}
