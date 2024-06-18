@@ -144,6 +144,10 @@ function Add({ url }) {
             id="file"
             required
           />
+          <img
+            src={image ? URL.createObjectURL(image) : assets.upload_area}
+            alt=""
+          />
         </div>
 
         <button type="submit" className="add-buttonss">

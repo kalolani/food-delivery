@@ -67,6 +67,10 @@
   padding: 10px 20px;
   margin-left: 5px;
 }
+.upload-container img {
+  width: 50px;
+  height: 50px;
+}
 
 .flex-container {
   display: flex;
