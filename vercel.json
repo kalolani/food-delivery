@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "food delivery web app",
+  "name": "food del web app",
   "builds": [
     {
       "src": "backend/server.js",
@@ -14,6 +14,7 @@
   ],
   "routes": [
     { "src": "/api/(.*)", "dest": "/backend/server.js" },
+    { "src": "/images/(.*)", "dest": "/backend/uploads/$1" },
     { "src": "/(.*)", "dest": "/frontend/$1" }
   ]
 }
