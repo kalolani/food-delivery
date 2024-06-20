@@ -19,15 +19,15 @@
 }
 
 .edit-product-names input,
-.add-product-descriptions textarea {
+.edit-product-descriptions textarea {
   display: inline-block;
   width: 250px;
   height: 40px;
   padding: 10px;
 }
 
-.add-category-price select,
-.add-category-price input {
+.edit-category-price select,
+.edit-category-price input {
   display: inline-block;
   padding: 10px;
 }
@@ -79,7 +79,7 @@
 .flex-container input,
 .description-container textarea,
 .category-container select,
-.product-container input {
+.edit-product-container input {
   border: 2px solid #3b82f6;
   border-radius: 3px 3px 3px 3px;
 }
@@ -106,29 +106,29 @@
   outline: none;
 }
 
-.category-container {
+.edit-category-container {
   display: flex;
   gap: 60px;
   justify-self: center;
 }
-.category-container select {
+.edit-category-container select {
   display: inline-block;
   width: 250px;
   height: 40px;
   margin-left: 14px;
 }
-.product-container {
+.edit-product-container {
   display: flex;
   gap: 62px;
 }
-.product-container input {
+.edit-product-container input {
   display: inline-block;
   width: 250px;
   height: 40px;
   margin-left: 53px;
   padding: 10px;
 }
-.product-container input:focus {
+.edit-product-container input:focus {
   outline: none;
 }
 .edit-button {
@@ -146,20 +146,24 @@
   width: 60px;
   height: 60px;
 }
+.edit-product-container p,
+.edit-category-container p {
+  text-align: left;
+}
 
 @media (max-width: 700px) {
   .flex-col-col {
     margin-left: 50px;
   }
 
-  .add-product-names input,
-  .add-product-descriptions textarea {
+  .edit-product-names input,
+  .edit-product-descriptions textarea {
     width: 150px;
   }
-  .category-container select {
+  .edit-category-container select {
     width: 150px;
   }
-  .product-container input {
+  .edit-product-container input {
     width: 150px;
   }
 }
@@ -175,18 +179,18 @@
   .flex-container input {
     margin-left: 0;
   }
-  .product-container {
+  .edit-product-container {
     flex-direction: column;
     gap: 10px;
   }
-  .product-container input {
+  .edit-product-container input {
     margin-left: 0;
   }
-  .category-container {
+  .edit-category-container {
     flex-direction: column;
     gap: 10px;
   }
-  .category-container select {
+  .edit-category-container select {
     margin-left: 0;
   }
 
@@ -208,7 +212,7 @@
     display: inline-block;
     width: 150px;
   }
-  .add-buttonss {
+  .edit-button {
     margin-left: 0px;
   }
 }

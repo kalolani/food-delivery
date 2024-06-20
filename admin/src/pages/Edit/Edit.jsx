@@ -89,7 +89,7 @@ function Edit() {
   return (
     <div className="edit-container">
       <form className="flex-col-col" onSubmit={handleUpdateButtonClick}>
-        <div className="edit-product-names flex-col">
+        <div className="edit-product-names">
           <div className="flex-container">
             <p>NAME</p>
             <input
@@ -102,8 +102,8 @@ function Edit() {
           </div>
         </div>
 
-        <div className="edit-category flex-col">
-          <div className="category-container">
+        <div className="edit-edit-category flex-col">
+          <div className="edit-category-container">
             <p>CATEGORY</p>
             <select
               value={data.category}
@@ -123,7 +123,7 @@ function Edit() {
         </div>
 
         <div className="edit-price flex-col">
-          <div className="product-container">
+          <div className="edit-product-container">
             <p>PRICE</p>
             <input
               onChange={onChangeHandler}

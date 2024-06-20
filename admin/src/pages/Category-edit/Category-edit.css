@@ -11,6 +11,12 @@
 }
 
 .edit-category-img-upload img {
+  display: inline-block;
+  width: max(30%, 240px);
+  height: 150px;
+}
+.edit-category-img-upload label {
+  display: inline-block;
   width: max(30%, 240px);
   height: 150px;
 }
@@ -21,6 +27,8 @@
   font-weight: 500;
   text-transform: uppercase;
   text-align: left;
+  margin-left: 15px;
+  margin-bottom: 10px;
 }
 .edit-category-product-name {
   width: max(30%, 280px);
@@ -54,4 +62,25 @@
   letter-spacing: 3px;
   cursor: pointer;
   border-radius: 3px 3px 3px 3px;
+}
+@media (max-width: 450px) {
+  .edit-category-product-name input {
+    display: inline-block;
+    width: 150px;
+  }
+  .edit-category-product-name {
+    width: 200px;
+  }
+  .edit-category-button {
+    width: 150px;
+    height: 50px;
+  }
+  .edit-category-img-upload img {
+    display: inline-block;
+    width: 150px;
+  }
+  .edit-category-img-upload label {
+    display: inline-block;
+    width: 150px;
+  }
 }

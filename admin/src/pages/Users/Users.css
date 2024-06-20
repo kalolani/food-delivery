@@ -44,3 +44,10 @@
     display: none;
   }
 }
+
+@media (max-width: 450px) {
+  .list-table-format-user {
+    grid-template-columns: 1fr 2fr;
+    gap: 10px;
+  }
+}

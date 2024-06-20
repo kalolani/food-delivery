@@ -16,7 +16,7 @@ import paymentRouter from "./routes/chapaRoute.js";
 
 //config
 const app = express();
-const port = 4000;
+const port = process.env.PORT || 4000;
 
 //middleware
 

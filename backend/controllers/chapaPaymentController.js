@@ -45,8 +45,8 @@ const createPayment = async (req, res) => {
         customization: {
           title: "food-del",
           description: "food-del-app",
+
           // userId: req.body.userId,
-          logo: null,
         },
         meta: {
           userId: req.body.userId,
