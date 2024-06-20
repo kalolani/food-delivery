@@ -48,3 +48,4 @@ app.listen(port, () => {
 });
 
 //mongodb+srv://kaleab:kalolani@cluster0.ofl3a1t.mongodb.net/?
+export default app;
