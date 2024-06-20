@@ -61,7 +61,7 @@ function FoodItem({ id, name, price, description, image }) {
                     src={assets.remove_icon_red}
                     alt=""
                   />
-                  <p>{cartItem[id]}</p>
+                  <p className="incdec">{cartItem[id]}</p>
                   <img
                     onClick={() => addItem(id)}
                     src={assets.add_icon_green}
