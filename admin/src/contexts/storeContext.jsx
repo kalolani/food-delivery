@@ -9,7 +9,7 @@ function StoreProvider({ children }) {
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState({});
   const [image, setImage] = useState(null);
-  const url = "https://food-delivery-frontend-u8jx.onrender.com/";
+  const url = "https://food-delivery-backend-yr23.onrender.com";
 
   useEffect(() => {
     async function loadData() {
