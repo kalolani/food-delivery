@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import "./PlaceOrder.css";
 import { useStores } from "../../contexts/storeContext";
 function PlaceOrder({ showLogin, setShowLogin }) {
-  const frontend_url = "http://localhost:5173";
+  const frontend_url = "https://food-delivery-frontend-u8jx.onrender.com";
   const { getTotalCartAmount, cartItem, food_list, url, token } = useStores(); // Assuming useStores is a context hook you have
   const { tx_ref } = useStores();
 
