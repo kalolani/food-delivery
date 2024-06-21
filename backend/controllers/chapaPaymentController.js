@@ -50,7 +50,7 @@ const createPayment = async (req, res) => {
         },
         meta: {
           userId: req.body.userId,
-          items,
+          // items,
           address,
         },
       },
