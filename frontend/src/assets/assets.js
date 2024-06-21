@@ -60,6 +60,8 @@ import bag_icon from "./bag_icon.png";
 import logout_icon from "./logout_icon.png";
 import parcel_icon from "./parcel_icon.png";
 
+export const url="https://food-delivery-backend-yr23.onrender.com"
+
 export const assets = {
   logo,
   basket_icon,
