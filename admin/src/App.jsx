@@ -29,7 +29,7 @@ const Container = styled.div`
   transition: all 0.3s linear;
 `;
 
-const url = "https://food-delivery-frontend-u8jx.onrender.com/";
+const url = "https://food-delivery-backend-yr23.onrender.com";
 function App() {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   useEffect(() => {
