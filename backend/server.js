@@ -19,16 +19,9 @@ const app = express();
 const port = process.env.PORT || 4000;
 
 //middleware
-const allowedOrigin = " http://localhost:5173";
 
 app.use(express.json());
-app.use(
-  cors({
-    origin: allowedOrigin,
-    methods: ["POST", "GET", "PUT"],
-    credentials: true,
-  })
-);
+app.use(cors());
 app.use(bodyParser.json());
 
 //db connection
