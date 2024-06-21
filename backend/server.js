@@ -19,9 +19,16 @@ const app = express();
 const port = process.env.PORT || 4000;
 
 //middleware
+const allowedOrigin = " http://localhost:5173";
 
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: allowedOrigin,
+    methods: ["POST", "GET", "PUT"],
+    credentials: true,
+  })
+);
 app.use(bodyParser.json());
 
 //db connection
@@ -48,4 +55,3 @@ app.listen(port, () => {
 });
 
 //mongodb+srv://kaleab:kalolani@cluster0.ofl3a1t.mongodb.net/?
-
