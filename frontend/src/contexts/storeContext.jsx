@@ -10,7 +10,7 @@ function StoreProvider({ children }) {
   const [cartAddLoading, setCartAddLoading] = useState(false);
   const [cartRemLoading, setCartRemLoading] = useState(false);
   const [isRated, setIsRated] = useState(false);
-  const url = "http://localhost:4000";
+  const url = "https://food-delivery-backend-yr23.onrender.com";
   const [food_list, setFoodList] = useState([]);
   const [menu_list, setMenuList] = useState([]);
   const [image, setImage] = useState(null);
