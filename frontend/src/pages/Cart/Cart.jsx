@@ -30,7 +30,7 @@ function Cart() {
                   <img src={url + "/images/" + item.image} alt="" />
                   <p>{item.name}</p>
                   <p>{item.price} ETB</p>
-                  <p>{cartItem[item._id]} ETB</p>
+                  <p>{cartItem[item._id]}</p>
                   <p>{item.price * cartItem[item._id]} ETB</p>
                   <p onClick={() => removeItem(item._id)} className="cross">
                     <HiOutlineXCircle color="red" size={20} />
