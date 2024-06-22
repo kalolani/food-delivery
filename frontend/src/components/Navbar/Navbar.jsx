@@ -126,7 +126,7 @@ function Navbar({ setShowLogin, toggleTheme, theme }) {
             <AiOutlineShoppingCart size={30} color="#49557e" />
           </NavLink>
 
-          <div className={getTotalCartAmount() > 0 ? "dot" : ""}>
+          <div className={cartNumber > 0 ? "dot" : ""}>
             {" "}
             <p className="cartNumber"> {cartNumber}</p>
           </div>
