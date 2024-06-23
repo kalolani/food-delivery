@@ -1,4 +1,4 @@
-# MERN Stack Food delivery Web Application
+# Food delivery Web Application
 
 ## Table of Contents
 - [Introduction](#introduction)
