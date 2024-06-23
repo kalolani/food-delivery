@@ -23,6 +23,10 @@ function MyOrders() {
           },
         }
       );
+       // Sort the data in descending order based on a relevant property
+      const sortedData = response.data.data.sort(
+        (a, b) => new Date(b.date) - new Date(a.date)
+      );
       setData(response.data.data);
     } catch (err) {
       console.log(err);
