@@ -90,7 +90,7 @@ The application is hosted on Render. You can visit it [here](https://food-delive
 3. Add products to the cart and proceed to checkout.
 4. Admin users can log in to the admin dashboard to manage products and orders.
 
-## Screenshot
+## Demo on how to use the website
 ![Frontend Screenshot](https://i.imgur.com/XKFc6WV.png)
 
 
