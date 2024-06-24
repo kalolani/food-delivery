@@ -86,6 +86,9 @@ function LoginPopup({ setShowLogin }) {
 
   return (
   <div className="login-popup">
+     <div className="logo-container">
+        <img src="dila-uni.png" alt="dila-uni-logo" />
+      </div>
       <form onSubmit={onLogin} className="login-popup-container">
         {loginError && (
           <div className="reg-message-container">
