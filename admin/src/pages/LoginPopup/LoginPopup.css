@@ -3,19 +3,26 @@
   z-index: 1;
   width: 100vw;
   height: 100vh;
-  background-image: url("./preview.png");
+  /* background-image: url("./preview.png"); */
+  background-color: rgb(2 6 23);
 
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
   display: grid;
   position: fixed;
 }
 
+.logo-container {
+  text-align: center;
+  margin-top: 50px;
+}
+.logo-container img {
+  width: 150px;
+  height: 150px;
+}
+
 .login-popup-container {
   position: absolute;
-  left: 22%;
-  top: -10%;
+  left: 50%;
+  top: 5%;
   transform: translate(-50%, 50%);
   width: max(23vw, 330px);
   color: #303030;
@@ -98,4 +105,9 @@
 
 .title {
   text-align: center;
+}
+@media (max-width: 370px) {
+  .login-popup-container {
+    width: max(17vw, 280px);
+  }
 }
