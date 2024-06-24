@@ -85,12 +85,7 @@ function LoginPopup({ setShowLogin }) {
   };
 
   return (
-  <div className="login-popup" style={{ 
-  backgroundImage: 'url("./preview.png")',
-  backgroundRepeat: "no-repeat",
-  backgroundPosition: "center",
-  backgroundSize: "cover"
-}}>
+  <div className="login-popup">
       <form onSubmit={onLogin} className="login-popup-container">
         {loginError && (
           <div className="reg-message-container">
