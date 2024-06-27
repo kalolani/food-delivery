@@ -13,6 +13,7 @@ import categoryRouter from "./routes/categoryRoute.js";
 import imageRouter from "./routes/imageRoute.js";
 import emailRouter from "./routes/emailRoute.js";
 import paymentRouter from "./routes/chapaRoute.js";
+import helmet from "helmet";
 
 //config
 const app = express();
