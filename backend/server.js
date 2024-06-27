@@ -39,6 +39,8 @@ app.use("/api/admin", adminRouter);
 app.use("/api/email", emailRouter);
 app.use("/api/payment", paymentRouter);
 
+app.use(helmet());
+
 app.get("/", (req, res) => {
   res.send("API working");
 });
