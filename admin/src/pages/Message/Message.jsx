@@ -6,6 +6,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { format } from "date-fns";
 import "./Message.css";
+import FadeLoader from "react-spinners/FadeLoader";
 
 const Message = ({ url }) => {
   const [message, setMessage] = useState(null);
@@ -23,11 +24,14 @@ const Message = ({ url }) => {
   useEffect(() => {
     const fetchEmail = async () => {
       try {
+        setLoading(true);
         const response = await axios.get(`${url}/api/email/message/${id}`);
         setMessage(response.data);
         setLoading(false);
       } catch (err) {
         setError(err.message);
+        setLoading(false);
+      } finally {
         setLoading(false);
       }
     };
@@ -36,13 +40,16 @@ const Message = ({ url }) => {
   }, [id]);
 
   if (!token) return;
-  if (loading) {
-    return <p>Loading...</p>;
-  }
 
   if (error) {
     return <p>Error: {error}</p>;
   }
+  if (loading)
+    return (
+      <div className="loadingComponent">
+        <FadeLoader color="rgb(212 212 212)" loading={loading} size={50} />
+      </div>
+    );
 
   return (
     <div className="message">
