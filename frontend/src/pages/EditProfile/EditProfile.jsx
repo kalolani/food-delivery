@@ -4,12 +4,15 @@ import "./EditProfile.css";
 import axios from "axios";
 import { useStores } from "../../contexts/storeContext";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 function EditProfile() {
-  const { url, image, setImage, token } = useStores();
+  const { image, setImage, token } = useStores();
+  const url = "http://localhost:4000";
+
   const [user, setUser] = useState();
   console.log(image);
+  console.log(user);
 
   const navigate = useNavigate();
 
@@ -18,40 +21,39 @@ function EditProfile() {
     return localStorage.getItem("token"); // Ensure this matches where you store the token
   };
 
-  const fetchUser =
-    (async () => {
-      if (!token) {
-        console.error("Token is missing");
-        return;
-      }
+  const fetchUser = useCallback(async () => {
+    if (!token) {
+      console.error("Token is missing");
+      return;
+    }
 
-      try {
-        const response = await axios.post(
-          `${url}/api/user/edit`,
-          {},
-          {
-            headers: {
-              Authorization: `Bearer ${token}`, // Ensure the correct token format
-            },
-          }
-        );
+    try {
+      console.log("Token being sent:", token);
 
-        console.log("Response data:", response.data);
-        if (response.data.success) {
-          setUser(response.data.image);
-        } else {
-          console.log("Error: Data fetch was not successful");
+      const response = await axios.post(
+        `${url}/api/image/list`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Ensure the correct token format
+          },
         }
-      } catch (error) {
-        if (error.response) {
-          console.error("Error response from server:", error.response.data);
-        } else {
-          console.error("Error making request:", error.message);
-        }
-      }
-    },
-    [token, url]);
+      );
 
+      console.log("Response data:", response.data);
+      if (response.data.success) {
+        setUser(response.data.data);
+      } else {
+        console.log("Error: Data fetch was not successful");
+      }
+    } catch (error) {
+      if (error.response) {
+        console.error("Error response from server:", error.response.data);
+      } else {
+        console.error("Error making request:", error.message);
+      }
+    }
+  }, [token, url]);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
