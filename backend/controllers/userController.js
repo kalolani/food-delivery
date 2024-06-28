@@ -72,6 +72,14 @@ const registerUser = async (req, res) => {
     res.json({ success: false, mssage: "Error" });
   }
 };
+const getSingleUser = async (req, res) => {
+  try {
+    const user = await userModel.findById(req.body.userId);
+    res.send(user);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+};
 
 //all users list
 
@@ -96,4 +104,4 @@ const getUserCount = async (req, res) => {
   }
 };
 
-export { registerUser, loginUser, usersList, getUserCount };
+export { registerUser, loginUser, usersList, getUserCount, getSingleUser };
