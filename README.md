@@ -25,7 +25,6 @@ The application is hosted on Render. You can visit it [here](https://food-delive
 - Order management
 - User profile management
 - Admin dashboard for managing products and orders
-- 
 - Responsive design
 
 ## Technologies Used
