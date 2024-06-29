@@ -18,10 +18,14 @@ The application is hosted on Render. You can visit it [here](https://food-delive
 - User authentication and authorization (JWT)
 - Product listing and details
 - Shopping cart functionality
+- Add, remove, and update product quantities in the cart.
+- Search items functionality based on the menu
+- product review and rating
 - Chapa payment Integration
 - Order management
 - User profile management
 - Admin dashboard for managing products and orders
+- 
 - Responsive design
 
 ## Technologies Used
