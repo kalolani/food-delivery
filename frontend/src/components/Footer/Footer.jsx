@@ -42,8 +42,7 @@ function Footer() {
         </div>
         <div className="footer-copyright">
           <p className="footer-text">
-            Built by <span className="footer-name">AYANA BASHA</span> for my
-            internship project. Copyright © by Ayana Basha. You are 100%
+           Copyright © by Ayana Basha. You are 100%
             allowed to use this webpage for both personal and commercial use,
             but NOT to claim it as your own design.
           </p>
