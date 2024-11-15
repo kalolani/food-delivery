@@ -42,7 +42,7 @@ function Footer() {
         </div>
         <div className="footer-copyright">
           <p className="footer-text">
-           Copyright © by Ayana Basha. You are 100%
+           Copyright © by Kaleab Gemechu. You are 100%
             allowed to use this webpage for both personal and commercial use,
             but NOT to claim it as your own design.
           </p>
